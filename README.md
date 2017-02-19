@@ -1,4 +1,4 @@
 # MsiHelp
-Help Sheet for the MSI Exam
+Help sheet for the MSI exam
 
 Feel free to contribute

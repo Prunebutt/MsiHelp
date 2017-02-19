@@ -36,9 +36,33 @@ Matrix derivatives
 \begin{equation*}
 \frac{d(x^TAx)}{dx} = (A^T + A)x
 \end{equation*} 
-Linear and non-linear equations:
-TODO; polynomial etc. 
+Linear and non-linear models:\\
+linear if parameters go in linear i.e. ($\theta_1 x^2 + \theta_2 x + \theta_3$), nonliniar if i.e ($\sin(\theta_1)x + \theta_2$) TODO check that...
 
+Table of Derivatives:
+\begin{center}
+\begin{tabular}{|c|c|}
+	\hline 
+	\textbf{$\mathbf{f(x)}$} & \textbf{$\mathbf{f'(x)}$} \\ 
+	\hline 
+	$ g(x) \cdot h(x)$& ${\color{red}g'(x)} \cdot h(x) + g(x) \cdot {\color{red}h'(x)}$ \\ 
+	\hline 
+	$ g(h(x))$ & $g'(h(x)) \cdot h'(x)$ \\ 
+	\hline 
+	$\sin(x)$ & $-\cos(x)$ \\ 
+	\hline 
+	$\cos(x)$ & $\sin(x)$ \\ 
+	\hline 
+	$\tan(x)$& $-\ln(\vert\cos(x))$ \\ 
+	\hline 
+	$e^{kx}$& $\frac{1}{k}e^{kx} $\\ 
+	\hline 
+	$\ln(x)$& $\frac{1}{x}$ \\ 
+	\hline 
+	$\log_ax$& $\frac{1}{\ln a}(x\ln x -x)$ \\ 
+	\hline 
+\end{tabular} 
+\end{center}
 % -----------------------------------------------------------------
 % 				   Probablility and Statistics
 % -----------------------------------------------------------------
@@ -97,6 +121,10 @@ Covariance and Correlaton:
 \end{equation*}
 \begin{equation*}
 = \int_{-\infty}^{\infty}{\int_{-\infty}^{\infty}{(y-\mu_Y)(z - \mu_Z)\cdot p_{Y,Z} (y,z)\,  dy \, dz} }
+\end{equation*}
+Covariance Matrix:
+\begin{equation*}
+\Sigma_x = cov(X) = \mathbb{E}\{XX^T\} - \mu_x \mu^T_x
 \end{equation*}
 Multidimensional Random Variables:
 \begin{equation*}
@@ -204,7 +232,11 @@ For I.I.D noise: Unweight Least Squares is optimal: W=I
 { f }_{ WLS }(\theta )={ \parallel { y }_{ N }-{ \Phi  }_{ N }\theta \parallel  }_{ W }^{ 2 }={ ({ Y }_{ N }-\Phi \cdot \theta ) }^{ T }\cdot W\cdot  ({ Y }_{ N }-\Phi \cdot \theta )
 \end{equation*}
 
-
+Solution for WLS:
+\begin{equation*}
+\hat{\theta}_{WLS} = \tilde{\Phi}^+\tilde{y} \\
+\end{equation*}
+with $\tilde{\Phi} = W^{\frac{1}{2}} \Phi$ and $\tilde{y} = W^{\frac{1}{2}} y$.
 
 
 \begin{equation*}
@@ -375,7 +407,7 @@ Q_{ N+1 }\, =\, \alpha \, \cdot \, Q_{ N }+\varphi (N+1)\, \cdot \, \varphi (N+1
 \varphi(N+1)^T \, \cdot \,\hat{\theta}_{ML}(N)]
 \end{equation*}
 
-\subsection*{Cramer-Rao-Inequality}
+\subsection*{Cramer-Rao-Inequality (Fisher information Matrix M)}
 \begin{equation*}
 { \Sigma  }_{ \theta  } \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi)^{-1}
 \end{equation*}
@@ -385,7 +417,7 @@ L(\theta ,y_{ N })\, =\, \frac { 1 }{ 2 } \, \cdot \, (\Phi _{ N }\, \cdot \, \t
 \begin{equation*}
 M\, =\, { E }\{ \triangledown ^{ 2 }_{ \theta  }\, L(\theta ,y_{ N })\} \, =\, \triangledown ^{ 2 }_{ \theta  }\, L(\theta ,y_{ N })\, =\, \Phi _{ N }^{ T }\, \cdot \, \Sigma ^{ -1 }\, \cdot \, \Phi _{ N }
 \end{equation*}
-
+Confirms that $W = \Sigma^{-1}$ is the optimal weighting Matrix for WLS.
 % -----------------------------------------------------------------
 %		 				 Dynamic Models
 % -----------------------------------------------------------------
