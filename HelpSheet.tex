@@ -1,0 +1,39 @@
+%------------------------------------------------------------------
+% Einstellen der Grundzüge des Layouts, z. B. Blattgröße
+%------------------------------------------------------------------
+\documentclass[a4paper,twocolumn,twoside=false,fontsize=8,numbers=noenddot,DIV=16,parskip=half]{scrreprt}
+
+%------------------------------------------------------------------
+% Importieren den notwendigen packages
+%------------------------------------------------------------------
+\include{tex/packages}
+
+%------------------------------------------------------------------
+% Verwende für Kopf und Fußzeile fancyhdr
+%------------------------------------------------------------------
+\include{tex/headings}
+
+%------------------------------------------------------------------
+% Weitere Einstellungen (Farben / Numerierungstiefen)
+%------------------------------------------------------------------
+\include{tex/settings}
+
+
+%------------------------------------------------------------------
+% Definition einiger globaler Variablen
+%------------------------------------------------------------------
+
+
+%------------------------------------------------------------------
+% Dokumentbeginn
+%------------------------------------------------------------------
+\setlength{\columnseprule}{0.4pt}
+\begin{document}
+
+% Numerierung arabisch
+\pagenumbering{arabic}
+
+\include{pages/theorie}
+
+
+\end{document}
