@@ -11,29 +11,33 @@ Euklidische Norm:
 \begin{equation*}
 {\parallel x\parallel  }_{ 2 }^{ 2 } = x^T\cdot x
 \end{equation*}
-
 Weighting Eukledian Norm:
 \begin{equation*}
 {\parallel x\parallel  }_{ Q }^{ 2 } = x^TQ \cdot x
 \end{equation*}
-
 Frobenius Norm:
 \begin{equation*}
 {\parallel x\parallel  }_{ F }^{ 2 } = trace(A{ A }^{ T })=\sum _{ i=1 }^{ n } \sum _{ j=1 }^{ m }{ { A }_{ ij }{ A }_{ ij } } 
 \end{equation*}
-
 \begin{equation*}
 \triangledown f(x) \quad Jacobian
 \end{equation*}
 \begin{equation*}
 { \triangledown  }^{ 2 }f(x)\quad Hessian
 \end{equation*}
-
 Error in variables
 \begin{equation*}
 \hat { R } _{ ev }(N)\quad =\quad \frac { \frac { 1 }{ N } \sum _{ k=1 }^{ N }{ u(k) }  }{ \frac { 1 }{ N } \sum _{ k=1 }^{ N }{ i(k) }  }
 \end{equation*}
-
+Matrix derivatives
+\begin{equation*}
+\frac{d(c^Tx)}{dx} = c
+\end{equation*} 
+\begin{equation*}
+\frac{d(x^TAx)}{dx} = (A^T + A)x
+\end{equation*} 
+Linear and non-linear equations:
+TODO; polynomial etc. 
 
 % -----------------------------------------------------------------
 % 				   Probablility and Statistics
@@ -43,11 +47,9 @@ Random Variables and Probability
 \begin{equation*}
 P(A|B) \cdot  P(B) = P(B|A) \cdot  P(A)
 \end{equation*}
-
 \begin{equation*}
 P(A|B) = \frac { P(A,B) }{ P(B) }  \rightarrow  \frac { P(B,A) \cdot  P(A) }{ P(B) } 
 \end{equation*}
-
 \begin{equation*}
 P(X \in  [a,b]) = \int _{ a }^{ b }{  p_{ X }(x) dx } 
 \end{equation*}
@@ -55,7 +57,6 @@ Mean
 \begin{equation*}
 \mu_X = \mathbb{ E }\{ f(x)\}  := \int _{ -\infty  }^{ \infty  }{  f(x) \cdot  p_{ X }(x) dx } 
 \end{equation*}
-
 \begin{equation*}
 \mathbb{ E }\{ a + bX\}  := a + b\mathbb{ E }\{ X\} 
 \end{equation*}
@@ -63,37 +64,33 @@ Variance
 \begin{equation*}
 \sigma _{ X }^{ 2 } := \mathbb{ E }\{ (X-\mu _{ X })^{ 2 }\}  = \mathbb{ E }\{ X^{ 2 }\} -\mu _{ X }^{ 2 }
 \end{equation*}
-
 \begin{equation*}
 std dev \, \sigma _{ X } = \sqrt { variance \, \sigma _{ X }^{ 2 } } 
 \end{equation*}
-
-\section*{Verteilungen}
+\section*{Distributions}
 Uniform distribution:
 \begin{equation*}
 { P_{ y }(x) } = \left\{ \begin{matrix} \frac { 1 }{ b-a }  &  \quad if\quad x  \in  [a,b] \\ 0 & else \end{matrix} \right.
 \end{equation*}
-
-Normal distribution:
+Normal (Gaussian) distribution:
 \begin{equation*}
 p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}\cdot exp(-\frac{(x-\mu)^2}{2\sigma^2})
 \end{equation*}
-
+\begin{equation*}
+X \sim \mathcal{N}(\mu, \sigma^2)
+\end{equation*}
 Multidimensional Normal Distribution:
 \begin{equation*}
 p(x)=\frac { 1 }{ \sqrt { (2\pi )^{ n }\cdot det(\Sigma ) }  } \cdot exp(-\frac { 1 }{ 2 } \, \cdot \, { (x-\mu ) }^{ T }\, \cdot \, \Sigma ^{ -1 }\, \cdot \, (x-\mu )\, )
 \end{equation*}
-
 Weibull distribuation: 
 \begin{equation*}
 F(x) \, = \, 1 - e^{-(\lambda \cdot x)^k}
 \end{equation*}
-
 Laplace distribuation:
 \begin{equation*}
 f(x|\mu,b) = \frac{1}{2b} \cdot exp (-\frac{|x-\mu|}{b})
 \end{equation*}
-
 Covariance and Correlaton:
 \begin{equation*}
 \sigma (Y,Z) := \mathbb{E} {(Y-\mu_Y)(Z-\mu_Z)} = 
@@ -101,28 +98,22 @@ Covariance and Correlaton:
 \begin{equation*}
 = \int_{-\infty}^{\infty}{\int_{-\infty}^{\infty}{(y-\mu_Y)(z - \mu_Z)\cdot p_{Y,Z} (y,z)\,  dy \, dz} }
 \end{equation*}
-
 Multidimensional Random Variables:
 \begin{equation*}
 \mathbb{E}{f(X)} = \int_{\mathbb{R}^n}{f(x)p_X(x) d^n x}
 \end{equation*}
-
 \begin{equation*}
 cov(X) = \mathbb{E} \{(X-\mu_X)(X-\mu_X)^T\} 
 \end{equation*}
-
 \begin{equation*}
 cov(X) = \mathbb{E} \{XX^T\} - \mu_X \mu_X^T
 \end{equation*}
-
 \begin{equation*}
 cov(Y) = \Sigma_y = A \Sigma_x A^T \quad for \quad y = A \cdot x
 \end{equation*}
-
 \begin{equation*}
 \mathbb{E }\{AX\} =A \cdot \mathbb{ E }\{X\}
 \end{equation*}
-
 Rules for variance:
 \begin{equation*}
 var(X+Y) = var(X)+var(Y)+2 \cdot cov(X,Y)
