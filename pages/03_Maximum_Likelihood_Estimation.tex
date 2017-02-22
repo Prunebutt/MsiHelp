@@ -1,7 +1,7 @@
 % -----------------------------------------------------------------
 % 				 Maximum Likelihood Estimation
 % -----------------------------------------------------------------
-\section*{Maximum Likelihood Estimation}
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Maximum Likelihood Estimation]
 Maximum Likelihood Estimation (ML) \({L}_{2}\) Estimation:\\
 Measurement Errors assumed to be Normally distributed
 \begin{equation*}
@@ -32,13 +32,12 @@ Robust against outliers
 =\,median\,of\,\{{Y}_{1},...,{Y}_{N}\}
 \end{equation*}
 
-
-
 \begin{equation*}
 { P(y|\theta ) }=C\prod _{ i=1 }^{ N }{ { exp }(\frac { -|{ y }_{ i }-\theta | }{ 2\cdot { a }_{ i } } ) } 
 \end{equation*} 
+\end{tcolorbox}
 
-Bayesian Estimation and the Maximum a Posteriori Estimate\\
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Bayesian Estimation and the Maximum a Posteriori Estimate]
 Assumptions: i.i.d noise and linear model
 \begin{equation*}
 p(\theta |{ y }_{ N })\cdot p({ y }_{ N })=p({ y }_{ N }|\theta )\cdot p(\theta)
@@ -56,8 +55,9 @@ MAP Example: Regularised Least Squares
 \begin{equation*}
 { \hat { \theta  }  }_{ MAP }=arg\, \underset { \theta \in { R } }{ min } \frac { 1 }{ 2 } \cdot \frac { 1 }{ { \sigma  }_{ \epsilon  }^{ 2 } } \cdot { \parallel { y }_{ N }-{ \Phi  }_{ N }\cdot \theta \parallel  }_{ 2 }^{ 2 }+\frac { 1 }{ 2 } \cdot \frac { 1 }{ { \sigma  }_{ \theta  }^{ 2 } } \cdot { (\theta -  \overline{\theta}) }^{ 2 }
 \end{equation*}
+\end{tcolorbox}
 
-\subsection*{Recursive Linear Least Squares}
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Recursive Linear Least Squares]
 \begin{equation*}
 \theta _{ ML }(N) \, = \, arg\, \underset { \theta \, \in \, { R } }{ min } \, \frac { 1 }{ 2 } \parallel y_N - \Phi_N\cdot\,\theta{ \parallel  }_{ 2 }^{ 2 }
 \end{equation*}
@@ -81,8 +81,9 @@ Q_{ N+1 }\, =\, \alpha \, \cdot \, Q_{ N }+\varphi (N+1)\, \cdot \, \varphi (N+1
 \begin{equation*}
 \varphi(N+1)^T \, \cdot \,\hat{\theta}_{ML}(N)]
 \end{equation*}
+\end{tcolorbox}
 
-\subsection*{Cramer-Rao-Inequality (Fisher information Matrix M)}
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Cramer-Rao-Inequality (Fisher information Matrix M)]
 \begin{equation*}
 { \Sigma  }_{ \theta  } \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi)^{-1}
 \end{equation*}
@@ -93,3 +94,4 @@ L(\theta ,y_{ N })\, =\, \frac { 1 }{ 2 } \, \cdot \, (\Phi _{ N }\, \cdot \, \t
 M\, =\, { E }\{ \triangledown ^{ 2 }_{ \theta  }\, L(\theta ,y_{ N })\} \, =\, \triangledown ^{ 2 }_{ \theta  }\, L(\theta ,y_{ N })\, =\, \Phi _{ N }^{ T }\, \cdot \, \Sigma ^{ -1 }\, \cdot \, \Phi _{ N }
 \end{equation*}
 Confirms that $W = \Sigma^{-1}$ is the optimal weighting Matrix for WLS.
+\end{tcolorbox}

@@ -1,7 +1,7 @@
 % -----------------------------------------------------------------
 %		 				 Dynamic Models
 % -----------------------------------------------------------------
-\section*{Dynamic Models}
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Dynamic Models]
 \textbf{Linear Time Invariant (LTI) Systems}\\
 with A, B, C, D are matrices
 \begin{equation*}
@@ -39,7 +39,7 @@ y(k) \, = \, (u(k),\, u(k-1),\, ...,\, u(k-n_{n_b})) \, \cdot \, \theta \, + \, 
 
 \begin{figure}[H]
 	\centering
-  	\includegraphics[width=0.5\textwidth]{./model.pdf}
+  	\includegraphics[width=\linewidth]{./model.pdf}
 	\label{model}
 \end{figure}
 Models with Input and Output Errors
@@ -51,3 +51,4 @@ arg \, \underset { \theta  }{ min } \, \sum _{ k-1 }^{ N }{ \frac { 1 }{ { \sigm
 \begin{equation*}
 arg \, \underset { \theta  }{ min } \, \sum _{ k-1 }^{ N }{ \frac { 1 }{ { \sigma  }_{ y }^{ 2 } }  } { (y(k)-M(k;\tilde { U } ,{ x }_{ init },p)) }^{ 2 }+\frac { 1 }{ { \sigma  }_{ u }^{ 2 } } { (u(k)-\tilde{ u }(k) ) }^{ 2 }
 \end{equation*}
+\end{tcolorbox}
