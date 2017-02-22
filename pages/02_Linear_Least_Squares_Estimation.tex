@@ -1,6 +1,7 @@
 % -----------------------------------------------------------------
 % 				 Linear Least Squares Estimation
 % -----------------------------------------------------------------
+
 \section*{Linear Least Squares Estimation}
 Preliminaries: I.I.D and gaussian noise
 
@@ -84,7 +85,7 @@ cov({ \hat { \theta  } _{ WLS } }){ \succeq ({ \Phi  }_{ N }^{ T }W{ \Phi  }_{ N
 \end{equation*}
 
 
-Example:
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Example LLS]
 \begin{equation*}
 \varepsilon (1) \sim  { \cal{N} }(0|\sigma ^{ 2 }_{ 1 }) \quad \varepsilon (2) \sim  { \cal{N} }(0|\sigma ^{ 2 }_{ 2 })
 \end{equation*}
@@ -114,10 +115,7 @@ Measuring the goodness of Fit using \({R}^{2} \quad 0\le {R}^{2} \le1\)
 \frac { { \parallel { y }_{ N }\parallel  }_{ 2 }^{ 2 }-{ \parallel { \epsilon  }_{ N }\parallel  }_{ 2 }^{ 2 } }{ { \parallel { y }_{ N }\parallel  }_{ 2 }^{ 2 } } =\frac { { \parallel { \hat { y  }  }_{ N }\parallel  }_{ 2 }^{ 2 } }{ { \parallel { y }_{ N }\parallel  }_{ 2 }^{ 2 } } 
 \end{equation*}
 residual $ \epsilon_{N} \uparrow \quad \rightarrow \quad R^{2} \rightarrow 0 \,\,(= bad)$
-
-
-
-
+\tcblower
 
 Estimating the Covariance with the Single Experiment
 \begin{equation*}
@@ -127,3 +125,4 @@ Estimating the Covariance with the Single Experiment
 \begin{equation*}
 \hat { \Sigma  } _{ \hat { \theta  }  } := \hat { \sigma  } ^{ 2 }_{ \varepsilon  } (\phi ^{ T }_{ N } \phi _{ N })^{ -1 } = \frac { \parallel y_{ N }\, -\phi _{ N }\hat { \theta  } _{ LS }{ \parallel  }_{ 2 }^{ 2 } }{ N-d } \cdot (\phi ^{ T }_{ N } \phi _{ N })^{ -1 }
 \end{equation*}
+\end{tcolorbox}
