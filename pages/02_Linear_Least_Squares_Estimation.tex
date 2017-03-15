@@ -53,17 +53,17 @@ with $\tilde{\Phi} = W^{\frac{1}{2}} \Phi$ and $\tilde{y} = W^{\frac{1}{2}} y$.
 \end{tcolorbox}
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Ill-Posed Least Squares]
 	
-TODO: make understandable
-	
 Singular Value Decomposition
 \begin{equation*}
-A=US{ V }^{ T }\quad mit\quad U\in\mathbb{{R}}^{mxm}, \quad V\in\mathbb{{R}}^{nxn} und \quad S\in\mathbb{{R}}^{mxn}
+A=US{ V }^{ T } \in\mathbb{{R}}^{mxn}, \; mit\quad U\in\mathbb{{R}}^{mxm}, \; V\in\mathbb{{R}}^{nxn} \; und \; S\in\mathbb{{R}}^{mxn}
 \end{equation*}
-
+where S is a Matrix with non-negative elements $(\sigma_1,....,\sigma_r, 0,...,0)$ on the diagonal and 0 everywhere else.\\
 Moore Penrose Pseudo Inverse
 \begin{equation*}
-{ \Phi  }^{ + }=V{ S }^{+}{U}^{T}
+{ \Phi  }^{ + }=V{ S }^{+}{U}^{T} = V(S^TS+\alpha\mathbb{I})^{-1}S^TU^T
 \end{equation*}
+$\Phi^+$ therefore selects $\theta^\star \in S^\star$ with minimal norm.
+\\
 
 Regularization for Least Squares\\
 \( { lim }_{ \alpha \rightarrow 0 }{ ({ \Phi  }^{ T }\Phi +\alpha { I }) }^{ -1 }{ \Phi  }^{ T }={ \Phi  }^{ + }\, with\,{ \Phi  }^{ + }\, MPPI \)
