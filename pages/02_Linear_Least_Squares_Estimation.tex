@@ -3,128 +3,94 @@
 % -----------------------------------------------------------------
 
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Linear Least Squares Estimation}]
-Preliminaries: I.I.D and gaussian noise
-
-Overall Model
-\begin{equation*}
-y(k)={ \phi (k) }^{ T }\theta +\epsilon (k)
-\end{equation*}
-
-Least Squares cost function as sum
-\begin{equation*}
-\sum _{ k=1 }^{ N }{{ (y(k)-{ \phi (k) }^{ T }\theta )}^{2  } } 
-\end{equation*}
-
-Least Squares cost function
-\begin{equation*}
-f(\theta )={ \parallel {y  }_{N  }-{ \Phi }_{ N }\theta\parallel }_{ 2 }^{2  }
-\end{equation*}
-
-Unique minimizers
-\begin{equation*}
-\hat{\theta}_{LS} =arg \, \underset{ \theta \in \mathbb{R} }{ min } \, f(\theta)
-\end{equation*}
-
-\begin{equation*}
-{ \theta  }^{ * }=\underbrace { { ({ \Phi  }^{ T }\Phi ) }^{ -1 }{ \Phi  }^{ T } }_{ { \Phi  }^{ + } } y
-\end{equation*}
-Pseudo Inverse: \qquad $\Phi ^{ + }={({ \Phi  }^{ T }\Phi ) }^{ -1 }{ \Phi  }^{ T }$\\
+\textbf{Preliminaries:} i.i.d. and Gaussian noise
+\begin{flalign*}
+	& \textbf{Overall Model: }
+	y(k)= \phi (k)^T \theta +\epsilon (k) & \\
+	& \textbf{LS cost function as sum: }
+	\sum _{k=1}^{N} { (y(k)- \phi(k)^T \theta )}^{2} & \\
+	& \textbf{LS cost function: }
+	f(\theta )={ \lVert y_N - \Phi_N \theta \rVert }_{2}^{2} & \\
+	&\textbf{Unique minimizers: }
+	\hat{\theta}_{LS} = \underset{\theta \in \mathbb{R}}{arg\,min} \, f(\theta) \hfil \theta^* = \underbrace{(\Phi^T \Phi)^{-1} \Phi^T}_{\Phi^+} y & \\
+	& \textbf{Pseudo Inverse: } \Phi ^+ = (\Phi^T \Phi)^{-1} \Phi^T &
+\end{flalign*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Weighted Least Squares (unitless)}]
-For I.I.D noise: Unweight Least Squares is optimal: W=I
-\begin{equation*}
-\sum _{ k=1 }^{ N }\frac {{{ (y(k)-{ \phi (k) }^{ T }\theta )}^{2  } }}{\sigma_{\epsilon}^{2}(k)}
-\end{equation*}
-\begin{equation*}
-{ f }_{ WLS }(\theta )={ \parallel { y }_{ N }-{ \Phi  }_{ N }\theta \parallel  }_{ W }^{ 2 }={ ({ Y }_{ N }-\Phi \cdot \theta ) }^{ T }\cdot W\cdot  ({ Y }_{ N }-\Phi \cdot \theta )
-\end{equation*}
-
-Solution for WLS:
-\begin{equation*}
-\hat{\theta}_{WLS} = \tilde{\Phi}^+\tilde{y} \\
-\end{equation*}
-with $\tilde{\Phi} = W^{\frac{1}{2}} \Phi$ and $\tilde{y} = W^{\frac{1}{2}} y$.
-
-
-\begin{equation*}
-{ \hat{\theta} }_{ WLS }=arg\, \underset{ \theta \in \mathbb{R} }{ min }\,{f  }_{WLS  }(\theta)={ ({\Phi}^{T}W\Phi) }^{ -1 }{\Phi}^{T} Wy
-\end{equation*}
+\textbf{For i.i.d noise:} Unweight Least Squares is optimal: $W = I$
+\begin{align*}
+	f_{WLS}(\theta) &= \sum _{ k=1 }^{ N }\frac {{{ (y(k)-{ \phi (k) }^{ T }\theta )}^{2  } }}{\sigma_{\epsilon}^{2}(k)} = { \lVert y_N - \Phi_N \theta \rVert }_{W}^{2}  \\
+	&= { (Y_N - \Phi \cdot \theta ) }^{T} \cdot W \cdot (Y_N - \Phi \cdot \theta )
+\end{align*}
+\textbf{Solution for WLS: }
+\begin{flalign*}
+	\hat \theta_{WLS} &= \tilde \Phi^+ \tilde y \qquad 
+	\text{ mit } \tilde \Phi = W^{\frac{1}{2}} \Phi \text{ und } \tilde y = W^{\frac{1}{2}} y & \\
+	&= \underset{\theta \in \mathbb{R}}{arg\,min} \, f_{WLS}(\theta) = { (\Phi^T W \Phi)}^{-1} \Phi^T Wy
+\end{flalign*}
 \end{tcolorbox}
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Ill-Posed Least Squares}]
-	
-Singular Value Decomposition
-\begin{equation*}
-A=US{ V }^{ T } \in\mathbb{{R}}^{mxn}, \; mit\quad U\in\mathbb{{R}}^{mxm}, \; V\in\mathbb{{R}}^{nxn} \; und \; S\in\mathbb{{R}}^{mxn}
-\end{equation*}
-where S is a Matrix with non-negative elements $(\sigma_1,....,\sigma_r, 0,...,0)$ on the diagonal and 0 everywhere else.\\
-Moore Penrose Pseudo Inverse
-\begin{equation*}
-{ \Phi  }^{ + }=V{ S }^{+}{U}^{T} = V(S^TS+\alpha\mathbb{I})^{-1}S^TU^T
-\end{equation*}
-$\Phi^+$ therefore selects $\theta^\star \in S^\star$ with minimal norm.
-\\
 
-Regularization for Least Squares\\
-\( { lim }_{ \alpha \rightarrow 0 }{ ({ \Phi  }^{ T }\Phi +\alpha { I }) }^{ -1 }{ \Phi  }^{ T }={ \Phi  }^{ + }\, with\,{ \Phi  }^{ + }\, MPPI \)
-\begin{equation*}
-{ \theta  }^{ * }(\alpha )=arg\, \underset { \theta \in { R } }{ min } \, \frac { 1 }{ 2 } {\parallel y-\Phi\theta \parallel}_{2}^{2}+\frac { \alpha }{ 2 } {\parallel \theta\parallel}_{2}^{2}
-\end{equation*}
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Ill-Posed Least Squares}]	
+\textbf{Singular Value Decomposition: } $A = USV^T \in\mathbb R^{mxn} $
+\begin{addmargin}[1em]{0em}
+	with $U\in\mathbb R^{mxm}$, $V\in\mathbb R^{nxn}$ and $S\in\mathbb R^{mxn}$ where $S$ is a Matrix with non-negative elements $(\sigma_1,\dots,\sigma_r, 0,\dots,0)$ on the diagonal and 0 everywhere else.
+\end{addmargin}
+\textbf{Moore Penrose Pseudi Inverse: }
+\begin{align*}
+	\Phi^+ = VS^+ U^T = V(S^T S+\alpha I)^{-1} S^T U^T
+\end{align*}
+\hspace{1em} $\Phi^+$ therefore selects $\theta^* \in S^*$ with minimal norm. \\
+\textbf{Regularization for Least Squares:}
+\begin{align*}
+	\underset{a \rightarrow 0}{\lim} (\Phi^T \Phi + \alpha I)^{-1} \Phi^T = \Phi^+ \quad \text{with }\Phi^+ \, MPPI \\
+	\theta^* (\alpha )= \underset{\theta \in \mathbb{R}}{arg\,min}  \frac {1}{2} {\rVert y-\Phi\theta \rVert}_{2}^{2} + \frac {\alpha}{2} {\lVert \theta \rVert}_{2}^{2}
+\end{align*}
+\todo[inline]{Stimmt das auch so mit dem $\alpha$? Ich find das nirgends so.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Statistical Analysis of WLS}]
-Expectation of Least Squares Estimator
-\begin{equation*}
-{ E }\{ { \hat { \theta  } _{ WLS } }\} { ={ E }\{ ({ \Phi  }_{ N }^{ T }W{ \Phi  }_{ N }) }^{ -1 }{ \Phi  }_{ N }^{ T }W{ y }_{ N }\} ={\theta}_{0}
-\end{equation*}
-Covariance of the least squares estimator
-\begin{equation*}
-cov({ \hat { \theta  } _{ WLS } }){ =({ \Phi  }_{ N }^{ T }W{ \Phi  }_{ N }) }^{ -1 }{ =({ \Phi  }_{ N }^{ T }{\Sigma}_{\in N }^{ -1 }{ \Phi  }_{ N }) }^{ -1 }
-\end{equation*}
-
-\begin{equation*}
-cov({ \hat { \theta  } _{ WLS } }){ \succeq ({ \Phi  }_{ N }^{ T }W{ \Phi  }_{ N }) }^{ -1 }
-\end{equation*}
+\textbf{Expectation of Least Squares Estimator: }
+\begin{align*}
+	E \{\hat \theta_{WLS} \} = E \{ {(\Phi_{N}^{T} W \Phi_N)}^{-1} \Phi_{N}^{T} W y_N \} = \theta_0
+\end{align*}
+\textbf{Covariance of the least squares estimator: }
+\begin{align*}
+	cov(\hat \theta_{WLS}) &= {(\Phi_{N}^{T} W \Phi_N)}^{-1} = {(\Phi_{N}^{T} \Sigma_{\in N }^{-1} \Phi_{N}) }^{-1} \\
+	cov(\hat \theta_{WLS}) &\succeq {(\Phi_{N}^{T} W \Phi_{N})}^{-1}
+\end{align*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Example LLS}]
+\textbf{Example of the Linear Least Square Estimator for: $N=2$}
 \begin{equation*}
-\varepsilon (1) \sim  { \cal{N} }(0|\sigma ^{ 2 }_{ 1 }) \quad \varepsilon (2) \sim  { \cal{N} }(0|\sigma ^{ 2 }_{ 2 })
+	\varepsilon(1) \sim \mathcal{N}(0|{\sigma}^{2}_{1}) \hfil \varepsilon(2) \sim 	\mathcal{N}(0|\sigma^{2}_{2})
 \end{equation*}
 
-\begin{equation*}
-N=2 \quad { \Sigma  }_{ { \varepsilon  }_{ N } }=\quad \begin{bmatrix} \sigma _{ 1 }^{ 2 } & 0 \\ 0 & \sigma _{ 2 }^{ 2 } \end{bmatrix}
-\end{equation*}
+\begin{flalign*}
+	& N=2; \quad \Sigma_{\varepsilon_{N}} = 
+	\begin{bmatrix} \sigma_{1}^{2} & 0 \\ 0 & \sigma_{2}^{2} \end{bmatrix} 
+	\qquad
+	W^{OPT} = \Sigma_{\varepsilon_N}^{-1} = 
+	\begin{bmatrix} \frac {1}{\sigma_{1}^{2}}  & 0 \\ 0 & \frac {1}{\sigma_{2}^{2}}  \end{bmatrix} &
+\end{flalign*}
 
-\begin{equation*}
-W^{ OPT } = \Sigma _{ ^{ \varepsilon_{ N } } }^{ -1 }\quad \begin{bmatrix} \frac { 1 }{ \sigma _{ 1 }^{ 2 } }  & 0 \\ 0 & \frac { 1 }{ \sigma _{ 2 }^{ 2 } }  \end{bmatrix}
-\end{equation*}
+\begin{flalign*}
+	cov(\hat \theta_{WLS}) &= {(Y_N - \Phi_N \theta)}^T \cdot W \cdot (Y_N - \Phi_N \theta ) & \\
+	&= \sum_{k=1}^{2} (y(k) - \phi(k)^T \theta ) \cdot \frac {1}{\sigma_{k}^{2}} \cdot (y(k) - \phi(k)^T \theta) &
+\end{flalign*}
 
-\begin{equation*}
-cov({ \hat { \theta  } _{ WLS } }){ =({ Y }_{ N }-{ \Phi  }_{ N }\theta ) }^{ T }\cdot W\cdot ({ Y }_{ N }-{ \Phi  }_{ N }\theta )=
-\end{equation*}
-
-\begin{equation*}
-\sum _{ k=1 }^{ 2 }{ (y(k)-{ \phi (k) }^{ T }\theta )\cdot \frac { 1 }{ { \sigma  }_{ k }^{ 2 } } \cdot (y(k)-{ \phi (k) }^{ T }\theta ) } 
-\end{equation*}
-
-
-Measuring the goodness of Fit using \({R}^{2} \quad 0\le {R}^{2} \le1\) 
-\begin{equation*}
-{ R }^{ 2 }=1-\frac { { \parallel { y }_{ N }-{ \Phi  }_{ N }\hat { \theta  } \parallel  }_{ 2 }^{ 2 } }{ { \parallel { y }_{ N }\parallel  }_{ 2 }^{ 2 } } =1-\frac { { \parallel { \epsilon  }_{ N }\parallel  }_{ 2 }^{ 2 } }{ { \parallel { y }_{ N }\parallel  }_{ 2 }^{ 2 } } =
-\end{equation*}
-\begin{equation*}
-\frac { { \parallel { y }_{ N }\parallel  }_{ 2 }^{ 2 }-{ \parallel { \epsilon  }_{ N }\parallel  }_{ 2 }^{ 2 } }{ { \parallel { y }_{ N }\parallel  }_{ 2 }^{ 2 } } =\frac { { \parallel { \hat { y  }  }_{ N }\parallel  }_{ 2 }^{ 2 } }{ { \parallel { y }_{ N }\parallel  }_{ 2 }^{ 2 } } 
-\end{equation*}
-residual $ \epsilon_{N} \uparrow \quad \rightarrow \quad R^{2} \rightarrow 0 \,\,(= bad)$
+\textbf{Measuring the goodness of Fit using:  ${R}^{2}$} \quad ($0\le {R}^{2} \le1$)
+\begin{align*}
+R^2 &= 1 - \frac{ { \lVert y_N - \Phi_N \hat \theta \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} } = 1 - \frac{ {\lVert \epsilon_N \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} } \\
+&= \frac{ {\lVert y_N \rVert}_{2}^{2} - {\lVert \epsilon_N \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} } = \frac{ {\lVert \hat y_N \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} }
+\end{align*}
+Residual: $ \epsilon_N \uparrow \rightarrow \quad R^{2} \rightarrow 0 \,\,(\Rightarrow bad)$
 \tcblower
-
-Estimating the Covariance with the Single Experiment
-\begin{equation*}
-\hat { \sigma  } _{ \varepsilon  }^{ 2 } := \frac { 1 }{ N-d } \sum _{ k=1 }^{ N }{ (y(k)-\phi (k)^{ T }\hat { \theta  } _{ LS })^{ 2 } }  = \frac { \parallel y_{ N }-\phi _{ N }\hat { \theta  } _{ LS }{ \parallel  }_{ 2 }^{ 2 } }{ N-d } 
-\end{equation*}
-
-\begin{equation*}
-\hat { \Sigma  } _{ \hat { \theta  }  } := \hat { \sigma  } ^{ 2 }_{ \varepsilon  } (\phi ^{ T }_{ N } \phi _{ N })^{ -1 } = \frac { \parallel y_{ N }\, -\phi _{ N }\hat { \theta  } _{ LS }{ \parallel  }_{ 2 }^{ 2 } }{ N-d } \cdot (\phi ^{ T }_{ N } \phi _{ N })^{ -1 }
-\end{equation*}
+\textbf{Estimating the Covariance with the Single Experiment: }
+\begin{flalign*}
+\hat \sigma_{\varepsilon}^{2} &:= \frac{1}{N-d} \sum_{k=1}^{N} (y(k)-\phi(k)^T \hat \theta_{LS})^2 = \frac{ {\lVert y_N - \phi_N \hat \theta_{LS} \rVert}_{2}^{2} }{ N-d } &\\
+\hat \Sigma_{\hat \theta} &:= \hat \sigma_{\varepsilon}^{2} (\phi^{T}_{N} \phi_{N})^{-1} = \frac{ {\lVert y_N -\phi_N \hat \theta_{LS} \rVert}_{2}^{2} }{ N-d } \cdot (\phi^{T}_{N} \phi_{N})^{-1} &
+\end{flalign*}
 \end{tcolorbox}

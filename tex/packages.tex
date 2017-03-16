@@ -4,7 +4,7 @@
 \usepackage{verbatim}
 
 % math stuff
-\usepackage{amsmath}
+\usepackage[nosumlimits, nointlimits, fleqn]{amsmath}
 \usepackage{amssymb}
 
 % Zum einfügen von mehrseitigen PDFs
@@ -31,10 +31,6 @@
 \renewcommand\arraystretch{1.4}   		% Tabellen: Zeilen um Faktor x vergrößern
 \usepackage{booktabs}				% professionelle Tabellen (Grundeinstellung bei Excel2LaTeX Excel-PlugIn)
 
-% Mathematikumgebungen
-%\usepackage{amsmath}
-%\usepackage{amssymb}
-
 % Sonstige Umgegebungen
 %\usepackage{ifthen}		
 %\usepackage{caption}
@@ -59,8 +55,11 @@
 % Colorboxen
 \usepackage{tcolorbox}
 
+% Package um Aufz�hlungen zu "versch�nern"
+\usepackage{enumitem}
+
 % Todos hervorheben
-\usepackage[disable]{todonotes}
+\usepackage[obeyDraft]{todonotes}
 
 % Für eine Verlinkung im Inhaltsverzeichnis.
 % Dieses Paket möglichst als letztes einbinden falls Fehler auftreten!!!

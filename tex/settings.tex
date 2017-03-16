@@ -17,7 +17,7 @@
 
 %------------------------------------------------------------------
 % Zuweisung der Farben zu den Überschriften
-%------------------------------------------------------------------e
+%------------------------------------------------------------------
 \addtokomafont{chapter}{\color{black}}
 \addtokomafont{section}{\color{black}}
 \addtokomafont{caption}{\color{black}}
@@ -31,6 +31,19 @@
 \setkomafont{paragraph}{\small}
 \setkomafont{subparagraph}{\small}
 
+
+%------------------------------------------------------------------
+% Save some space with less space after equations
+%------------------------------------------------------------------
+\newcommand{\zerodisplayskips}{%
+	\setlength{\abovedisplayskip}{2pt}%
+	\setlength{\belowdisplayskip}{2pt}%
+	\setlength{\abovedisplayshortskip}{1pt}%
+	\setlength{\belowdisplayshortskip}{1pt}}
+\appto{\normalsize}{\zerodisplayskips}
+\appto{\small}{\zerodisplayskips}
+\appto{\footnotesize}{\zerodisplayskips}
+
 %------------------------------------------------------------------
 % Tiefe der Numerierung und des Inhaltsverzeichnises:
 % Kapitel- bis Unterunterabschnittsüberschriften
@@ -38,5 +51,13 @@
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
+%------------------------------------------------------------------
+% Colorboxen immer nach oben anordnen
+%------------------------------------------------------------------
 \raggedcolumns
+
+%------------------------------------------------------------------
+% Spacing vor und nach itemize entfernen
+%------------------------------------------------------------------
+\setlist{nolistsep}
 
