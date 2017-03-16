@@ -2,7 +2,7 @@
 % 				 Linear Least Squares Estimation
 % -----------------------------------------------------------------
 
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Linear Least Squares Estimation]
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Linear Least Squares Estimation}]
 Preliminaries: I.I.D and gaussian noise
 
 Overall Model
@@ -31,7 +31,7 @@ Unique minimizers
 Pseudo Inverse: \qquad $\Phi ^{ + }={({ \Phi  }^{ T }\Phi ) }^{ -1 }{ \Phi  }^{ T }$\\
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Weighted Least Squares (unitless)]
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Weighted Least Squares (unitless)}]
 For I.I.D noise: Unweight Least Squares is optimal: W=I
 \begin{equation*}
 \sum _{ k=1 }^{ N }\frac {{{ (y(k)-{ \phi (k) }^{ T }\theta )}^{2  } }}{\sigma_{\epsilon}^{2}(k)}
@@ -51,7 +51,7 @@ with $\tilde{\Phi} = W^{\frac{1}{2}} \Phi$ and $\tilde{y} = W^{\frac{1}{2}} y$.
 { \hat{\theta} }_{ WLS }=arg\, \underset{ \theta \in \mathbb{R} }{ min }\,{f  }_{WLS  }(\theta)={ ({\Phi}^{T}W\Phi) }^{ -1 }{\Phi}^{T} Wy
 \end{equation*}
 \end{tcolorbox}
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Ill-Posed Least Squares]
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Ill-Posed Least Squares}]
 	
 Singular Value Decomposition
 \begin{equation*}
@@ -72,7 +72,7 @@ Regularization for Least Squares\\
 \end{equation*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Statistical Analysis of WLS]
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Statistical Analysis of WLS}]
 Expectation of Least Squares Estimator
 \begin{equation*}
 { E }\{ { \hat { \theta  } _{ WLS } }\} { ={ E }\{ ({ \Phi  }_{ N }^{ T }W{ \Phi  }_{ N }) }^{ -1 }{ \Phi  }_{ N }^{ T }W{ y }_{ N }\} ={\theta}_{0}
@@ -87,7 +87,7 @@ cov({ \hat { \theta  } _{ WLS } }){ \succeq ({ \Phi  }_{ N }^{ T }W{ \Phi  }_{ N
 \end{equation*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Example LLS]
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Example LLS}]
 \begin{equation*}
 \varepsilon (1) \sim  { \cal{N} }(0|\sigma ^{ 2 }_{ 1 }) \quad \varepsilon (2) \sim  { \cal{N} }(0|\sigma ^{ 2 }_{ 2 })
 \end{equation*}

@@ -1,7 +1,7 @@
 % -----------------------------------------------------------------
 % 				 Maximum Likelihood Estimation
 % -----------------------------------------------------------------
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Maximum Likelihood Estimation]
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Maximum Likelihood Estimation}]
 Maximum Likelihood Estimation (ML) \({L}_{2}\) Estimation:\\
 Measurement Errors assumed to be Normally distributed
 \begin{equation*}
@@ -37,7 +37,7 @@ Robust against outliers
 \end{equation*} 
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Bayesian Estimation and the Maximum a Posteriori Estimate]
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Bayesian Estimation and the Maximum a Posteriori Estimate}]
 Assumptions: i.i.d noise and linear model
 \begin{equation*}
 p(\theta |{ y }_{ N })\cdot p({ y }_{ N })=p({ y }_{ N }|\theta )\cdot p(\theta)
@@ -57,7 +57,7 @@ MAP Example: Regularised Least Squares
 \end{equation*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Recursive Linear Least Squares]
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Recursive Linear Least Squares}]
 \begin{equation*}
 \theta _{ ML }(N) \, = \, arg\, \underset { \theta \, \in \, { R } }{ min } \, \frac { 1 }{ 2 } \parallel y_N - \Phi_N\cdot\,\theta{ \parallel  }_{ 2 }^{ 2 }
 \end{equation*}
@@ -83,7 +83,7 @@ Q_{ N+1 }\, =\, \alpha \, \cdot \, Q_{ N }+\varphi (N+1)\, \cdot \, \varphi (N+1
 \end{equation*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Cramer-Rao-Inequality (Fisher information Matrix M)]
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Cramer-Rao-Inequality (Fisher information Matrix M)}]
 \begin{equation*}
 { \Sigma  }_{ \theta  } \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi)^{-1}
 \end{equation*}

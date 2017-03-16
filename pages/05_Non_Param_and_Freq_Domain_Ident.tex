@@ -1,13 +1,13 @@
-% -----------------------------------------------------------------
+ew% -----------------------------------------------------------------
 %	 Non parametric and frequency domain identification methods
 % -----------------------------------------------------------------
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Fourier Transformation]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Fourier Transformation}]
 \textbf{How to compute FT?} By DFT, which solves the problem of finite time and discrete values.
 
 \textbf{Can we use an input with many frequencies to get many FRF (Frequency Response Function) values in a single experiment?} So far only frequency sweeping (high comp. times due to repetition for each frequency). We should use multisines!
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Aliasing and Leakage Errors]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Aliasing and Leakage Errors}]
 \begin{description}
 \item[Aliasing Error] due to sampling of continous signal to discrete signal. Avoid with Nyquist Theoreme:
 
@@ -22,7 +22,7 @@ f_{Nyquist} = \frac{1}{2\Delta t} [Hz] \quad or \quad \omega_{Nyquist} = \frac{2
 \end{description}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Crest Factor = Scheitelfaktor]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Crest Factor = Scheitelfaktor}]
 \begin{equation*}
 CrestFactor=\frac { u_{ max } }{ u_{ rms } } \quad with:
 \end{equation*}
@@ -31,14 +31,14 @@ u_{ rms }\, := \sqrt{ \frac { 1 }{ T } \int _{ 0 }^{ T }{ u(t)^2 \, dt }  } \qua
 \end{equation*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Optimising Multisine for optimal crest factor]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Optimising Multisine for optimal crest factor}]
 \begin{description}
 \item[Frequency:] Choose frequencies in logarithmic manner as multiples of the base frequency. $\qquad \omega_{k+1}/\omega_{k} \approx 1.05$
 \item[Phase:] To prevent high peaks (Crest Factor) in the Signal, the phases of the different frequencies are modulated accordingly. (Positive interference)
 \end{description}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Multisine Identification Implementation procedure]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Multisine Identification Implementation procedure}]
 \begin{description}
 \item[Window Length] integer multiple of sampling time:  \( T = N \cdot \delta t\)
 \item[Harmonics of base frequency] are contained in multisine \\ \( {\omega}_{base} = \frac{2 \pi}{T}\)
@@ -55,7 +55,7 @@ u_{ rms }\, := \sqrt{ \frac { 1 }{ T } \int _{ 0 }^{ T }{ u(t)^2 \, dt }  } \qua
 
 
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Nonparametric and Frequency Domain Identification Models]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Nonparametric and Frequency Domain Identification Models}]
 Impulse response and transfer function
 
 \begin{equation*}
@@ -77,13 +77,13 @@ u(t)=A\cdot sin(\omega \cdot t),\quad y(t)=\parallel G(j\cdot \omega )\parallel 
 \end{tcolorbox}
 
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Bode Diagram:]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Bode Diagramm}]
 Magnitude = Amplitude $|G(j\omega)|$\\
 Phase $arg \, G(j\omega)$
 \end{tcolorbox}
 
 
-\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=Recursive Least Squares]
+\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Recursive Least Squares}]
 New Inverse Covariance:
 \begin{equation*}
 Q_K \, = \, Q_{k-1} + \phi_K\,\phi_K^T
@@ -98,7 +98,7 @@ General Optimization Problem:
 \end{equation*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=Kalman Filter]
+\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Kalman Filter}]
 Valid for Discrete and Linear!\\
 (If recursive least squares: \( x_{ k+1 }\, =\, A_{ k }\cdot x_{ k } \)
 \begin{equation*}

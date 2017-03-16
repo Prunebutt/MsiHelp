@@ -1,7 +1,7 @@
 % -----------------------------------------------------------------
 %		 				 Dynamic Models
 % -----------------------------------------------------------------
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Linear Time Invariant (LTI) Systems]
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Linear Time Invariant (LTI) Systems}]
 with A, B, C, D are matrices
 \begin{equation*}
 \dot { x } =Ax+Bu \quad y=Cx+Du 
@@ -16,7 +16,7 @@ G(S)\, =\, \frac { b_0 + b_1s+...+b_ns^n }{ a_0+a_1s+...+a_{n-1}s^{n-1}+s^n }
 \end{equation*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Deterministic Models:]
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Deterministic Models}]
 $(y(k)=M(k;U,{ x }_{ init },p)$
 \textbf{Finite Impulse Response (FIR):}
 \begin{equation*}
@@ -28,7 +28,7 @@ G(z) = \frac{b_0z^n + b_1z^{n-1} + ... + b_n}{a_0z^n + a_1z^{n-1} + ... + a_n}
 \end{equation*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Stochastik Models]
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Stochastik Models}]
 \textbf{Model with measurement Noise:} \\ \(y(k)=M(k;U,{ x }_{ init },p)+\varepsilon(k)\) \\
 \textbf{Liniar In the Parameters models (LIP):}
 \begin{equation*}
@@ -42,7 +42,7 @@ a_0y(k)+...+a_{n_{a}}y(k-n_a) = b_0u(k)+...+b_{n_{b}}u(k-n_b)+\epsilon(k)
 \end{equation*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Model with Input and Output Errors:] 
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Model with Input and Output Errors}] 
 	\begin{equation*}
 	y(k)=M(k;U+{\varepsilon  }_{ N }^{ u },{ x }_{ init },p)+{ { \varepsilon }^{ y } }(k)
 	\end{equation*}
@@ -53,7 +53,7 @@ a_0y(k)+...+a_{n_{a}}y(k-n_a) = b_0u(k)+...+b_{n_{b}}u(k-n_b)+\epsilon(k)
 \end{figure}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Pure Output Error (OE) Minimization]
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Pure Output Error (OE) Minimization}]
 \begin{equation*}
 \theta _{ ML } \, =\, arg\, \underset { \theta  }{ min } \, \sum _{ k=1 }^{ N }{ (y(k)-M(k;U,\, x_{ init }\, ,\, p)\, )^{ 2 } }
 \end{equation*}
