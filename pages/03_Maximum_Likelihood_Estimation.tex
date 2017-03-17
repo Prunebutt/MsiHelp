@@ -2,7 +2,7 @@
 % 				 Maximum Likelihood Estimation
 % -----------------------------------------------------------------
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Maximum Likelihood Estimation}]
-\textbf{Maximum Likelihood Estimation (ML) ${L}_{2}$ Estimation}:
+\textbf{$L_2$ Estimation: Maximum Likelihood Estimation (ML)}:
 \begin{itemize}
 	\item[-] Measurement Errors assumed to be Normally distributed
 	\todo[inline]{Ist das wirklich so ?}
@@ -12,123 +12,78 @@
 	\item[-] Every unbiased estimator needs to satisfy the Cramer-Rau inequality, which gives a lower bound on the covariance matrix
 \end{itemize}
 
-	
+\begin{flalign*}
+	& \textbf{Model: } y = M(\theta) + \epsilon \qquad  &\\
+	& P(y|\theta ) = C \prod_{i=1}^{N} exp \left(\frac{-(y_i - M_i (\theta))^2}{2\cdot \sigma_{i}^{2}}\right) \quad 
+	C = \prod_{i=1}^{N} \frac{1}{\sqrt{2\cdot \pi \sigma_{i}^2 } }&
+\end{flalign*}
+\textbf{Positive log-Likelihood: } \text{\small Logarithm makes a product to a sum!}
+\begin{align*}
+	\log p(y|\theta) = \log(C) + \sum_{i=1}^{N} -\frac{(y_i - M_i (\theta ))^2}{2 \cdot \sigma_{i}^2} 
+\end{align*} 
+\textbf{Negative log-Likelihood:}
+\begin{flalign*}
+	& \hat \theta_{ML} = \underset{\theta \in \mathbb{R}^d}{arg\,max} \  p(y|\theta ) = \underset{\theta \in \mathbb{R}^d}{\text{arg\,min}} \sum_{i=1}^{N} \frac{(y_i - M_i (\theta))^2}{2 \sigma_{i}^{2}} & \\
+	& = \underset{\theta}{\text{arg\,min}} \frac{1}{2} \sum_{i=1}^{N} \left(\frac{y_i - M_i (\theta)}{\sigma_i }\right)^2 & \\
+	& = \underset{\theta \in \mathbb{R}^d}{\text{arg\,min}} \frac{1}{2} \lVert S^{-1} (y - M(\theta) )\rVert_{2}^{2} \qquad
+	\text{mit: } S = \begin{bmatrix} \sigma_{ 1 } & & \\ & \ddots & \\	& & \sigma_{ N } \end{bmatrix}&
+\end{flalign*}
 
-	\begin{equation*}
-	\textbf{Model:} \quad y = M(\theta) + \epsilon
-	\end{equation*}
-	
-	\begin{equation*}
-	{ P(y|\theta ) }=C\prod _{ i=1 }^{ N }{ \text{exp}(\frac { -(y_{ i }-M_{ i }(\theta))^{ 2 } }{ 2\cdot \sigma _{ i }^{ 2 } } )}  
-	\quad \quad
-	C = \prod_{ i = 1 }^{ N } { \frac{ 1 }{ \sqrt{ 2 \cdot \pi \sigma_{ i }^2 } } }
-	\end{equation*}
-	
-	Positive log-Likelihood. Logarithm makes from products a sum!
-	\begin{equation*}
-	\text{log} \, p(y|\theta ) = \text{log} (C) + \sum_{ i=1 }^{ N }{  - \frac { (y_{ i }-M_{ i }(\theta ))^{ 2 } }{ 2 \cdot \sigma_{ i }^2  }  } 
-	\end{equation*}
-	
-	Negative log-Likelihood:
-	\begin{equation*}
-	\hat{\theta}_{ML} \, = \, \text{arg} \, \underset { \theta \in { \mathbb{R} }^{ d } }{ \text{max}} \, p(y|\theta ) = arg \, \underset { \theta \in { \mathbb{R} }^{ d } }{ \text{min} } \, \sum_{ i=1 }^{ N }{ \frac { (y_{ i }-M_{ i }(\theta ))^{ 2 } }{ 2\, { \sigma_{ i } }^{ 2 } }  }
-	\end{equation*}
-	
-	\begin{equation*}
-	= \text{arg} \, \underset{\theta}{ \text{min} } \, \frac{1}{2} \, \sum_{ i=1 }^{ N }{ \left( \frac { y_{ i } - M_{ i }( \theta ) }{ \sigma_{ i } } \right)^2 } = \text{arg} \, \underset{ \theta \in { \mathbb{R} }^d }{ \text{min} } \, \frac{1}{2} \parallel S^{ -1 } (y - M(\theta) ){ \parallel  }_{ 2 }^{ 2 }
-	\end{equation*}
-	
-	\begin{equation*}
-	\text{mit:} \quad S = \begin{bmatrix}
-	\sigma_{ 1 } & & \\
-	& \ddots & \\
-	& & \sigma_{ N }
-	\end{bmatrix}
-	\end{equation*}
-	
-	\({L}_{1}\) Estimation:\\
-	Measurement Errors assumed to be Laplace distributed and more robust against outliers.
-	\begin{equation*}
-	\underset { \theta  }{ \text{ min }} { \parallel y-M(\theta )\parallel  }_{ 1 } = \underset { \theta  }{ \text{ min } } \sum_{ i=1 }^{ N }{ |{ y }_{ i } - { M }_{ i } (\theta) | } = \text{ median of } \, \{ {Y}_{1},...,{Y}_{N} \}
-	\end{equation*}
-	
+\textbf{$L_1$ Estimation:}
+\begin{itemize}
+	\item[-] Measurement Errors assumed to be Laplace distributed and more robust against outliers.
+\end{itemize}
+\begin{flalign*}
+	 \underset{\theta}{min} \lVert y-M(\theta) \rVert_1 &= \underset{\theta}{min} \sum_{i=1}^{N} |y_i - M_i (\theta) | & \\
+	& \Rightarrow \text{ median of } \{ Y_1, \cdots, Y_N \} &
+\end{flalign*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Bayesian Estimation and the Maximum a Posteriori Estimate]
-	
-	\begin{equation*}
-	\begin{array}{llll}
-	\text{Assumptions:} & \text{ - Measurement} & y_N \in \mathbb{R}^N  & \text{has i.i.d noise} \\
-	& \text{ - Linear Model} & M(\theta) = \phi_N \cdot \theta &  \text{and} \, \theta \in \mathbb{R} 
-	\end{array}
-	\end{equation*}
-	
-	
-	
-	\begin{equation*} 
-	p(\theta |{ y }_{ N }) = \frac{ p(y_N,\theta) }{ p( y_N ) } = \frac{ p( y_N | \theta )\cdot p( \theta ) }{ p( y_N ) }
-	\end{equation*}
-	
-	\begin{equation*}
-	\hat{\theta}_{MAP} = \text{arg} \, \underset { \theta \in \mathbb{R} }{ \text{min} } \, \{ - \text{log} (p ( { y }_{ N }| \theta) ) - \text{log} ( p ( \theta ) ) \}
-	\end{equation*}
-	
-	MAP Example: Regularised Least Squares
-	\begin{equation*}
-	\theta = \overline \theta \pm \sigma_\theta \quad \text{with} \quad \overline \theta =  \theta_{\text{a-priori} }
-	\end{equation*}
-	
-	\begin{equation*}
-	\hat \theta_{MAP} = \text{arg} \, \underset { \theta \in { R } }{ \text{min} } \, \frac { 1 }{ 2 } \cdot \frac { 1 }{ { \sigma }_{ \epsilon^2 }} \cdot { \parallel y_N - \Phi_N \cdot \theta \parallel  }_{ 2 }^{ 2 } + \frac { 1 }{ 2 } \cdot \frac { 1 }{ { \sigma }_{ \theta }^{ 2 } } \cdot { (\theta -  \overline{\theta}) }^{ 2 }
-	\end{equation*}
-	
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Bayesian Estimation and the Maximum a Posteriori Estimate}]
+
+\textbf{Assumptions:}
+\begin{itemize}
+	\item[-] Measurement: \quad $y_N \in \mathbb{R}^N$ \quad has i.i.d. noise	
+	\item[-] Linear Model: \quad $M(\theta) = \phi_N \cdot \theta$ \quad and $\theta \in \mathbb{R}$
+\end{itemize}
+\begin{flalign*} 
+	p(\theta |y_N) &= \frac{p(y_N,\theta)}{p(y_N)} = \frac{ p(y_N | \theta) \cdot p(\theta) }{ p(y_N) } &\\
+	\hat{\theta}_{MAP} &= \underset{\theta\in \mathbb{R}}{\text{arg\,min}} \{ -\log (p (y_N| \theta) ) -\log (p(\theta))\}
+\end{flalign*}
+
+\textbf{MAP Example:} Regularised Least Squares
+\begin{flalign*}
+	\theta &= \bar \theta \pm \sigma_\theta \quad \text{with} \quad \bar \theta =  \theta_{\text{a-priori} } &\\
+	\hat \theta_{MAP} &= \underset{\theta \in \mathbb{R}}{\text{arg\,min}} \frac{1}{2} \cdot \frac{1}{\sigma_{\epsilon^2 }} \cdot \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} + \frac{1}{2} \cdot \frac{1}{\sigma_{\theta}^2} \cdot (\theta - \bar \theta)^2
+\end{flalign*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Recursive Linear Least Squares]
-	\begin{equation*}
-	\theta_{ML}(N)= \text{arg} \, \underset { \theta \in \mathbb{R} }{ \text{min} } \, \frac { 1 }{ 2 } \parallel y_N - \Phi_N \cdot \, \theta{ \parallel }_{ 2 }^{ 2 }
-	\end{equation*}
-	\begin{equation*}
-	\hat \theta_{ML} (N+1) = \text{arg} \, \underset { \theta \in R^d }{ \text{min} } \, \left(\alpha \cdot \frac { 1 }{ 2 } \cdot \parallel \theta - \hat{\theta}_{ML}(N) \parallel_{ Q_N }^{ 2 } \right.
-	\end{equation*}
-	\begin{equation*}
-	\left. + \frac { 1 }{ 2 } \cdot \parallel y(N+1) - \varphi (N+1)^T \cdot \theta \parallel_{ 2 }^{ 2 } \right)
-	\end{equation*}
-	\begin{equation*}
-	Q_0 \quad \text{given, and} \quad \hat{ \theta } _{ML}(0) \quad \text{given}
-	\end{equation*}
-	\begin{equation*}
-	Q_{ N+1 } = \alpha \cdot Q_N + \varphi (N+1) \cdot  \varphi (N+1)^{T},
-	\end{equation*}
-	\begin{equation*}
-	\hat { \theta  } _{ML}(N+1) = \hat { \theta } _{ML}(N)+Q_{N+1}^{ -1} \cdot  \varphi (N+1) \cdot [y(N+1) -
-	\end{equation*}
-	\begin{equation*}
-	\varphi(N+1)^T  \cdot \hat{ \theta }_{ML}(N)]
-	\end{equation*}
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Recursive Linear Least Squares}]
+\begin{flalign*}
+	\theta_{ML}(N) &= \underset{\theta \in \mathbb{R}}{\text{arg\,min}} \frac{1}{2} \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} \qquad \text{(forgetting factor: } \alpha )&\\
+	\hat \theta_{ML} (N+1) &= \underset{\theta \in \mathbb{R}^d}{\text{arg\,min}} \left(\alpha \cdot \frac{1}{2} \cdot \lVert \theta - \hat \theta_{ML}(N) \rVert Q_N^2 \right. & \\
+	&\quad \left. + \frac {1}{2} \cdot \lVert y(N+1) - \varphi (N+1)^T \cdot \theta \rVert_{2}^{2} \right) & \\
+	& Q_0 \quad \text{given, and} \quad \hat{ \theta } _{ML}(0) \quad \text{given} & \\
+	Q_{ N+1 } &= \alpha \cdot Q_N + \varphi (N+1) \cdot  \varphi (N+1)^{T} & \\
+	\hat \theta_{ML}(N+1) &= \hat \theta_{ML}(N)+Q_{N+1}^{-1} \cdot  \varphi (N+1) & \\ 
+	& \quad \cdot [y(N+1) - \varphi(N+1)^T  \cdot \hat{ \theta }_{ML}(N)] &
+\end{flalign*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=Cramer-Rao-Inequality (Fisher information Matrix M)]
-	\begin{equation*}
-	{ \Sigma  }_{ \hat{\theta}  } \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi)^{-1}
-	\end{equation*}
-	\begin{equation*}
-	\begin{array}{llll}
-	\text{Assumptions:} & \text{ - Minimising a Linear Model} \\
-	& \text{ - Gaussian Noise:} \quad X \sim \mathcal{N}(0, \Sigma)
-	\end{array}
-	\end{equation*}
-	\begin{equation*}
-	L(\theta ,y_{ N }) = - \text{log} (p(y_N | \theta) )
-	\end{equation*}
-	\begin{equation*}
-	L(\theta ,y_{ N }) = \frac { 1 }{ 2 } \cdot (\Phi _{ N } \cdot  \theta - y_N)^{ T } \cdot \Sigma^{-1} \cdot  (\Phi_N  \cdot \theta  -  y_N)
-	\end{equation*}
-	\begin{equation*}
-	M = \mathbb{E} \{ \nabla^2_\theta \, L( \theta ,y_N) \}  = \nabla^2_\theta \, L(\theta ,y_N) = \Phi_N^T \cdot \Sigma^{-1} \cdot \Phi_N
-	\end{equation*}
-	\begin{equation*}
-	\text{Confirms that} \, W = \Sigma^{-1} \text{ is the optimal weighting Matrix for WLS.}
-	\end{equation*}
-	
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Cramer-Rao-Inequality (Fisher information Matrix M)}]
+\begin{align*}
+\Sigma_{\hat{\theta}} \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi)^{-1}
+\end{align*}
+\textbf{Assumptions:}
+\begin{itemize}
+	\item[-] Minimising a Linear Model
+	\item[-] Gaussian Noise: $X \sim \mathcal{N}(0, \Sigma))$
+\end{itemize}
+
+\begin{flalign*}
+	L(\theta ,y_N) &= - \log (p(y_N | \theta)) & \\
+	& = \frac{1}{2} \cdot (\Phi_N \cdot  \theta - y_N)^T \cdot \Sigma^{-1} \cdot (\Phi_N  \cdot \theta - y_N) & \\
+	M &= \mathbb{E} \{\nabla^2_\theta \, L( \theta ,y_N)\}  = \nabla^2_\theta  L(\theta ,y_N) = \Phi_N^T \cdot \Sigma^{-1} \cdot \Phi_N & \\
+ &\Rightarrow W = \Sigma^{-1} \text{ is the optimal weighting Matrix for WLS.} &
+\end{flalign*}
 \end{tcolorbox}
