@@ -1,40 +1,34 @@
 %------------------------------------------------------------------
 % Einstellen der Grundzüge des Layouts, z. B. Blattgröße
 %------------------------------------------------------------------
-\documentclass[a4paper,landscape,twoside=false,fontsize=8,numbers=noenddot,DIV=16]{scrreprt}
-\usepackage[left=5mm, right=5mm, top=5mm, bottom=5mm]{geometry}
+\documentclass[a4paper,twoside=false,fontsize=6,numbers=noenddot,DIV=16, draft]{scrreprt}
+\usepackage[landscape, left=5mm, right=5mm, top=5mm, bottom=5mm]{geometry}
 \pagestyle{empty}
+
 %------------------------------------------------------------------
 % Importieren den notwendigen packages
 %------------------------------------------------------------------
 \include{tex/packages}
-
 
 %------------------------------------------------------------------
 % Weitere Einstellungen (Farben / Numerierungstiefen)
 %------------------------------------------------------------------
 \include{tex/settings}
 
-
-%------------------------------------------------------------------
-% Definition einiger globaler Variablen
-%------------------------------------------------------------------
-
-
 %------------------------------------------------------------------
 % Dokumentbeginn
 %------------------------------------------------------------------
 \begin{document}
 
-\setlength{\columnsep}{0.5cm}
+\setlength{\columnsep}{0.4cm}
 \setlength{\columnseprule}{0pt}
-\begin{multicols}{3}
+\begin{multicols*}{3}
 	\input{pages/00_Introduction}
 	\input{pages/01_Probability_and_Statistics}
 	\input{pages/02_Linear_Least_Squares_Estimation}
 	\input{pages/03_Maximum_Likelihood_Estimation}
 	\input{pages/04_Dynamic_Models}
 	\input{pages/05_Non_Param_and_Freq_Domain_Ident}
-\end{multicols}
+\end{multicols*}
 
 \end{document}

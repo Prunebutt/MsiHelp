@@ -14,10 +14,9 @@
 \definecolor{blue}  {rgb}{0.00, 0.00, 1}
 \definecolor{brown} {rgb}{0.39, 0.22, 0.13}
 
-
 %------------------------------------------------------------------
 % Zuweisung der Farben zu den Überschriften
-%------------------------------------------------------------------e
+%------------------------------------------------------------------
 \addtokomafont{chapter}{\color{black}}
 \addtokomafont{section}{\color{black}}
 \addtokomafont{caption}{\color{black}}
@@ -25,10 +24,38 @@
 \addtokomafont{subsubsection}{\color{black}}
 \setkomafont{captionlabel}{\color{black}}
 
+\setkomafont{section}{\large}
+\setkomafont{subsection}{\normalfont}
+\setkomafont{subsubsection}{\small}
+\setkomafont{paragraph}{\small}
+\setkomafont{subparagraph}{\small}
+
+%------------------------------------------------------------------
+% Save some space with less space after equations
+%------------------------------------------------------------------
+\newcommand{\zerodisplayskips}{%
+	\setlength{\abovedisplayskip}{2pt}%
+	\setlength{\belowdisplayskip}{2pt}%
+	\setlength{\abovedisplayshortskip}{1pt}%
+	\setlength{\belowdisplayshortskip}{1pt}}
+\appto{\normalsize}{\zerodisplayskips}
+\appto{\small}{\zerodisplayskips}
+\appto{\footnotesize}{\zerodisplayskips}
+
 %------------------------------------------------------------------
 % Tiefe der Numerierung und des Inhaltsverzeichnises:
 % Kapitel- bis Unterunterabschnittsüberschriften
 %------------------------------------------------------------------
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
+
+%------------------------------------------------------------------
+% Colorboxen immer nach oben anordnen
+%------------------------------------------------------------------
+\raggedcolumns
+
+%------------------------------------------------------------------
+% Spacing vor und nach itemize entfernen
+%------------------------------------------------------------------
+\setlist{nolistsep}
 

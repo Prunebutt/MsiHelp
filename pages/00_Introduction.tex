@@ -1,45 +1,42 @@
 % -----------------------------------------------------------------
 % 			  Introduction
 % -----------------------------------------------------------------
-
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Introduction]
-Euklidian Norm: 
-\begin{equation*}
-{ \parallel x\parallel  }_{ 2 }\quad =\quad \sqrt { \sum _{ i=1 }^{ n }{ { x }_{ i }^{ 2 } }  } \quad =\quad \sqrt { { x }^{ T }x }
-\end{equation*}
-\begin{equation*}
-{\parallel x\parallel  }_{ 2 }^{ 2 } = x^T\cdot x
-\end{equation*}
-Weighting Eukledian Norm:
-\begin{equation*}
-{\parallel x\parallel  }_{ Q }^{ 2 } = x^TQ \cdot x
-\end{equation*}
-Frobenius Norm:
-\begin{equation*}
-{\parallel x\parallel  }_{ F }^{ 2 } = trace(A{ A }^{ T })=\sum _{ i=1 }^{ n } \sum _{ j=1 }^{ m }{ { A }_{ ij }{ A }_{ ij } } 
-\end{equation*}
-\begin{equation*}
-\triangledown f(x) \quad Jacobian
-\end{equation*}
-\begin{equation*}
-{ \triangledown  }^{ 2 }f(x)\quad Hessian
-\end{equation*}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=\textbf{Introduction}]
+\begin{flalign*}
+	\textbf{Euklidian Norm: }
+	&{\lVert x \rVert}_{2} = \sqrt {\sum _{i=1}^{n} {x}_{i}^{2}} = \sqrt {x^T x} &  \\
+	&{\lVert x \rVert}_{2}^{2} = x^T \cdot x &
+\end{flalign*}
+\begin{flalign*}
+	&\textbf{Weighting Eukl. Norm: }
+	{\lVert x \rVert}_{Q}^{2} = x^TQ \cdot x & \\
+	&\textbf{Frobenius Norm: }
+	{\lVert x\rVert}_{F}^{2} = trace(AA^T)=\sum _{i=1}^{n} \sum _{j=1}^{m} A_{ij} A_{ij} &
+\end{flalign*}
+Jacobian: $\nabla f(x) = \frac{\partial f}{\partial x}(x) \text{ in } \mathbb{R}^{n\times m}$ \hfil Hessian: $\nabla^2 f(x)$
 \tcblower
-Error in variables
-\begin{equation*}
-\hat { R } _{ ev }(N)\quad =\quad \frac { \frac { 1 }{ N } \sum _{ k=1 }^{ N }{ u(k) }  }{ \frac { 1 }{ N } \sum _{ k=1 }^{ N }{ i(k) }  }
-\end{equation*}
-Matrix derivatives
-\begin{equation*}
-\frac{d(c^Tx)}{dx} = c
-\end{equation*} 
-\begin{equation*}
-\frac{d(x^TAx)}{dx} = (A^T + A)x
-\end{equation*} 
-Linear and non-linear models:\\
-linear if parameters go in linear i.e. ($\theta_1 x^2 + \theta_2 x + \theta_3$), nonliniar if i.e ($\sin(\theta_1)x + \theta_2$) TODO check that...
+\begin{flalign*}
+	& \textbf{Error in variables: } 
+	\quad \hat R_{EV}(N) = \frac { \frac {1}{N} \sum _{k=1}^{N} u(k) }{ \frac {1}{N} \sum _{k=1}^{N} i(k) } & \\
+	& \textbf{Simple Approach: } 
+	\quad \hat R_{SA}(N) = \frac{1}{N} \cdot \sum_{k=1}^{N} \frac{u(k)}{i(k)}
+\end{flalign*}
+\begin{flalign*}
+	\textbf{Least Squares: } 
+	\quad \hat R_{LS}(N) &= \underset{R \in \mathbb{R}}{arg\,min} \sum_{k=1}^{N} (R \cdot i(k) - u(k))^2 & \\
+	& = \frac{ \frac{1}{N} \sum_{k=1}^{N} u(k) \cdot i(k) }{ \frac{1}{N} \sum_{k=1}^{N} i(k)^2 } &
+\end{flalign*}
+\begin{flalign*}
+	&\textbf{Matrix derivates: } \quad \frac{d(c^Tx)}{dx} = c \qquad \frac{d(x^TAx)}{dx} = (A^T + A)x&
+\end{flalign*}
+\textbf{Linear and non-linear models:}
+\begin{itemize}
+	\item[-] linear if parameters linear i.e. ($\theta_1 x^2 + \theta_2 x + \theta_3$)
+	\item[-] nonliniar if i.e ($\sin(\theta_1)x + \theta_2$) or derivatives in other orders than 1
+\end{itemize}
 
-Table of Derivatives:
+
+\textbf{Table of Derivatives:}
 \begin{center}
 \begin{tabular}{|c|c|}
 	\hline 
@@ -53,7 +50,7 @@ Table of Derivatives:
 	\hline 
 	$\cos(x)$ & $\sin(x)$ \\ 
 	\hline 
-	$\tan(x)$& $-\ln(\vert\cos(x))$ \\ 
+	$\tan(x) = \frac{\sin(x)}{\cos(x)}$& $ \frac{1}{\cos^2(x)} = \sec^2(x)$ \\ 
 	\hline 
 	$e^{kx}$& $\frac{1}{k}e^{kx} $\\ 
 	\hline 

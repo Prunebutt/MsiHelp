@@ -1,114 +1,109 @@
 % -----------------------------------------------------------------
 %	 Non parametric and frequency domain identification methods
 % -----------------------------------------------------------------
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Fourier Transformation]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Fourier Transformation}]
+\todo[inline]{Wirklich notwendig?}
 \textbf{How to compute FT?} By DFT, which solves the problem of finite time and discrete values.
 
 \textbf{Can we use an input with many frequencies to get many FRF (Frequency Response Function) values in a single experiment?} So far only frequency sweeping (high comp. times due to repetition for each frequency). We should use multisines!
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Aliasing and Leakage Errors]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Useful frequency things}]
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Aliasing and Leakage Errors}]
 \begin{description}
-\item[Aliasing Error] due to sampling of continous signal to discrete signal. Avoid with Nyquist Theoreme:
-
-\begin{equation*}
-f_{Nyquist} = \frac{1}{2\Delta t} [Hz] \quad or \quad \omega_{Nyquist} = \frac{2 \pi }{ 2\Delta t} [rad/s]
-\end{equation*}
-
-\item[Leackage Error] due to windowing.
-\begin{equation*}
-\omega _{ base }:=\frac { 2\pi  }{ N\cdot \Delta t } =\frac { 2\pi  }{ T }  \rightarrow \omega = m\frac { 2\pi  }{ N\cdot \Delta t }
-\end{equation*}
+	\item[Aliasing Error:] Due to sampling of continous signal to discrete signal. Avoid with Nyquist Theoreme:
+	\begin{equation*}
+	f_{Nyquist} = \frac{1}{2\Delta t} [\SI{}{\hertz}] \quad or \quad \omega_{Nyquist} = \frac{2\pi}{2\Delta t} [\SI{}{\radian \per \second}]
+	\end{equation*}
+	
+	\item[Leackage Error:] Due to windowing.
+	\begin{equation*}
+	\omega_{base} := \frac{2\pi}{N \cdot \Delta t} = \frac{2\pi}{T} \rightarrow \omega = m \frac{2\pi }{N \cdot \Delta t}
+	\end{equation*}
 \end{description}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Crest Factor = Scheitelfaktor]
-\begin{equation*}
-CrestFactor=\frac { u_{ max } }{ u_{ rms } } \quad with:
-\end{equation*}
-\begin{equation*}
-u_{ rms }\, := \sqrt{ \frac { 1 }{ T } \int _{ 0 }^{ T }{ u(t)^2 \, dt }  } \quad and \quad u_{ max }\, :=\underset { t\, \in \, [0,T] }{ max } |u(t)|
-\end{equation*}
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Crest Factor = Scheitelfaktor}]
+\begin{flalign*}
+	\text{Crest Factor } =\frac{u_{max}}{u_{rms}} \quad \text{with}: u_{rms} &:= \sqrt{\frac{1}{T} \int_{0}^{T} u(t)^2 \, dt} &\\
+	\quad \text{and} \quad u_{max} &:=\underset{t \in [0,T]}{max} |u(t)| &
+\end{flalign*}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Optimising Multisine for optimal crest factor]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Optimising Multisine for optimal crest factor}]
 \begin{description}
-\item[Frequency:] Choose frequencies in logarithmic manner as multiples of the base frequency. $\qquad \omega_{k+1}/\omega_{k} \approx 1.05$
-\item[Phase:] To prevent high peaks (Crest Factor) in the Signal, the phases of the different frequencies are modulated accordingly. (Positive interference)
+	\item[Frequency:] Choose frequencies in logarithmic manner as multiples of the base frequency. $\quad \omega_{k+1}/\omega_k \approx 1.05$
+
+	\item[Phase:] To prevent high peaks (Crest Factor) in the Signal, the phases of the different frequencies are modulated accordingly. (Positive interference)
 \end{description}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Multisine Identification Implementation procedure]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Multisine Identification Implementation procedure}]
 \begin{description}
-\item[Window Length] integer multiple of sampling time:  \( T = N \cdot \delta t\)
-\item[Harmonics of base frequency] are contained in multisine \\ \( {\omega}_{base} = \frac{2 \pi}{T}\)
-\item[Highest contained Frequency] is \textbf{half} of Nyquist frequency: \( {\omega}_{Nyquist}  = \frac{2 \pi}{4 \Delta T}\)
+	\item[Window Length:] Integer multiple of sampling time: $T = N \cdot \delta t$
 
-\item[Experiment and Analysis] (step 2): Insert Multisine periodically. Drop first Periods (till transients died out). Record M Periods, each with N samples, of input and output data. Average all the M periods and make the DFT (or vice versa). Finally build transfer function.
+	\item[Harmonics of base frequency:] Are contained in multisine \\ $\omega_{base} = \frac{2\pi}{T}$
+
+	\item[Highest contained Frequency:] Is \textbf{half} of Nyquist frequency: $\omega_{Nyquist} = \frac{2\pi}{4\Delta T}$
+
+	\item[Experiment and Analysis:] (Step 2): Insert Multisine periodically. Drop first Periods (till transients died out). Record M Periods, each with N samples, of input and output data. Average all the M periods and make the DFT (or vice versa). Finally build transfer function: $ \hat{G}_{{j\omega}_{k}} = \frac{\hat Y(k(p))}{\hat U (k(p))}$
 \end{description}
+\end{tcolorbox}
 
-\begin{equation*}
-{\hat{G} _{j{\omega}_{k}}}=\frac{\hat{Y}(k(p))}{\hat{U}(k(p))}
-\end{equation*}
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Nonparametric and Frequency Domain Identification Models}]
+\textbf{Impulse response and transfer function:}
+\begin{align*}
+	y(t) &= \int_{0}^{\infty} g(\tau) u(t-\tau) \, \delta t \\
+	Y(s) &= G(s)\cdot U(s) \\
+	G(s) &= \int_{0}^{\infty} \epsilon^{-st} g(t) \, dt 
+\end{align*}
+\textbf{Bode diagram from frequency sweeps:}
+\begin{align*}
+	u(t) &= A \cdot sin(\omega \cdot t),\quad y(t) = \lVert G (j\cdot \omega )\rVert A \cdot sin(\omega \cdot t + \alpha)
+\end{align*}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Bode Diagramm}]
+	Magnitude = Amplitude $|G(j\omega)|$\\
+	Phase $arg \, G(j\omega)$
+	\todo[inline]{Hier sollten wir glaub noch bisschen was rein machen.}
 \end{tcolorbox}
 
 
-
-
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Nonparametric and Frequency Domain Identification Models]
-Impulse response and transfer function
-
-\begin{equation*}
-y(t)=\int _{ 0 }^{ \infty  }{ g(\tau)u(t-\tau) \delta t } 
-\end{equation*}
-
-\begin{equation*}
-Y(s)=G(s)\cdot U(s)
-\end{equation*}
-
-\begin{equation*}
-G(s)=\int _{ 0 }^{ \infty  }{ \epsilon }^{ -st }g(t)dt
-\end{equation*}
-
-Bode diagram from frequency sweeps
-\begin{equation*}
-u(t)=A\cdot sin(\omega \cdot t),\quad y(t)=\parallel G(j\cdot \omega )\parallel A\cdot sin(\omega \cdot t+\alpha )
-\end{equation*}
+\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Recursive Least Squares}]
+\begin{flalign*}
+	& \textbf{New Inverse Covariance: } Q_K = Q_{k-1} + \phi_K \phi_K^T &\\
+	& \textbf{Innovation update: } \hat \theta_k = \hat \theta_{k-1} + \underset{"`innovation"'}{\underbrace{Q_{k}^{-1} \phi_k (y_k - \phi_{k}^{T} \hat \theta_{k-1})} } &\\
+	& \textbf{General Optimization Problem: } & \\
+	& \hat \theta_k = \underset {\theta}{arg\,min} (\theta -\hat \theta_{0})^{T} \cdot Q_0 \cdot (\theta -\hat \theta_0) + \sum_{i=1}^{k} (y_k - \phi_k^T \cdot \theta)^2 &
+\end{flalign*}
 \end{tcolorbox}
 
+\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Kalman Filter}]
+\textbf{Valid for Discrete and Linear!}
+\begin{flalign*}
+	& \text{If recursive least squares: } x_{ k+1 }\, =\, A_{ k }\cdot x_{ k }& \\
+	& x_{k+1} = A_k \cdot x_k + \omega_k \quad \text{and} \quad y_k = C_k \cdot x_k + v_k&
+\end{flalign*}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=Bode Diagram:]
-Magnitude = Amplitude $|G(j\omega)|$\\
-Phase $arg \, G(j\omega)$
-\end{tcolorbox}
-
-
-\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=Recursive Least Squares]
-New Inverse Covariance:
-\begin{equation*}
-Q_K \, = \, Q_{k-1} + \phi_K\,\phi_K^T
-\end{equation*}
-Innovation update:
-\begin{equation*}
-\hat { \theta  } _{ k }\, =\, \hat { \theta  } _{ k-1 }+\underset { ``innovation'' }{ \underbrace { Q_{ k }^{ -1 }\, \phi _{ k }\, (y_{ k }\, -\, \phi _{ k }^{ T }\, \hat { \theta  } _{ k-1 }) }  } 
-\end{equation*}
-General Optimization Problem:
-\begin{equation*}
-\hat { \theta  } _{ k }\, =\, arg\, \underset { \theta  }{ min } \, (\theta -\hat { \theta  } _{ 0 })^{ T }\cdot Q_{ 0 }\cdot (\theta -\hat { \theta  } _{ 0 })+\sum _{ i=1 }^{ k }{ (y_k-\phi_k^T\ \, \cdot \, \theta)^2 } 
-\end{equation*}
-\end{tcolorbox}
-
-\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=Kalman Filter]
-Valid for Discrete and Linear!\\
-(If recursive least squares: \( x_{ k+1 }\, =\, A_{ k }\cdot x_{ k } \)
-\begin{equation*}
-x_{ k+1 }\, =\, A_{ k }\cdot x_{ k }+\omega _{ k }\quad and\quad y_{ k }=C_{ k }\cdot x_{ k }+v_{ k }
-\end{equation*}
-\subsection*{Steps of Kalman Filter}
+\textbf{Steps of Kalman Filter}
 \begin{description}
-\item[1 Prediction] $\hat { x } _{ [k\, |\, k-1] }\, =\, A_{ k-1 }\cdot \hat { x } _{ [k-1\, |\, k-1] }\\ P_{ [k\, |\, k-1] }\, =\, A_{ k-1 }\cdot { P }_{ [k-1\, |\, k-1] }\, \cdot \, A_{ k-1 }^{ T }\cdot { W }_{ k-1 }$ \\
-if recursive linear least squares without \( { W }_{ k-1 } \).
-\item[2 Innovation update] $P_{ [k\, |\, k] }\, =\, (P_{ [k\, |\, k-1] }^{ -1 }+C_{ k }^{ T }\, \cdot \, { V\,  }^{ -1 }\, \cdot \, C_{ k })^{ -1 }\\ \hat { x } _{ [k\, |\, k] }\, =\, \hat { x } _{ [k\, |\, k-1] }+P_{ [k\, |\, k] }\, \cdot \, C_{ k }^{ T }\, \cdot \, { V\,  }^{ -1 }\, \cdot \, (y_{ k }-C_{ k }\, \cdot \, \hat { x } _{ [k\, |\, k-1] })$
+	\item[\small 1 Prediction] 
+		\begin{flalign*}
+		& \hat x_{[k | k-1]} = A_{k-1} \cdot \hat x_{[k-1 | k-1]} & \\ 
+		& P_{[k | k-1]} = A_{k-1} \cdot P_{[k-1 | k-1]} \cdot A_{k-1}^{T} \cdot W_{k-1} & \\
+		& \text{If RLS, without: } W_{k-1} &
+		\end{flalign*}
+		
+	\item[\small 2 Innovation update] 
+		\begin{flalign*}
+		& P_{[k | k]} = (P_{[k | k-1]}^{-1} + C_{k}^{T} \cdot V^{-1} \cdot C_k)^{-1} & \\ 
+		& \hat x_{[k | k]} = \hat x_{[k | k-1]} + P_{[k | k]} \cdot C_{k}^{T} \cdot V^{-1} \cdot (y_k - C_k \cdot \hat x_{[k | k-1]}) &
+		\end{flalign*}
 \end{description}
+\todo[inline]{Ein Beispiel einfuegen.}
 \end{tcolorbox}
 
