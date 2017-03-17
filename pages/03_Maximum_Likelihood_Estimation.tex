@@ -1,6 +1,25 @@
 % -----------------------------------------------------------------
 % 				 Maximum Likelihood Estimation
 % -----------------------------------------------------------------
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Bayesian Estimation and the Maximum a Posteriori Estimate}]
+	
+	\textbf{Assumptions:}
+	\begin{itemize}
+		\item[-] Measurement: \quad $y_N \in \mathbb{R}^N$ \quad has i.i.d. noise	
+		\item[-] Linear Model: \quad $M(\theta) = \phi_N \cdot \theta$ \quad and $\theta \in \mathbb{R}$
+	\end{itemize}
+	\begin{flalign*} 
+	p(\theta |y_N) &= \frac{p(y_N,\theta)}{p(y_N)} = \frac{ p(y_N | \theta) \cdot p(\theta) }{ p(y_N) } &\\
+	\hat{\theta}_{MAP} &= \underset{\theta\in \mathbb{R}}{\text{arg\,min}} \{ -\log (p (y_N| \theta) ) -\log (p(\theta))\}
+	\end{flalign*}
+	
+	\textbf{MAP Example:} Regularised Least Squares
+	\begin{flalign*}
+	\theta &= \bar \theta \pm \sigma_\theta \quad \text{with} \quad \bar \theta =  \theta_{\text{a-priori} } &\\
+	\hat \theta_{MAP} &= \underset{\theta \in \mathbb{R}}{\text{arg\,min}} \frac{1}{2} \cdot \frac{1}{\sigma_{\epsilon^2 }} \cdot \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} + \frac{1}{2} \cdot \frac{1}{\sigma_{\theta}^2} \cdot (\theta - \bar \theta)^2
+	\end{flalign*}
+\end{tcolorbox}
+
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Maximum Likelihood Estimation}]
 \textbf{$L_2$ Estimation: Maximum Likelihood Estimation (ML)}:
 \begin{itemize}
@@ -36,25 +55,6 @@
 \begin{flalign*}
 	 \underset{\theta}{min} \lVert y-M(\theta) \rVert_1 &= \underset{\theta}{min} \sum_{i=1}^{N} |y_i - M_i (\theta) | & \\
 	& \Rightarrow \text{ median of } \{ Y_1, \cdots, Y_N \} &
-\end{flalign*}
-\end{tcolorbox}
-
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Bayesian Estimation and the Maximum a Posteriori Estimate}]
-
-\textbf{Assumptions:}
-\begin{itemize}
-	\item[-] Measurement: \quad $y_N \in \mathbb{R}^N$ \quad has i.i.d. noise	
-	\item[-] Linear Model: \quad $M(\theta) = \phi_N \cdot \theta$ \quad and $\theta \in \mathbb{R}$
-\end{itemize}
-\begin{flalign*} 
-	p(\theta |y_N) &= \frac{p(y_N,\theta)}{p(y_N)} = \frac{ p(y_N | \theta) \cdot p(\theta) }{ p(y_N) } &\\
-	\hat{\theta}_{MAP} &= \underset{\theta\in \mathbb{R}}{\text{arg\,min}} \{ -\log (p (y_N| \theta) ) -\log (p(\theta))\}
-\end{flalign*}
-
-\textbf{MAP Example:} Regularised Least Squares
-\begin{flalign*}
-	\theta &= \bar \theta \pm \sigma_\theta \quad \text{with} \quad \bar \theta =  \theta_{\text{a-priori} } &\\
-	\hat \theta_{MAP} &= \underset{\theta \in \mathbb{R}}{\text{arg\,min}} \frac{1}{2} \cdot \frac{1}{\sigma_{\epsilon^2 }} \cdot \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} + \frac{1}{2} \cdot \frac{1}{\sigma_{\theta}^2} \cdot (\theta - \bar \theta)^2
 \end{flalign*}
 \end{tcolorbox}
 
