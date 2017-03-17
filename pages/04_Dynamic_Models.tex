@@ -57,9 +57,41 @@
 		Det. Model as State Space  & Stoch. Model as State Space  \\
 		Det. Model as Input-Output  & Stoch. Model as Input-Output 
 	\end{tabular}
+
+	\textbf{State Space Model}\\
+	$ x_{k+1} = f_k(x_k,u_k), k = 0,1,\dots,N-1$ with input vector $u_k$ and state vector $x_k$
 	
-	\textbf{Deterministic Model}
-	\todo[inline]{Erklaerung}
+	\textbf{Input-Output Model}\\
+	$y(k) = h(u(k),\dots,u(k-n),y(k-1),\dots,y(k-n))$
+	\\
+	
+	\textbf{LTI system as State-Space Model:}
+	\begin{align*}
+	x_{k+1} = A x_k + B u_k, \quad k = 0, 1,..., N - 1. 
+	\end{align*}
+
+	\textbf{LTI system as Input-Output Model:}
+	\begin{flalign*}
+	G(s) &= \frac{ b_0 + b_1s+...+b_ns^n }{ a_0+a_1s+...+a_{n-1}s^{n-1}+s^n } \quad | \cdot s = z^{-1} &\\
+	G(z) &= \frac{ b_0 + b_1 z^{-1}+...+b_n z^{-n} }{a_0+a_1z^{-1}+...+a_n z^{-n}} &\\
+	&= \frac{ b_0z^n+b_n z^{n-1}+...+b_n}{a_0 z^n+a_1 z^{n-1}+...+a_n} \quad \Rightarrow \text{Also called "polynomial model".} &
+	\end{flalign*}	
+\end{tcolorbox}		
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Deterministic Model}]
+	\todo[inline]{Erklaerung S. 62 }
+	\textbf{State Space Model}
+	\begin{align*}
+	x(t+1) = f(x(k), u(k))\\
+	y(k) = g(x(k), u(k))
+	\end{align*}
+	Initial conditions: $x(1) = x_{init}$
+	
+	\textbf{Input-Output Model}
+	\begin{align*}
+	y(k) &= h(u(k), ..., u(k-n), y(k-1), ..., y(k-n))\\
+	\end{align*}
+	Initial conditions: $y(1) = y_1,\dots,y(n) = y_n  \;\; u(1)= u_1,\dots,u(n) = u_n$
+	
 	
 	\textbf{Finite Impulse Response (FIR): } 
 	\begin{align*}
@@ -70,22 +102,16 @@
 	
 	\textbf{Auto Regressive Models with Exogenous Inputs (ARX): }
 	\begin{align*}
-		G(z) = \frac{b_0z^n + b_1z^{n-1} + \cdots + b_n}{a_0z^n + a_1z^{n-1} + \cdots + a_n}
+		a_0y(k)+\dots+a_{n_a}y(k-n_a) = b_0u(k) + \dots+b_{n_b}u(k-n_b)\\
 	\end{align*}
-	
-	\textbf{LTI system as State-Space Model:}
 	\begin{align*}
-		x_{k+1} = A x_k + B u_k, \quad k = 0, 1,..., N - 1. 
+	G(z) = \frac{b_0z^n + b_1z^{n-1} + \cdots + b_n}{a_0z^n + a_1z^{n-1} + \cdots + a_n}
 	\end{align*}
+	The next output depends on the previous output. Also called \textbf{IIR} (infinite impulse response)
 	
-	\textbf{LTI system as Input-Output Model:}
-	\begin{flalign*}
-		G(s) &= \frac{ b_0 + b_1s+...+b_ns^n }{ a_0+a_1s+...+a_{n-1}s^{n-1}+s^n } \quad | \cdot s = z^{-1} &\\
-		G(z) &= \frac{ b_0 + b_1 z^{-1}+...+b_n z^{-n} }{a_0+a_1z^{-1}+...+a_n z^{-n}} &\\
-		&= \frac{ b_0z^n+b_n z^{n-1}+...+b_n}{a_0 z^n+a_1 z^{n-1}+...+a_n} \quad \Rightarrow \text{Also called "polynomial model".} &
-	\end{flalign*}	
-	\textbf{Stochastic Model}
-	\todo[inline]{Erklaerung}
+\end{tcolorbox}		
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Stochastic Model}]
+	\todo[inline]{Erklaerung S. 64}
 	
 	Assumptions:  noise is i.i.d.\\
 	
@@ -108,9 +134,8 @@
 	\end{align*}
 	\todo[inline]{Bild einfuegen}
 	Non-Linear Model
-	
-	
-	\textbf{Stochastic Disturbance (Equation Errors)}
+	\tcblower
+	\section*{Stochastic Disturbance (Equation Errors)}
 	\begin{align*}
 	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \epsilon(k)\\
 	for \quad k& = n + 1, n + 2, ...
@@ -121,8 +146,7 @@
 	y(k) &= \sum_{ i = 1}^{d}\theta_i\phi_i(u(k)...,y(k-1),...)+\epsilon(k)\\
 	y(k) &= \varphi(k)^T\theta + \epsilon(k) \quad \text{where} \, \varphi = (\phi_1(\cdot),... ,\phi_d(\cdot)) 
 	\end{align*}
-\end{tcolorbox}
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Discrete Time Systems}]	
+
 	\textbf{LIP-LTI Models with Equation Errors (ARX)}\\
 	combining best of two worlds (LTI and LIP)
 	\begin{align*}
@@ -154,6 +178,35 @@
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Example for State Space Model}]
+	$\ddot{a} = m \cdot \dot{a} + g\cdot a + c \cdot u$\\
+	$y = \dot{a}$\\
+	$y = \begin{bmatrix}
+		a \\ \dot{a}
+	\end{bmatrix}$
+	$
+	\dot{x} = \begin{bmatrix}
+	\dot{a} \\ \ddot{a}
+	\end{bmatrix}
+	$
+	$ \dot x = Ax+Bu \quad y = Cx+Du $
+	\\
+	$
+	A = \begin{bmatrix}
+	0 & 1 \\
+	g & m \\
+	\end{bmatrix}
+	$
+	$ B= \begin{bmatrix}
+	0 \\
+	c
+	\end{bmatrix}$
+	$C = \begin{bmatrix}
+	0 & 1
+	\end{bmatrix} $
+	$D = \begin{bmatrix}
+	0
+	\end{bmatrix}$
+	\todo[inline]{check it}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black,title=\textbf{Pure Output Error (OE) Minimization}]
