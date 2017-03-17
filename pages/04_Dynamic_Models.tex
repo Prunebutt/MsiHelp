@@ -2,30 +2,30 @@
 %		 				 Dynamic Models
 % -----------------------------------------------------------------
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Linear Time Invariant (LTI) Systems}]
-with A, B, C, D are matrices
-\begin{equation*}
-\dot { x } =Ax+Bu \quad y=Cx+Du 
-\end{equation*}
-\begin{equation*}
-G(s)=C{ (sI-A) }^{ -1 }B+D
-\end{equation*}
+With A, B, C, D are matrices
+\begin{align*}
+	\dot x &= Ax+Bu \quad y = Cx+Du \\
+	G(s) &= C (sI-A)^{-1} B+D
+\end{align*}
 
-LTI sytems as Input-Output Models
-\begin{equation*}
-G(S)\, =\, \frac { b_0 + b_1s+...+b_ns^n }{ a_0+a_1s+...+a_{n-1}s^{n-1}+s^n } 
-\end{equation*}
+\textbf{LTI sytems as Input-Output Models:}
+\begin{align*}
+	G(S) = \frac{ b_0 + b_1s+...+b_ns^n }{ a_0+a_1s+...+a_{n-1}s^{n-1}+s^n } 
+\end{align*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Deterministic Models}]
-$(y(k)=M(k;U,{ x }_{ init },p)$
-\textbf{Finite Impulse Response (FIR):}
-\begin{equation*}
-G(z) = b_0 + b_1z^{-1} + ... + b_{n_b}z^{-n_b} = \frac{b_0z^{n_b} + b_1z^{n_b-1} + ... + b_{n_{b}}}{z^{n_b}+0+...+0}
-\end{equation*}
-\textbf{Auto Regressive Models with Exogenus Inputs (ARX)}
-\begin{equation*}
-G(z) = \frac{b_0z^n + b_1z^{n-1} + ... + b_n}{a_0z^n + a_1z^{n-1} + ... + a_n}
-\end{equation*}
+\todo[inline]{Hier fehlt noch etwas}
+\begin{flalign*}
+	y(k)=M(k;U,x_{init},p) 
+\end{flalign*}
+
+\begin{flalign*}
+	&\textbf{Finite Impulse Response (FIR): } &\\
+	&G(z) = b_0 + b_1z^{-1} + \cdots + b_{n_b}z^{-n_b} = \frac{b_0z^{n_b} + b_1z^{n_b-1} + \cdots + b_{n_{b}}}{z^{n_b}+0+ \cdots +0} &\\
+	&\textbf{Auto Regressive Models with Exogenus Inputs (ARX): } &\\
+	&G(z) = \frac{b_0z^n + b_1z^{n-1} + \cdots + b_n}{a_0z^n + a_1z^{n-1} + \cdots + a_n}&
+\end{flalign*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Stochastik Models}]
@@ -44,33 +44,25 @@ a_0y(k)+...+a_{n_{a}}y(k-n_a) = b_0u(k)+...+b_{n_{b}}u(k-n_b)+\epsilon(k)
 
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Model with Input and Output Errors}] 
 	\begin{equation*}
-	y(k)=M(k;U+{\varepsilon  }_{ N }^{ u },{ x }_{ init },p)+{ { \varepsilon }^{ y } }(k)
+	y(k)=M(k;U + \varepsilon_{N}^{u}, x_{init}, p) + \varepsilon^y (k)
 	\end{equation*}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{./model.pdf}
-	\label{model}
-\end{figure}
+	\includegraphics[width=\textwidth]{model.pdf}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Pure Output Error (OE) Minimization}]
 \begin{equation*}
-\theta _{ ML } \, =\, arg\, \underset { \theta  }{ min } \, \sum _{ k=1 }^{ N }{ (y(k)-M(k;U,\, x_{ init }\, ,\, p)\, )^{ 2 } }
+	\theta_{ML} =\underset{\theta}{min} \sum_{k=1}^{N} (y(k)-M(k;U, x_{init} p))^2
 \end{equation*}
 
-Output Error Minimization for FIR Models
-\begin{equation*}
-y(k) \, = \, (u(k),\, u(k-1),\, ...,\, u(k-n_{n_b})) \, \cdot \, \theta \, + \, \varepsilon(k)
-\end{equation*}
-\begin{equation*}
-\underset { \theta  }{ min } \sum _{ k=n_{ b }+1 }^{ N }{ (\quad y(k)\, -\, (u(k),\, u(k-1),\, ...,\, u(k-n_{ n_{ b } }))\, \cdot \, \theta \quad )^{ 2 } } 
-\end{equation*}
+\textbf{Output Error Minimization for FIR Models:}
+\begin{flalign*}
+	y(k) &= (u(k), u(k-1), \cdots , u(k-n_{n_b})) \cdot \theta +\varepsilon(k) &\\
+	&= \underset {\theta}{min} \sum_{k=n_{b}+1}^{N} (y(k)-(u(k), u(k-1), \cdots , u(k-n_{n_b})) \cdot \theta)^2 &
+\end{flalign*}
 
-Models with Input and Output Errors
-\begin{equation*}
-arg \, \underset { \theta  }{ min } \, \sum _{ k-1 }^{ N }{ \frac { 1 }{ { \sigma  }_{ y }^{ 2 } }  } { (y(k)-M(k;U+{ \epsilon  }_{ N }^{ u },{ x }_{ init },p)) }^{ 2 }+\frac { 1 }{ { \sigma  }_{ u }^{ 2 } } { ({ \epsilon  }_{ u }(k)) }^{ 2 }
-\end{equation*}
-\begin{equation*}
-arg \, \underset { \theta  }{ min } \, \sum _{ k-1 }^{ N }{ \frac { 1 }{ { \sigma  }_{ y }^{ 2 } }  } { (y(k)-M(k;\tilde { U } ,{ x }_{ init },p)) }^{ 2 }+\frac { 1 }{ { \sigma  }_{ u }^{ 2 } } { (u(k)-\tilde{ u }(k) ) }^{ 2 }
-\end{equation*}
+\textbf{Models with Input and Output Errors:}
+\begin{flalign*}
+	& \underset{\theta}{arg\,min} \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;U+ \epsilon_{N}^{u},x_{init},p))^2 + \frac{1}{\sigma_{u}^{2}} (\epsilon_u (k))^2 & \\
+	& \underset{\theta}{arg\,min} \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;\tilde U, x_{init}, p))^2 + \frac{1}{\sigma_{u}^{2}} (u(k)-\tilde u(k) )^2 &
+\end{flalign*}
 \end{tcolorbox}
