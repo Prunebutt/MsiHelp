@@ -2,14 +2,27 @@
 %	 Non parametric and frequency domain identification methods
 % -----------------------------------------------------------------
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Fourier Transformation}]
-\todo[inline]{Wirklich notwendig?}
+	\textbf{FT:}\begin{align*}
+	F\{F\}(\omega) = \int_{-\infty}^{\infty} f(t) e^{-j\omega t}dt
+	\end{align*}
+	\textbf{iFT:}\begin{align*}
+	f(t) = F^{-1}\{F\}(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} F(\omega) e^{-j\omega t}d\omega
+	\end{align*}
+	\textbf{DFT:}\begin{align*}
+	U(m) := \sum_{k = 0}^{N-1} u(t)e^{-j\frac{2\pi m k}{N}}
+	\end{align*}
+	\textbf{iDFT:}\begin{align*}
+	u(n) := \sum_{k = 0}^{N-1} U(k)e^{j\frac{2\pi k n}{N}}
+	\end{align*}
+	
+\todo[inline]{Wirklich notwendig? Eher nict aber das drüber :)}
 \textbf{How to compute FT?} By DFT, which solves the problem of finite time and discrete values.
 
 \textbf{Can we use an input with many frequencies to get many FRF (Frequency Response Function) values in a single experiment?} So far only frequency sweeping (high comp. times due to repetition for each frequency). We should use multisines!
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Useful frequency things}]
-
+$\omega = 2\pi f = \frac{2\pi}{T}$ \quad $f_s > 2 f_{max}$ \quad $T = N \Delta{t} = \frac{N}{f_s} $\quad 
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Aliasing and Leakage Errors}]
