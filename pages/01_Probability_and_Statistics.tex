@@ -26,8 +26,7 @@
 	& \textbf{Uniform distribution:} P_y (x) = \left\{ \begin{matrix} \frac {1}{b-a} & \quad if \quad x  \in  [a,b] \\ 0 & else \end{matrix} \right. & \\
 	& \textbf{Mean: } \mu_X = \int_{-\infty}^{\infty}{x \, p_X (x) dx} = \int_{a}^{b}{\frac{1}{b-a} \cdot x dx = \frac{a+b}{2} =: \mu_X} & \\
 	& \textbf{Normal distribution: } X \sim \mathcal{N}(\mu, \sigma^2) & \\
-	& \hspace{3em}p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}\cdot exp(-\frac{(x-\mu)^2}{2\sigma^2}) & \\
-	& \includegraphics[width = 4cm]{Gauss.png} & \\
+	& \hspace{3em}p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}\cdot exp(-\frac{(x-\mu)^2}{2\sigma^2})  \includegraphics[width = 3cm]{Gauss.png} & \\
 	&\textbf{Multidimensional Normal Distribution: } &\\
 	& \hspace{1em} p(x)=\frac {1}{\sqrt{(2\pi)^n \cdot det(\Sigma)}} \cdot exp(-\frac{1}{2} \cdot (x-\mu)^T \cdot \Sigma^{-1} \cdot (x-\mu)) & \\
 	& \textbf{Weibull distribuation: } F(x) = 1 - e^{-(\lambda \cdot x)^k} & \\
@@ -47,8 +46,12 @@
 \begin{flalign*}
 	& \textbf{Covariance and Correlaton: }	\sigma (X,Y) := \mathbb{E} (X-\mu_X)(Y-\mu_Y) & \\
 	& \hspace{3em} = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} (X - \mu_X)(y - \mu_Y)\cdot p_{X,Y} (x,y)\,  dx \, dy  & \\
-	& \textbf{Covariance Matrix: } \Sigma_x = cov(X) = \mathbb{E}\{XX^T\} - \mu_x \mu^T_x &
+	& \textbf{Covariance Matrix: } \Sigma_x = cov(X) = \mathbb{E}\{XX^T\} - \mu_x \mu^T_x  \; \text{is PSD}&
 \end{flalign*}
+$ \Sigma = \begin{bmatrix}
+\sigma_x^2 & \sigma_{yx} \\
+\sigma_{xy} & \sigma_y^2
+\end{bmatrix}$ \quad $\sigma_{xy} = \sigma{yx} = \rho_{xy} \cdot \sigma_x \cdot \sigma_y$ where $\rho$ is correlation
 \textbf{Multidimensional Random Variables:}
 \begin{align*}
 	\mathbb{E}{f(X)} &= \int_{\mathbb{R}^n}{f(x)p_X(x) d^n x} \\
@@ -65,8 +68,10 @@
 \begin{flalign*}
 	 & \textbf{Verschiebesatz: } var(X)= \mathbb{E}((X-\mathbb{E}(X))^2) = \mathbb{E}(X^2)- (\mathbb{E}(X))^2 &
 \end{flalign*}
-Unit Variance is variance = 1 \todo[inline]{Was sagt mir das? A: Keine Ahnung}
-
+\textbf{Bayes Theorem:}\\
+$ P(A\vert B) = \frac{P(A,B)}{P(B)} = \frac{P(B \vert A)P(A)}{P(B)}$\\
+\textbf{Correlation:}\\
+uncorrelated if $\rho(X,Y) = 0, \; \rho(X,Y) := \frac{cov(X,Y)}{\sigma_x \sigma_y}$
 \tcblower
 
 \textbf{Statistical estimators:}
