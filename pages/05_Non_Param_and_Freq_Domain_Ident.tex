@@ -3,7 +3,8 @@
 % -----------------------------------------------------------------
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Fourier Transformation}]
 	\textbf{FT:}\begin{align*}
-	F\{F\}(\omega) = \int_{-\infty}^{\infty} f(t) e^{-j\omega t}dt
+				  &F\{F\}(\omega) = \int_{-\infty}^{\infty} f(t) e^{-j\omega t}\diff t\\
+				  &G(j\omega)=\frac{Y_0}{U_0}e^{j\omega t}
 	\end{align*}
 	\textbf{iFT:}\begin{align*}
 	f(t) = F^{-1}\{F\}(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} F(\omega) e^{-j\omega t}d\omega
@@ -13,79 +14,89 @@
 	\end{align*}
 	\textbf{iDFT:}\begin{align*}
 	u(n) := \sum_{k = 0}^{N-1} U(k)e^{j\frac{2\pi k n}{N}}
-	\end{align*}
+				  \end{align*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Useful frequency things}]
-$\omega = 2\pi f = \frac{2\pi}{T}$ \quad $f_s > 2 f_{max}$ \quad $T = N \Delta{t} = \frac{N}{f_s} $\quad 
+  $\omega = 2\pi f = \frac{2\pi}{T}$ \quad $f_s > 2 f_{max}$ \quad $T = N \Delta{t} = \frac{N}{f_s} $\quad\\
+  $\sin(\varphi)=\frac{e^{j\varphi}-e^{-j\varphi}}{2},\ \cos(\varphi)=\frac{e^{j\varphi}+e^{-j\varphi}}{2}$
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Aliasing and Leakage Errors}]
 \begin{description}
 	\item[Aliasing Error:] Due to sampling of continous signal to discrete signal. Avoid with Nyquist Theoreme:
 	\begin{equation*}
-	f_{Nyquist} = \frac{1}{2\Delta t} [\SI{}{\hertz}] \quad or \quad \omega_{Nyquist} = \frac{2\pi}{2\Delta t} [\SI{}{\radian \per \second}]
+	\ti{f}{Nyquist} = \frac{1}{2\Delta t} [\SI{}{\hertz}] \quad or \quad \ti{\omega}{Nyquist} = \frac{2\pi}{2\Delta t} [\SI{}{\radian \per \second}]
 	\end{equation*}
 	
-	\item[Leackage Error:] Due to windowing.
+	\item[Leakage Error:] Due to windowing.
 	\begin{equation*}
-	\omega_{base} := \frac{2\pi}{N \cdot \Delta t} = \frac{2\pi}{T} \rightarrow \omega = m \frac{2\pi }{N \cdot \Delta t}
+	\ti{\omega}{base} := \frac{2\pi}{N \cdot \Delta t} = \frac{2\pi}{T} \rightarrow \omega = m\cdot \frac{2\pi }{N \cdot \Delta t}
 	\end{equation*}
 \end{description}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Crest Factor = Scheitelfaktor}]
+\begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Crest Factor (ger. = Scheitelfaktor)}]
 \begin{flalign*}
-	\text{Crest Factor } =\frac{u_{max}}{u_{rms}} \quad \text{with}: u_{rms} &:= \sqrt{\frac{1}{T} \int_{0}^{T} u(t)^2 \, dt} &\\
-	\quad \text{and} \quad u_{max} &:=\underset{t \in [0,T]}{max} |u(t)| &
+  \text{Crest Factor } =\frac{\ti{u}{max}}{\ti{u}{rms}} \quad \text{with}: \ti{u}{rms} &:= \sqrt{\frac{1}{T} \int_{0}^{T} u(t)^2 \, \diff t}% \underbrace{\left(= \sqrt{\frac{a^2+b^2}{2}}\right)}_{\mathrm{for\ square\ wave}}%
+  &\\
+	\quad \text{and} \quad \ti{u}{max} &:=\max_{t \in [0,T]} |u(t)| &
 \end{flalign*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Optimising Multisine for optimal crest factor}]
 \begin{description}
-	\item[Frequency:] Choose frequencies in logarithmic manner as multiples of the base frequency. $\quad \omega_{k+1}/\omega_k \approx 1.05$
+	\item[Frequency:] Choose frequencies in logarithmic manner as multiples of the base frequency. $\quad \omega_{k+1}/\omega_k \approx 1.05/1.01/1.03$ (round to $n\cdot\ti{\omega}{base}$!)
 
-	\item[Phase:] To prevent high peaks (Crest Factor) in the Signal, the phases of the different frequencies are modulated accordingly. (Positive interference)
+	\item[Phase:] To prevent high peaks (Crest Factor): random algorithm for phase shifts
 \end{description}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Multisine Identification Implementation procedure}]
 \begin{description}
-	\item[Window Length:] Integer multiple of sampling time: $T = N \cdot \delta t$
+	\item[Window Length:] Integer multiple of sampling time: $T = N \cdot \Delta t$
 
 	\item[Harmonics of base frequency:] Are contained in multisine \\ $\omega_{base} = \frac{2\pi}{T}$
 
-	\item[Highest contained Frequency:] Is \textbf{half} of Nyquist frequency: $\omega_{Nyquist} = \frac{2\pi}{4\Delta T}$
+	\item[Highest contained Frequency:] Is \textbf{half} of Nyquist frequency: $\ti{\omega}{Nyquist} = \frac{2\pi}{4\Delta T}$
 
-	\item[Experiment and Analysis:] (Step 2): Insert Multisine periodically. Drop first Periods (till transients died out). Record M Periods, each with N samples, of input and output data. Average all the M periods and make the DFT (or vice versa). Finally build transfer function: $ \hat{G}_{{j\omega}_{k}} = \frac{\hat Y(k(p))}{\hat U (k(p))}$
+	\item[Experiment and Analysis:] (Step 2):
+	  \begin{enumerate}
+	  \item Insert Multisine periodically
+	  \item Drop first Periods (till transients died out) 
+	  \item Record $M$ Periods, with $N$ samples, of input and output data 
+	  \item Average all windows and apply DFT (or vice versa) 
+	  \item Build transfer function: $ \hat{G}_{{j\omega}_{k}} = \frac{\hat Y(k(p))}{\hat U (k(p))}$
+	  \end{enumerate}
+	  
 \end{description}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Nonparametric and Frequency Domain Identification Models}]
 \textbf{Impulse response and transfer function:}
 \begin{align*}
-	y(t) &= \int_{0}^{\infty} g(\tau) u(t-\tau) \, \delta t \\
+	y(t) &= \int_{0}^{\infty} g(\tau) u(t-\tau) \, \diff \tau \\
 	Y(s) &= G(s)\cdot U(s) \\
-	G(s) &= \int_{0}^{\infty} \epsilon^{-st} g(t) \, dt 
+	G(s) &= \int_{0}^{\infty} e^{-st} g(t) \, \diff t 
 \end{align*}
 \textbf{Bode diagram from frequency sweeps:}
 \begin{align*}
-	u(t) &= A \cdot sin(\omega \cdot t),\quad y(t) = \lVert G (j\cdot \omega )\rVert A \cdot sin(\omega \cdot t + \alpha)
+	u(t) &= A \cdot \sin(\omega \cdot t),\quad y(t) = \lVert G (j\cdot \omega )\rVert A \cdot \sin(\omega \cdot t + \alpha)
 \end{align*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Bode Diagramm}]
-	Magnitude = Amplitude $|G(j\omega)|$\\
-	Phase $arg \, G(j\omega)$
+	Magnitude $\widehat{=}$ Amplitude $|G(j\omega)|$\\
+	Phase $\widehat{=}$ $\arg \, G(j\omega)$
 	\todo[inline]{Hier sollten wir glaub noch bisschen was rein machen.}
 \end{tcolorbox}
 
 
-\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Recursive Least Squares}]
-\begin{flalign*}
-	& \textbf{New Inverse Covariance: } Q_K = Q_{k-1} + \phi_K \phi_K^T &
-\end{flalign*}
-\end{tcolorbox}
+% \begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Recursive Least Squares}]
+% \begin{flalign*}
+% 	& \textbf{New Inverse Covariance: } Q_K = Q_{k-1} + \phi_K \phi_K^T &
+% \end{flalign*}
+% \end{tcolorbox}
 
 \begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Kalman Filter}]
 \textbf{Valid for Discrete and Linear!}
@@ -111,3 +122,8 @@ $\omega = 2\pi f = \frac{2\pi}{T}$ \quad $f_s > 2 f_{max}$ \quad $T = N \Delta{t
 \end{description}
 \end{tcolorbox}
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../HelpSheet"
+%%% End:

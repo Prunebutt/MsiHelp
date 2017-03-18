@@ -78,10 +78,11 @@
 	\end{flalign*}	
 \end{tcolorbox}		
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Deterministic Model}]
-	The output of the system can be obtained with absolute certainty. The Output $y$ or the state x, depend on the known inputs $u(1), \dots, u(N)$, the previous Outputs $y(1), \dots, y(N)$ or state $x(n-1)$ and initial conditions.  
+  The output of the system can be obtained with absolute certainty. The Output $y$ or the state $x$, depend on the known inputs $u(1), \dots, u(N)$, the previous Outputs $y(1), \dots, y(N)$ or state $x(n-1)$ and initial conditions. \\
+  All deterministic models are \textbf{time invariant}.\\
 \textbf{State Space Model: }
 \begin{align*}
-	 x(t+1) &= f(x(k), u(k)) \\
+	 x(k+1) &= f(x(k), u(k)) \\
 	y(k) &= g(x(k), u(k)) 
 \end{align*}
 Initial conditions: $x(1) = x_0$
@@ -99,14 +100,20 @@ Initial conditions: $y(1) = y_1,\dots,y(n) = y_n  \;\; u(1)= u_1,\dots,u(n) = u_
 	&= \frac{b_0 z^{n_b} + b_1 z^{ n_{b-1} } + ... + b_{n_b} }{z^{n_b}}
 \end{align*}
 
-\textbf{Auto Regressive Models with Exogenous Inputs (ARX): }
+\textbf{Auto Regressive model with eXogenous inputs (ARX/IRR):}
 \begin{align*}
 	a_0y(k)+\dots+a_{n_a}y(k-n_a) = b_0u(k) + \dots+b_{n_b}u(k-n_b)
 \end{align*}
 \begin{align*}
 G(z) = \frac{b_0z^n + b_1z^{n-1} + \cdots + b_n}{a_0z^n + a_1z^{n-1} + \cdots + a_n}
 \end{align*}
-The next output depends on the previous output. Also called \textbf{IIR} (infinite impulse response)
+The next output depends on the previous output. Also called \textbf{IIR} (infinite impulse response)\\
+
+\textbf{Auto Regressive model(AR):}
+\begin{align*}
+	y(k)= a_1y(k-1)-...-a_{n_a}y(k-n_a)
+\end{align*}
+
 
 \end{tcolorbox}		
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Stochastic Model}]
@@ -117,11 +124,11 @@ The next output depends on the previous output. Also called \textbf{IIR} (infini
 		\item measured outputs $y(k)$ depend in both, $\varepsilon(k)$ and $p$ 
 	\end{itemize}
 	
-	Assumptions:  noise is \textbf{i.i.d} and enters the model like a normal input, but as a random variable\\
+	Assumptions: noise is \textbf{i.i.d} and enters the model like a normal input, but as a random variable\\
 	
 	\textbf{State Space Model}
 	\begin{align*}
-	x(t+1) = f(x(k), u(k), \varepsilon(k)) \\
+	x(k+1) = f(x(k), u(k), \varepsilon(k)) \\
 	y(k) = g(x(k), u(k), \varepsilon(k))
 \end{align*}
 
@@ -149,7 +156,7 @@ Only interested in input and output, not the whole model state
 	y(k) &= \varphi(k)^T\theta + \varepsilon(k) \quad \text{where} \, \varphi = (\phi_1(\cdot),... ,\phi_d(\cdot)) 
 \end{align*}
 
-\textbf{LIP-LTI Models with Equation Errors (ARX)} 
+\textbf{LIP-LTI Models with Equation Errors (ARX)\footnote{additive noise is a special case}} 
 
 \hspace{1em}- Combining best of two worlds (LTI and LIP)
 \begin{flalign*}
@@ -277,8 +284,8 @@ y(k) = \varphi(k)^\text{T} \theta + \varepsilon(k)
 
 Assume: i.i.d. gaussian noise on both input and output with variance $\sigma_u^2$ for the input and $\sigma_y^2$ for the output
 \begin{flalign*}
-	& \argmin_\theta \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;U+ \varepsilon_{N}^{u},x_0,p))^2 + \frac{1}{\sigma_{u}^{2}} (\varepsilon_u (k))^2 & \\
-	& \argmin_{\theta} \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;\tilde U, x_0, p))^2 + \frac{1}{\sigma_{u}^{2}} (u(k)-\tilde u(k) )^2 &
+	\hat{\theta}=& \argmin_\theta \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;U+ \varepsilon_{N}^{u},x_0,p))^2 + \frac{1}{\sigma_{u}^{2}} (\varepsilon_u (k))^2 & \\
+	\hat{\theta}=& \argmin_{\theta} \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;\tilde U, x_0, p))^2 + \frac{1}{\sigma_{u}^{2}} (u(k)-\tilde u(k) )^2 &
   \end{flalign*}
 	\\
 	\hspace{-2pt}

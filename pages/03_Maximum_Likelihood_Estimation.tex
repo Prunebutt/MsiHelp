@@ -61,7 +61,7 @@
 
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Recursive Linear Least Squares}]
 \begin{flalign*}
-	Q_{ N+1 } &= \alpha \cdot Q_N + \varphi (N+1) \cdot  \varphi (N+1)^{T} & \\
+	Q_{ N+1 } &= \alpha \cdot Q_N + \varphi (N+1) \cdot  \varphi (N+1)^{T},\ \mathrm{\alpha\ \widehat{=}\ ``forgetting factor'''} &\\
 	\hat \theta_{ML}(N+1) &= \hat \theta_{ML}(N)+Q_{N+1}^{-1} \cdot  \varphi (N+1) & \\ 
 	& \quad \cdot [\underbrace{y(N+1)}_{\mathrm{new\ measurement}} - \underbrace{\varphi(N+1)^T  \cdot \hat{ \theta }_{ML}(N)}_{\mathrm{old\ prediction}}] &
   \end{flalign*}
