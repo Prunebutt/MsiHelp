@@ -78,7 +78,7 @@
 	\end{flalign*}	
 \end{tcolorbox}		
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Deterministic Model}]
-	\todo[inline]{Erklaerung S. 62 }
+	The output of the system can be obtained with absolute certainty. The Output $y$ or the state x, depend on the known inputs $u(1), \dots, u(N)$, the previous Outputs $y(1), \dots, y(N)$ or state $x(n-1)$ and initial conditions.  
 	\textbf{State Space Model}
 	\begin{align*}
 	x(t+1) = f(x(k), u(k))\\
@@ -111,9 +111,14 @@
 	
 \end{tcolorbox}		
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Stochastic Model}]
-	\todo[inline]{Erklaerung S. 64}
+	Real systems are far from deterministic. 
+	\begin{itemize}
+		\item there is stochastic noise $\epsilon(k)$ 
+		\item there are constant and unknown parameters $p$
+		\item measured outputs depend $y(k)$ depend in both, $\epsilon(k)$ and $p$ 
+	\end{itemize}
 	
-	Assumptions:  noise is i.i.d.\\
+	Assumptions:  noise is \textbf{i.i.d} and enters the model like a normal input, but as a random variable\\
 	
 	\textbf{State Space Model}
 	\begin{align*}
@@ -177,7 +182,7 @@
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Example for State Space Model}]
 	$\ddot{a} = m \cdot \dot{a} + g\cdot a + c \cdot u$\\
 	$y = \dot{a}$\\
-	$y = \begin{bmatrix}
+	$x = \begin{bmatrix}
 		a \\ \dot{a}
 	\end{bmatrix}$
 	$
