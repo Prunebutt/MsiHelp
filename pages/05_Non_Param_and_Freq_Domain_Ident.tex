@@ -147,8 +147,20 @@
 	\end{equation*}
   \item Sample Mean: $\hat{\theta}_N(Y_N)=\frac{1}{N}\sum^N_{k=1}Y(k)$
   \item Sample Variance: $S^2=\frac{1}{N-1}\sum^N_{k=1}(Y(k)-\mathbb{E}\{Y_N\})^2$
-
   \end{itemize}
+  \textbf{Magic Matrix for 8 point DFT:}
+  \begin{equation*}W_r=\left[ 
+  \begin{array}{rrrrrrrr}
+	1.0&1.0&1.0&1.0&1.0&1.0&1.0&1.0\\
+	1.0&0.7&0.0&-0.7&-1.0&-0.7&0.0&0.7\\
+	1.0&0.0&-1.0&0.0&1.0&0.0&-1.0&0.0\\
+	1.0&-0.7&0.0&0.7&-1.0&0.7&0.0&-0.7\\
+	1.0&-1.0&1.0&-1.0&1.0&-1.0&1.0&-1.0\\
+	1.0&-0.7&0.0&0.7&-1.0&0.7&0.0&-0.7\\
+	1.0&0.0&-1.0&0.0&1.0&0.0&-1.0&0.0\\
+	1.0&0.7&0.0&-0.7&-1.0&-0.7&0.0&0.7\\
+  \end{array} \right]
+\end{equation*}
 \end{tcolorbox}
 
 %%% Local Variables:
