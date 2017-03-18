@@ -225,15 +225,6 @@ They often need a very high dimension $n_b$ to obtain a reasonable fit. As a con
 \textbf{Equation Error Minimization:}
 Assume: i.i.d. $\epsilon(k)$ noise enters the input-output equation as additive disturbance
 \begin{align*}
-	&= \underset {\theta}{ \text{min} } \sum_{k=n_{b}+1}^{N} (y(k)-\underbrace{(u(k), u(k-1),... , u(k-n_{n_b}))}_{\text{Deterministic part is also}\, M(k; U, x_{init}, p)} \cdot \theta)^2 &
-	\end{flalign*}
-	
-	They often need a very high dimension $n_b$ to obtain a reasonable fit. As a consequence ARX models are usually used instead.
-	
-	\textbf{Equation Error Minimization:}
-	Assume: i.i.d. $\epsilon(k)$ noise enters the input-output equation as additive disturbance
-	
-	\begin{align*}
 	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \epsilon(k)\\
 	\text{for} \quad k &= n + 1, n + 2
 \end{align*}
