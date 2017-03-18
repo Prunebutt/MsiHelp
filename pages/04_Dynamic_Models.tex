@@ -78,100 +78,96 @@
 	\end{flalign*}	
 \end{tcolorbox}		
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Deterministic Model}]
-	\todo[inline]{Erklaerung S. 62 }
-	\textbf{State Space Model}
-	\begin{align*}
-	x(t+1) = f(x(k), u(k))\\
-	y(k) = g(x(k), u(k))
-	\end{align*}
-	Initial conditions: $x(1) = x_{init}$
-	
-	\textbf{Input-Output Model}
-	\begin{align*}
-	y(k) &= h(u(k), ..., u(k-n), y(k-1), ..., y(k-n))\\
-	\end{align*}
-	Initial conditions: $y(1) = y_1,\dots,y(n) = y_n  \;\; u(1)= u_1,\dots,u(n) = u_n$
-	
-	
-	\textbf{Finite Impulse Response (FIR): } 
-	\begin{align*}
-		y(k) &= b_0 u(k) + ... + b_{n_b} u(k-n_b) \\
-		G(z) &= b_0 + b_1z^{-1} + ... + b_{n_b}z^{-n_b} \quad | \cdot \frac{z^{n_b}}{z^{n_b}} \\
-		&= \frac{b_0 z^{n_b} + b_1 z^{ n_{b-1} } + ... + b_{n_b} }{z^{n_b}}
-	\end{align*}
-	
-	\textbf{Auto Regressive Models with Exogenous Inputs (ARX): }
-	\begin{align*}
-		a_0y(k)+\dots+a_{n_a}y(k-n_a) = b_0u(k) + \dots+b_{n_b}u(k-n_b)\\
-	\end{align*}
-	\begin{align*}
-	G(z) = \frac{b_0z^n + b_1z^{n-1} + \cdots + b_n}{a_0z^n + a_1z^{n-1} + \cdots + a_n}
-	\end{align*}
-	The next output depends on the previous output. Also called \textbf{IIR} (infinite impulse response)
-	
+\todo[inline]{Erklaerung S. 62 }
+\textbf{State Space Model: }
+\begin{align*}
+	 x(t+1) &= f(x(k), u(k)) \\
+	y(k) &= g(x(k), u(k)) 
+\end{align*}
+Initial conditions: $x(1) = x_{init}$
+
+\textbf{Input-Output Model}
+\begin{align*}
+y(k) &= h(u(k), ..., u(k-n), y(k-1), ..., y(k-n))
+\end{align*}
+Initial conditions: $y(1) = y_1,\dots,y(n) = y_n  \;\; u(1)= u_1,\dots,u(n) = u_n$
+
+\textbf{Finite Impulse Response (FIR): } 
+\begin{align*}
+	y(k) &= b_0 u(k) + ... + b_{n_b} u(k-n_b) \\
+	G(z) &= b_0 + b_1z^{-1} + ... + b_{n_b}z^{-n_b} \quad | \cdot \frac{z^{n_b}}{z^{n_b}} \\
+	&= \frac{b_0 z^{n_b} + b_1 z^{ n_{b-1} } + ... + b_{n_b} }{z^{n_b}}
+\end{align*}
+
+\textbf{Auto Regressive Models with Exogenous Inputs (ARX): }
+\begin{align*}
+	a_0y(k)+\dots+a_{n_a}y(k-n_a) = b_0u(k) + \dots+b_{n_b}u(k-n_b)
+\end{align*}
+\begin{align*}
+G(z) = \frac{b_0z^n + b_1z^{n-1} + \cdots + b_n}{a_0z^n + a_1z^{n-1} + \cdots + a_n}
+\end{align*}
+The next output depends on the previous output. Also called \textbf{IIR} (infinite impulse response)
+
 \end{tcolorbox}		
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Stochastic Model}]
-	\todo[inline]{Erklaerung S. 64}
-	
-	Assumptions:  noise is i.i.d.\\
-	
-	\textbf{State Space Model}
-	\begin{align*}
+\todo[inline]{Erklaerung S. 64}
+
+Assumptions:  Noise is i.i.d.\\
+
+\textbf{State Space Model}
+\begin{align*}
 	x(t+1) = f(x(k), u(k), \epsilon(k)) \\
 	y(k) = g(x(k), u(k), \epsilon(k))
-	\end{align*}
-	
-	\textbf{Input-Output Model}
-	\begin{align*}
-	y(k) &= h(u(k), ..., u(k-n), y(k-1), ..., y(k-n), \epsilon(k), ..., \epsilon(k-n))\\
-	\text{for} \quad k &= n + 1, n + 2, ...
-	\end{align*}	
-	
-	\textbf{Measurement Noise (Output Error Model)}
-	\begin{align*}
-	y(k) = M(k; U, x_{init}, p) + \epsilon(k)
-	\end{align*}
-	\tcblower
-	\section*{Stochastic Disturbance (Equation Errors)}
-	\begin{align*}
-	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \epsilon(k)\\
-	for \quad k& = n + 1, n + 2, ...
-	\end{align*}
-	
-	\textbf{Linear In the Parameters models (LIP):}
-	\begin{align*}
-	y(k) &= \sum_{ i = 1}^{d}\theta_i\phi_i(u(k)...,y(k-1),...)+\epsilon(k)\\
-	y(k) &= \varphi(k)^T\theta + \epsilon(k) \quad \text{where} \, \varphi = (\phi_1(\cdot),... ,\phi_d(\cdot)) 
-	\end{align*}
+\end{align*}
 
-	\textbf{LIP-LTI Models with Equation Errors (ARX)}\\
-	combining best of two worlds (LTI and LIP)
-	\begin{align*}
-	a_0y(k) + ...+a_{n_{a}}y(k-n_a) = b_0u(k) + ... + b_{n_{b}}u(k-n_b) + \epsilon(k)
-	\end{align*}
-	
-	\textbf{Auto-regressive moving average with eXogeneous input (ARMAX):}
-	\begin{align*}
-	a_0y(k) + ... + a_{n_a}y(k-n_a)\\
-	=\\
-	b_0u(k) + ... + b_{n_b} u(k - n_b) + \epsilon(k) + c_1 \epsilon(k-1) + ... + c_{n_x} \epsilon(k-n_c)
-	\end{align*}
-	
-	\textbf{Auto-regressive moving average without inputs (ARMA):}
-	\begin{align*}
-	a_0y(k) + ... + a_{n_a}y(k-n_a)\\
-	=\\
-	\epsilon(k) + c_1 \epsilon(k-1) + ... + c_{n_x} \epsilon(k-n_c)
-	\end{align*}
-	Where $c_i$ represent the noise coefficient
-	Have to use non-linear leas squares with the unknown noise terms$ \epsilon(k-i)$
-	
-	\textbf{Difference Deterministic and Stochastic Models}
-	\begin{align*}
-	- &stochastic noise \epsilon(k)\\
-	- &unknown but constant parameter p\\
-	- &measured output y(k) depend on both, \epsilon(k) and p
-	\end{align*}
+\textbf{Input-Output Model}
+\begin{flalign*}
+	y(k) &= h(u(k), ..., u(k-n), y(k-1), ..., y(k-n), \epsilon(k), ..., \epsilon(k-n)) &\\
+	\quad \text{for} \quad k &= n + 1, n + 2, ... &
+\end{flalign*}	
+
+\textbf{Measurement Noise (Output Error Model)}
+\begin{align*}
+	y(k) = M(k; U, x_{init}, p) + \epsilon(k)
+\end{align*}
+\tcblower
+\textbf{Stochastic Disturbance (Equation Errors)}
+\begin{align*}
+	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \epsilon(k) \\
+	&\text{for } k = n + 1, n + 2, \ldots
+\end{align*}
+
+\textbf{Linear In the Parameters models (LIP):}
+\begin{align*}
+	y(k) &= \sum_{ i = 1}^{d}\theta_i\phi_i(u(k), \dots ,y(k-1), \dots)+\epsilon(k)\\
+	y(k) &= \varphi(k)^T\theta + \epsilon(k) \quad \text{where} \, \varphi = (\phi_1(\cdot),... ,\phi_d(\cdot)) 
+\end{align*}
+
+\textbf{LIP-LTI Models with Equation Errors (ARX)} 
+
+\hspace{1em}- Combining best of two worlds (LTI and LIP)
+\begin{flalign*}
+	&\quad a_0y(k) + \ldots +a_{n_{a}}y(k-n_a) = b_0u(k) + \ldots + b_{n_{b}}u(k-n_b) + \epsilon(k) &
+\end{flalign*}
+
+\textbf{Auto-regressive moving average with eXogeneous input (ARMAX):}
+\begin{flalign*}
+	 a_0y(k) + ... + a_{n_a}y(k-n_a) &= b_0u(k) + ... + b_{n_b} u(k - n_b) + \epsilon(k) + \\
+	& \qquad c_1 \epsilon(k-1) + ... + c_{n_x} \epsilon(k-n_c) &
+\end{flalign*}
+
+\textbf{Auto-regressive moving average without inputs (ARMA):}
+\begin{flalign*}
+	&\quad a_0y(k) + ... + a_{n_a}y(k-n_a) = \epsilon(k) + c_1 \epsilon(k-1) + ... + c_{n_x} \epsilon(k-n_c)&
+\end{flalign*}
+Where $c_i$ represent the noise coefficient, we have to use non-linear least squares with the unknown noise terms$ \epsilon(k-i)$
+
+\textbf{Difference Deterministic and Stochastic Models}
+\begin{itemize}
+	\item[-] stochastic noise $\epsilon(k)$
+	\item[-] unknown but constant parameter $p$
+	\item[-] measured output y(k) depend on both, $\epsilon(k)$ and $p$
+\end{itemize}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Example for State Space Model}]
@@ -207,86 +203,75 @@
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black,title=\textbf{Pure Output Error (OE) Minimization}]
-	Assume: i.i.d. gaussian noise only affecting output\\
-	using non-linear least squares
-	\begin{align*}
+Assume: i.i.d. gaussian noise only affecting output\\
+using non-linear least squares
+\begin{align*}
 	\theta_{ML} =\underset{\theta}{\text{min}} \sum_{k=1}^{N} (y(k)-M(k;U, x_{init} p))^2
-	\end{align*}
-	
-	\textbf{Output Error Minimization for FIR Models:}
-	lead to convex problems, therefore global minimum can be found
-	\begin{flalign*}
+\end{align*}
+
+\textbf{Output Error Minimization for FIR Models:}
+lead to convex problems, therefore global minimum can be found
+\begin{flalign*}
 	y(k) &= (u(k), u(k-1), ..., u(k-n_{n_b})) \cdot \theta +\varepsilon(k) &\\
-	&= \underset {\theta}{ \text{min} } \sum_{k=n_{b}+1}^{N} (y(k)-\underbrace{(u(k), u(k-1),... , u(k-n_{n_b}))}_{\text{Deterministic part is also}\, M(k; U, x_{init}, p)} \cdot \theta)^2 &
-	\end{flalign*}
-	
-	They often need a very high dimension $n_b$ to obtain a reasonable fit. As a consequence ARX models are usually used instead.
-	
-	\textbf{Equation Error Minimization:}
-	Assume: i.i.d. $\epsilon(k)$ noise enters the input-output equation as additive disturbance
-	
-	\begin{align*}
+	&= \underset {\theta}{ \text{min} } \sum_{k=n_{b}+1}^{N} (y(k)-\underbrace{(u(k), u(k-1),... , u(k-n_{n_b}))}_{\text{det. part is also}\, M(k; U, x_{init}, p)} \cdot \theta)^2 &
+\end{flalign*}
+They often need a very high dimension $n_b$ to obtain a reasonable fit. As a consequence ARX models are usually used instead. \\
+
+\textbf{Equation Error Minimization:}
+Assume: i.i.d. $\epsilon(k)$ noise enters the input-output equation as additive disturbance
+\begin{align*}
 	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \epsilon(k)\\
 	\text{for} \quad k &= n + 1, n + 2
-	\end{align*}
-	
-	if the i.i.d noise is gaussian, a maximum likelihood formulation to estimate the unknown parameter vector $\theta = p$ is given:
-	
-	\begin{align*}
+\end{align*}
+
+if the i.i.d noise is gaussian, a maximum likelihood formulation to estimate the unknown parameter vector $\theta = p$ is given:
+\begin{align*}
 	\theta_{ML} = \underset {\theta}{ \text{min} } \sum_{k = n + 1}^{N}{(y(k) - h(p, u(k), ..., y(k-1), ...)) )^2}
-	\end{align*}
-	u and k are known input and output measurements, and the algorithm minimises the so called \textbf{equation errors} or \textbf{prediction errors}.
-	
-	This problem is also known as \textbf{Prediction error minimisation(PEM)}
-	Such a problem is convex if $p$ enters linearly in $f$, i.e. if the model is \textbf{linear-in-the-parameters (LIP)}
-	
-	
-	
-	\textbf{PEM of LIP Models}
-	
-	\begin{align*}
+\end{align*}
+u and k are known input and output measurements, and the algorithm minimises the so called \textbf{equation errors} or \textbf{prediction errors}.
+
+This problem is also known as \textbf{Prediction error minimisation(PEM)}
+Such a problem is convex if $p$ enters linearly in $f$, i.e. if the model is \textbf{linear-in-the-parameters (LIP)} \\
+
+\textbf{PEM of LIP Models}
+\begin{align*}
 	y(k) &= \varphi(k)^T\theta + \epsilon(k)\\
 	\quad \text{where} \, \varphi &= (\phi_1(\cdot),... ,\phi_d(\cdot))^T \text{are the regressor variables}
-	\end{align*}
-	
-	considering this last expression, the prediction error minimisation(PEM) problem can be formulated as:
-	
-	\begin{align*}
+\end{align*}
+
+considering this last expression, the prediction error minimisation(PEM) problem can be formulated as:
+\begin{align*}
 	\underset{\theta}{\text{min}} \underbrace{\sum_{k=1}^{N} (y(k)-\varphi(k)^\text{T} \theta)^2}_{= \parallel y_N - \Phi_N \theta \parallel_2^2}
-	\end{align*}
-	Which can be solved using LLS $\theta^* = \Phi^+_N y_N$
-	
-	\textbf{Special Case: PEM of LIP-LTI Models with Equation Errors(ARX)}
-	General ARX model equation
-	\begin{align*}
-	a_0y(k)+...+a_{n_{a}}y(k-n_a) = b_0u(k)+...+b_{n_{b}}u(k-n_b)+\epsilon(k)
-	\end{align*}
-	
-	In order to have a determined estimation problem, $a_0$ has to be fixed, otherwise the number of optimal solutions would be infinitive. Therefore we sually fix $a_0 = 1$ and use $\theta = (a_1, ..., a_{n_a}, b_0, ..., b_{n_b})^\text{T}$ as the parameter estimation vector. The regressor vector is given by:
-	\begin{align*}
-	\varphi = (-y(k-1), ..., -y(k-n_a), u(k), ..., u(k-n_b))^\text{T}
-	\end{align*}
-	leading to the optimal solution provided by LLS:
-	\begin{align*}
-	y(k) = \varphi(k)^\text{T} \theta + \epsilon(k)
-	\end{align*}
-	
+\end{align*}
+Which can be solved using LLS $\theta^* = \Phi^+_N y_N$ \\
+
+\textbf{Special Case: PEM of LIP-LTI Models with Equation Errors(ARX)}
+General ARX model equation
+\begin{align*}
+	a_0y(k)+...+a_{n_{a}}y(k-n_a) = b_0u(k)+...+b_{n_{b}}u(k-n_b)+\epsilon(k) 
+\end{align*}
+
+In order to have a determined estimation problem, $a_0$ has to be fixed, otherwise the number of optimal solutions would be infinitive. Therefore we sually fix $a_0 = 1$ and use $\theta = (a_1, ..., a_{n_a}, b_0, ..., b_{n_b})^\text{T}$ as the parameter estimation vector. The regressor vector is given by:
+\begin{align*}
+\varphi = (-y(k-1), ..., -y(k-n_a), u(k), ..., u(k-n_b))^\text{T}
+\end{align*}
+leading to the optimal solution provided by LLS:
+\begin{align*}
+y(k) = \varphi(k)^\text{T} \theta + \epsilon(k)
+\end{align*}
 \end{tcolorbox}
+
 \begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black,title=\textbf{Pure Output Error (OE) Minimization}]
-	\textbf{Models with Input and Output Errors:}
-	
-	\begin{align*}
+\textbf{Models with Input and Output Errors:}
+\begin{align*}
 	y(k)=M(k;U + \varepsilon_{N}^{u}, x_{init}, p) + \epsilon^y(k)
-	\end{align*}
-	
-	\includegraphics[width=\textwidth]{model.pdf}
-	
-	Assume: i.i.d. gaussian noise on both input and output with variance $\sigma_u^2$ for the input and $\sigma_y^2$ for the output
-	
-	\begin{align*}
+\end{align*}
+
+\includegraphics[width=\textwidth]{model.pdf}
+
+Assume: i.i.d. gaussian noise on both input and output with variance $\sigma_u^2$ for the input and $\sigma_y^2$ for the output
+\begin{flalign*}
 	& \underset{\theta}{arg\,min} \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;U+ \epsilon_{N}^{u},x_{init},p))^2 + \frac{1}{\sigma_{u}^{2}} (\epsilon_u (k))^2 & \\
 	& \underset{\theta}{arg\,min} \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;\tilde U, x_{init}, p))^2 + \frac{1}{\sigma_{u}^{2}} (u(k)-\tilde u(k) )^2 &
-	\end{align*}
-	
-	
+\end{flalign*}
 \end{tcolorbox}
