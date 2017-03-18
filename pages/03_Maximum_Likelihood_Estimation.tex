@@ -25,19 +25,19 @@
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Maximum Likelihood Estimation}]
 \textbf{$L_2$ Estimation: Maximum Likelihood Estimation (ML)}:
 \begin{itemize}
-	\item[-] Measurement Errors assumed to be Normally distributed
+	\item Measurement Errors assumed to be Normally distributed
 	
-	\item[-] Model described by a non-linear function M(\(\theta\))
+	\item Model described by a non-linear function $M(\theta)$
 	
-	\item[-] Every unbiased estimator needs to satisfy the Cramer-Rao inequality, which gives a lower bound on the covariance matrix
+	\item Every unbiased estimator needs to satisfy the Cramer-Rao inequality, which gives a lower bound on the covariance matrix
 \end{itemize}
 
 \begin{flalign*}
 	& \textbf{Model: } y = M(\theta) + \varepsilon \qquad  &\\
-	& P(y|\theta ) = C \prod_{i=1}^{N} \exp \left(\frac{-(y_i - M_i (\theta))^2}{2\cdot \sigma_{i}^{2}}\right) \quad 
+	& p(y|\theta ) = C \prod_{i=1}^{N} \exp \left(\frac{-(y_i - M_i (\theta))^2}{2\cdot \sigma_{i}^{2}}\right) \quad 
 	C = \prod_{i=1}^{N} \frac{1}{\sqrt{2\cdot \pi \sigma_{i}^2 } }&
 \end{flalign*}
-\textbf{Positive log-Likelihood: } \text{\small Logarithm makes a product to a sum!}
+\textbf{Positive log-Likelihood: } \text{\small ($\log$ changes products into sums)}
 \begin{align*}
 	\log p(y|\theta) = \log(C) + \sum_{i=1}^{N} -\frac{(y_i - M_i (\theta ))^2}{2 \cdot \sigma_{i}^2} 
 \end{align*} 
@@ -46,7 +46,7 @@
 	& \hat \theta_{ML} = \argmax_{\theta \in\mathbb{R}^d} \  p(y|\theta ) = \argmin_{\theta \in \mathbb{R}^d} \sum_{i=1}^{N} \frac{(y_i - M_i (\theta))^2}{2 \sigma_{i}^{2}} & \\
 	& = \argmin_{\theta \in \mathbb{R}^d} \frac{1}{2} \sum_{i=1}^{N} \left(\frac{y_i - M_i (\theta)}{\sigma_i }\right)^2 & \\
 	& = \argmin_{\theta \in \mathbb{R}^d} \frac{1}{2} \lVert S^{-1} (y - M(\theta) )\rVert_{2}^{2} \qquad
-	\text{mit: } S = \begin{bmatrix} \sigma_{ 1 } & & \\ & \ddots & \\	& & \sigma_{ N } \end{bmatrix}&
+	\text{with: } S = \begin{bmatrix} \sigma_{ 1 } & & \\ & \ddots & \\	& & \sigma_{ N } \end{bmatrix}&
 \end{flalign*}
 
 \textbf{$L_1$ Estimation:}
@@ -54,38 +54,38 @@
 	\item[-] Measurement Errors assumed to be Laplace distributed and more robust against outliers.
 \end{itemize}
 \begin{flalign*}
-	 \underset{\theta}{min} \lVert y-M(\theta) \rVert_1 &= \underset{\theta}{min} \sum_{i=1}^{N} |y_i - M_i (\theta) | & \\
+	 \min_\theta \lVert y-M(\theta) \rVert_1 &= \min_\theta \sum_{i=1}^{N} |y_i - M_i (\theta) | & \\
 	& \Rightarrow \text{ median of } \{ Y_1, \cdots, Y_N \} &
 \end{flalign*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Recursive Linear Least Squares}]
 \begin{flalign*}
-	\theta_{ML}(N) &= \underset{\theta \in \mathbb{R}}{\argmin} \frac{1}{2} \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} \qquad \text{(forgetting factor: } \alpha )&\\
-	\hat \theta_{ML} (N+1) &= \underset{\theta \in \mathbb{R}^d}{\argmin} \left(\alpha \cdot \frac{1}{2} \cdot \lVert \theta - \hat \theta_{ML}(N) \rVert Q_N^2 \right. & \\
-	&\quad \left. + \frac {1}{2} \cdot \lVert y(N+1) - \varphi (N+1)^T \cdot \theta \rVert_{2}^{2} \right) & \\
-	& Q_0 \quad \text{given, and} \quad \hat{ \theta } _{ML}(0) \quad \text{given} & \\
 	Q_{ N+1 } &= \alpha \cdot Q_N + \varphi (N+1) \cdot  \varphi (N+1)^{T} & \\
 	\hat \theta_{ML}(N+1) &= \hat \theta_{ML}(N)+Q_{N+1}^{-1} \cdot  \varphi (N+1) & \\ 
-	& \quad \cdot [y(N+1) - \varphi(N+1)^T  \cdot \hat{ \theta }_{ML}(N)] &
-\end{flalign*}
+	& \quad \cdot [\underbrace{y(N+1)}_{\mathrm{new\ measurement}} - \underbrace{\varphi(N+1)^T  \cdot \hat{ \theta }_{ML}(N)}_{\mathrm{old\ prediction}}] &
+  \end{flalign*}
+  $Q_0$ and $\hat{\theta}_0$ have to be chosen.\\
+  $Q_0$ should be \textbf{non-singular, small and positive definite}. (e.g. $10^{-3}\cdot I$)\\
+  $Q_N\approx \Sigma^{-1}_{\ti{\hat{\theta}}{ML}(N)}$
+  
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Cramer-Rao-Inequality (Fisher information Matrix M)}]
 $
-\Sigma_{\hat{\theta}} \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi_N)^{-1} \quad
-M = \int_{y_n}\nabla^2_{\theta} L(\theta_0, y_n) \cdot p(y_n \vert \theta_0) dy_n
-$
+\Sigma_{\hat{\theta}} \succeq M^{-1} \underbrace{= (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi_N)^{-1}}_{\mathrm{for\ lin.\ model\ w.\ }\varepsilon\sim\mathcal{N}(\mu,\sigma)}\\
+M = \int_{y_n}\nabla^2_{\theta} L(\theta_0, y_n) \cdot p(y_n \vert \theta_0) \diff y_n
+$\\
 \textbf{Assumptions:}
 \begin{itemize}
-	\item[-] Minimising a Linear Model
-	\item[-] Gaussian Noise: $X \sim \mathcal{N}(0, \Sigma))$
+	\item Minimising a Linear Model
+	\item Gaussian Noise: $X \sim \mathcal{N}(0, \Sigma))$
 \end{itemize}
 
 \begin{flalign*}
 	L(\theta ,y_N) &= - \log (p(y_N | \theta)) & \\
-	& = \frac{1}{2} \cdot (\Phi_N \cdot  \theta - y_N)^T \cdot \Sigma^{-1} \cdot (\Phi_N  \cdot \theta - y_N) & \\
-	M &= \mathbb{E} \{\nabla^2_\theta \, L( \theta ,y_N)\}  = \nabla^2_\theta  L(\theta ,y_N) = \Phi_N^T \cdot \Sigma^{-1} \cdot \Phi_N & \\
+	\mathrm{(if\ lin.\ model, etc.)}& = \frac{1}{2} \cdot (\Phi_N \cdot  \theta - y_N)^T \cdot \Sigma^{-1} \cdot (\Phi_N  \cdot \theta - y_N) & \\
+	M &= \mathbb{E} \{\nabla^2_\theta \, L( \theta ,y_N)\}  = \nabla^2_\theta  L(\theta ,y_N)( = \Phi_N^T \cdot \Sigma^{-1} \cdot \Phi_N )& \\
  &\Rightarrow W = \Sigma^{-1} \text{ is the optimal weighting Matrix for WLS.} &
 \end{flalign*}
 \end{tcolorbox}
