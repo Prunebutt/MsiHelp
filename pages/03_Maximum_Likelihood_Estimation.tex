@@ -71,9 +71,10 @@
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Cramer-Rao-Inequality (Fisher information Matrix M)}]
-\begin{align*}
-\Sigma_{\hat{\theta}} \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi)^{-1}
-\end{align*}
+$
+\Sigma_{\hat{\theta}} \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi)^{-1} \quad
+M = \int_{y_n}\nabla^2_{\theta} L(\theta_0, y_n) \cdot p(y_n \vert \theta_0) dy_n
+$
 \textbf{Assumptions:}
 \begin{itemize}
 	\item[-] Minimising a Linear Model

@@ -88,10 +88,7 @@ $\omega = 2\pi f = \frac{2\pi}{T}$ \quad $f_s > 2 f_{max}$ \quad $T = N \Delta{t
 
 \begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Recursive Least Squares}]
 \begin{flalign*}
-	& \textbf{New Inverse Covariance: } Q_K = Q_{k-1} + \phi_K \phi_K^T &\\
-	& \textbf{Innovation update: } \hat \theta_k = \hat \theta_{k-1} + \underset{"`innovation"'}{\underbrace{Q_{k}^{-1} \phi_k (y_k - \phi_{k}^{T} \hat \theta_{k-1})} } &\\
-	& \textbf{General Optimization Problem: } & \\
-	& \hat \theta_k = \underset {\theta}{arg\,min} (\theta -\hat \theta_{0})^{T} \cdot Q_0 \cdot (\theta -\hat \theta_0) + \sum_{i=1}^{k} (y_k - \phi_k^T \cdot \theta)^2 &
+	& \textbf{New Inverse Covariance: } Q_K = Q_{k-1} + \phi_K \phi_K^T &
 \end{flalign*}
 \end{tcolorbox}
 

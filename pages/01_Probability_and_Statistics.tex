@@ -13,7 +13,7 @@
 \begin{flalign*}
 	\textbf{Mean/Expectation value: }
 	\mathbb{E} \{\mu_X \} &:= \mu_X = \int_{-\infty}^{\infty}{x \cdot p_X (x) dx } & \\
-	\mathbb{E} \{a + bX \} &:= a + b \mathbb{E} \{ X \} &
+	\mathbb{E} \{a + bX \} &:= a + b \mathbb{E} \{ X \} & \\
 \end{flalign*}
 \begin{flalign*}
 	& \textbf{Variance: } \sigma_{X}^{2} := \mathbb{E} \{(X - \mu_X)^2 \} = \mathbb{E} \{ X^2 \} - \mu_{X}^{2} &\\
@@ -22,25 +22,18 @@
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=cyan!5!white,colframe=cyan!75!black,title=\textbf{Distributions}]
-\begin{flalign*}
+	\begin{flalign*}
 	& \textbf{Uniform distribution:} P_y (x) = \left\{ \begin{matrix} \frac {1}{b-a} & \quad if \quad x  \in  [a,b] \\ 0 & else \end{matrix} \right. & \\
 	& \textbf{Mean: } \mu_X = \int_{-\infty}^{\infty}{x \, p_X (x) dx} = \int_{a}^{b}{\frac{1}{b-a} \cdot x dx = \frac{a+b}{2} =: \mu_X} & \\
-	& \textbf{Normal distribution: } X \sim \mathcal{N}(\mu, \sigma^2) & \\
-	& \hspace{3em}p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}\cdot exp(-\frac{(x-\mu)^2}{2\sigma^2})  \includegraphics[width = 3cm]{Gauss.png} & \\
-	&\textbf{Multidimensional Normal Distribution: } &\\
-	& \hspace{1em} p(x)=\frac {1}{\sqrt{(2\pi)^n \cdot det(\Sigma)}} \cdot exp(-\frac{1}{2} \cdot (x-\mu)^T \cdot \Sigma^{-1} \cdot (x-\mu)) & \\
-	& \textbf{Weibull distribuation: } F(x) = 1 - e^{-(\lambda \cdot x)^k} & \\
-	& \textbf{Laplace distribuation: } f(x|\mu,b) = \frac{1}{2b} \cdot exp \left(-\frac{|x-\mu|}{b}\right) &
-\end{flalign*}
+	& \textbf{Normal distribution: } X \sim \mathcal{N}(\mu, \sigma^2) \quad \hat{\theta}_{LS} \sim \mathcal{N}(\theta_0, \Sigma_{\hat{\theta}}) \\
+		& \hspace{3em}p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}\cdot exp(-\frac{(x-\mu)^2}{2\sigma^2})  \includegraphics[width = 3cm]{Gauss.png} & \\
+		&\textbf{Multidimensional Normal Distribution: } &\\
+		& \hspace{1em} p(x)=\frac {1}{\sqrt{(2\pi)^n \cdot det(\Sigma)}} \cdot exp(-\frac{1}{2} \cdot (x-\mu)^T \cdot \Sigma^{-1} \cdot (x-\mu)) & \\
+		& \textbf{Weibull distribuation: } F(x) = 1 - e^{-(\lambda \cdot x)^k} & \\
+		& \textbf{Laplace distribuation: } f(x|\mu,b) = \frac{1}{2b} \cdot exp \left(-\frac{|x-\mu|}{b}\right) &
+		\end{flalign*}
 
-
-%\begin{equation*}
-%\text{Variance:} \quad
-
-%\sigma^2 = \frac{ 1 }{ c } \int _{ -\infty  }^{\infty}{y^2 dy} = \frac{ 1 }{ c } \left[ \frac{ 1 }{ 3 } \right]
-
-%\end{equation*}
-\end{tcolorbox}
+	\end{tcolorbox}
 
 \begin{tcolorbox}[colback=cyan!5!white,colframe=cyan!75!black,title=\textbf{Useful statistic definitions}]
 \begin{flalign*}

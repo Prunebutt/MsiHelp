@@ -91,6 +91,6 @@ Residual: $ \epsilon_N \uparrow \rightarrow \quad R^{2} \rightarrow 0 \,\,(\Righ
 \textbf{Estimating the Covariance with the Single Experiment: }
 \begin{flalign*}
 \hat \sigma_{\varepsilon}^{2} &:= \frac{1}{N-d} \sum_{k=1}^{N} (y(k)-\phi(k)^T \hat \theta_{LS})^2 = \frac{ {\lVert y_N - \phi_N \hat \theta_{LS} \rVert}_{2}^{2} }{ N-d } &\\
-\hat \Sigma_{\hat \theta} &:= \hat \sigma_{\varepsilon}^{2} (\phi^{T}_{N} \phi_{N})^{-1} = \frac{ {\lVert y_N -\phi_N \hat \theta_{LS} \rVert}_{2}^{2} }{ N-d } \cdot (\phi^{T}_{N} \phi_{N})^{-1} &
+\hat \Sigma_{\hat \theta} &:= \hat \sigma_{\varepsilon}^{2} (\phi^{T}_{N} \phi_{N})^{-1} = \sigma_{\epsilon}^2(\Phi_N^+ \Phi_N^{+^T})=\frac{ {\lVert y_N -\phi_N \hat \theta_{LS} \rVert}_{2}^{2} }{ N-d } \cdot (\phi^{T}_{N} \phi_{N})^{-1} &
 \end{flalign*}
 \end{tcolorbox}
