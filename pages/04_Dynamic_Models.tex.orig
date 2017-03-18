@@ -78,7 +78,53 @@
 	\end{flalign*}	
 \end{tcolorbox}		
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Deterministic Model}]
+<<<<<<< HEAD
 	The output of the system can be obtained with absolute certainty. The Output $y$ or the state x, depend on the known inputs $u(1), \dots, u(N)$, the previous Outputs $y(1), \dots, y(N)$ or state $x(n-1)$ and initial conditions.  
+	\textbf{State Space Model}
+	\begin{align*}
+	x(t+1) = f(x(k), u(k))\\
+	y(k) = g(x(k), u(k))
+	\end{align*}
+	Initial conditions: $x(1) = x_{init}$
+	
+	\textbf{Input-Output Model}
+	\begin{align*}
+	y(k) &= h(u(k), ..., u(k-n), y(k-1), ..., y(k-n))\\
+	\end{align*}
+	Initial conditions: $y(1) = y_1,\dots,y(n) = y_n  \;\; u(1)= u_1,\dots,u(n) = u_n$
+	
+	
+	\textbf{Finite Impulse Response (FIR): } 
+	\begin{align*}
+		y(k) &= b_0 u(k) + ... + b_{n_b} u(k-n_b) \\
+		G(z) &= b_0 + b_1z^{-1} + ... + b_{n_b}z^{-n_b} \quad | \cdot \frac{z^{n_b}}{z^{n_b}} \\
+		&= \frac{b_0 z^{n_b} + b_1 z^{ n_{b-1} } + ... + b_{n_b} }{z^{n_b}}
+	\end{align*}
+	
+	\textbf{Auto Regressive Models with Exogenous Inputs (ARX): }
+	\begin{align*}
+		a_0y(k)+\dots+a_{n_a}y(k-n_a) = b_0u(k) + \dots+b_{n_b}u(k-n_b)\\
+	\end{align*}
+	\begin{align*}
+	G(z) = \frac{b_0z^n + b_1z^{n-1} + \cdots + b_n}{a_0z^n + a_1z^{n-1} + \cdots + a_n}
+	\end{align*}
+	The next output depends on the previous output. Also called \textbf{IIR} (infinite impulse response)
+	
+\end{tcolorbox}		
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Stochastic Model}]
+	Real systems are far from deterministic. 
+	\begin{itemize}
+		\item there is stochastic noise $\epsilon(k)$ 
+		\item there are constant and unknown parameters $p$
+		\item measured outputs depend $y(k)$ depend in both, $\epsilon(k)$ and $p$ 
+	\end{itemize}
+	
+	Assumptions:  noise is \textbf{i.i.d} and enters the model like a normal input, but as a random variable\\
+	
+	\textbf{State Space Model}
+	\begin{align*}
+=======
+\todo[inline]{Erklaerung S. 62 }
 \textbf{State Space Model: }
 \begin{align*}
 	 x(t+1) &= f(x(k), u(k)) \\
@@ -110,17 +156,13 @@ The next output depends on the previous output. Also called \textbf{IIR} (infini
 
 \end{tcolorbox}		
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Stochastic Model}]
-	Real systems are far from deterministic. 
-	\begin{itemize}
-		\item there is stochastic noise $\epsilon(k)$ 
-		\item there are constant and unknown parameters $p$
-		\item measured outputs depend $y(k)$ depend in both, $\epsilon(k)$ and $p$ 
-	\end{itemize}
-	
-	Assumptions:  noise is \textbf{i.i.d} and enters the model like a normal input, but as a random variable\\
-	
-	\textbf{State Space Model}
-	\begin{align*}
+\todo[inline]{Erklaerung S. 64}
+
+Assumptions:  Noise is i.i.d.\\
+
+\textbf{State Space Model}
+\begin{align*}
+>>>>>>> personal
 	x(t+1) = f(x(k), u(k), \epsilon(k)) \\
 	y(k) = g(x(k), u(k), \epsilon(k))
 \end{align*}
@@ -225,15 +267,6 @@ They often need a very high dimension $n_b$ to obtain a reasonable fit. As a con
 \textbf{Equation Error Minimization:}
 Assume: i.i.d. $\epsilon(k)$ noise enters the input-output equation as additive disturbance
 \begin{align*}
-	&= \underset {\theta}{ \text{min} } \sum_{k=n_{b}+1}^{N} (y(k)-\underbrace{(u(k), u(k-1),... , u(k-n_{n_b}))}_{\text{Deterministic part is also}\, M(k; U, x_{init}, p)} \cdot \theta)^2 &
-	\end{flalign*}
-	
-	They often need a very high dimension $n_b$ to obtain a reasonable fit. As a consequence ARX models are usually used instead.
-	
-	\textbf{Equation Error Minimization:}
-	Assume: i.i.d. $\epsilon(k)$ noise enters the input-output equation as additive disturbance
-	
-	\begin{align*}
 	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \epsilon(k)\\
 	\text{for} \quad k &= n + 1, n + 2
 \end{align*}
