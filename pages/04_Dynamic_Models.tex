@@ -131,8 +131,6 @@
 	\begin{align*}
 	y(k) = M(k; U, x_{init}, p) + \epsilon(k)
 	\end{align*}
-	\todo[inline]{Bild einfuegen}
-	Non-Linear Model
 	\tcblower
 	\section*{Stochastic Disturbance (Equation Errors)}
 	\begin{align*}
@@ -217,10 +215,10 @@
 	
 	\textbf{Output Error Minimization for FIR Models:}
 	lead to convex problems, therefore global minimum can be found
-	\begin{align*}
+	\begin{flalign*}
 	y(k) &= (u(k), u(k-1), ..., u(k-n_{n_b})) \cdot \theta +\varepsilon(k) &\\
-	&= \underset {\theta}{ \text{min} } \sum_{k=n_{b}+1}^{N} (y(k)-\underbrace{(u(k), u(k-1),... , u(k-n_{n_b}))}_{\text{Deterministic part can be expressed as}\, M(k; U, x_{init}, p)} \cdot \theta)^2 &
-	\end{align*}
+	&= \underset {\theta}{ \text{min} } \sum_{k=n_{b}+1}^{N} (y(k)-\underbrace{(u(k), u(k-1),... , u(k-n_{n_b}))}_{\text{Deterministic part is also}\, M(k; U, x_{init}, p)} \cdot \theta)^2 &
+	\end{flalign*}
 	
 	They often need a very high dimension $n_b$ to obtain a reasonable fit. As a consequence ARX models are usually used instead.
 	

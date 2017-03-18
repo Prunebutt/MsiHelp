@@ -14,11 +14,6 @@
 	\textbf{iDFT:}\begin{align*}
 	u(n) := \sum_{k = 0}^{N-1} U(k)e^{j\frac{2\pi k n}{N}}
 	\end{align*}
-	
-\todo[inline]{Wirklich notwendig? Eher nict aber das drüber :)}
-\textbf{How to compute FT?} By DFT, which solves the problem of finite time and discrete values.
-
-\textbf{Can we use an input with many frequencies to get many FRF (Frequency Response Function) values in a single experiment?} So far only frequency sweeping (high comp. times due to repetition for each frequency). We should use multisines!
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Useful frequency things}]
@@ -114,6 +109,5 @@ $\omega = 2\pi f = \frac{2\pi}{T}$ \quad $f_s > 2 f_{max}$ \quad $T = N \Delta{t
 		& \hat x_{[k | k]} = \hat x_{[k | k-1]} + P_{[k | k]} \cdot C_{k}^{T} \cdot V^{-1} \cdot (y_k - C_k \cdot \hat x_{[k | k-1]}) &
 		\end{flalign*}
 \end{description}
-\todo[inline]{Ein Beispiel einfuegen.}
 \end{tcolorbox}
 
