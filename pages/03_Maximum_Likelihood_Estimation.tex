@@ -10,13 +10,13 @@
 	\end{itemize}
 	\begin{flalign*} 
 	p(\theta |y_N) &= \frac{p(y_N,\theta)}{p(y_N)} = \frac{ p(y_N | \theta) \cdot p(\theta) }{ p(y_N) } &\\
-	\hat{\theta}_{MAP} &= \underset{\theta\in \mathbb{R}}{\text{arg\,min}} \{ -\log (p (y_N| \theta) ) -\log (p(\theta))\}
+	\hat{\theta}_{MAP} &= \underset{\theta\in \mathbb{R}}{\argmin} \{ -\log (p (y_N| \theta) ) -\log (p(\theta))\}
 	\end{flalign*}
 	
 	\textbf{MAP Example:} Regularised Least Squares
 	\begin{flalign*}
 	\theta &= \bar \theta \pm \sigma_\theta \quad \text{with} \quad \bar \theta =  \theta_{\text{a-priori} } &\\
-	\hat \theta_{MAP} &= \underset{\theta \in \mathbb{R}}{\text{arg\,min}} \frac{1}{2} \cdot \frac{1}{\sigma_{\epsilon^2 }} \cdot \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} + \frac{1}{2} \cdot \frac{1}{\sigma_{\theta}^2} \cdot (\theta - \bar \theta)^2
+	\hat \theta_{MAP} &= \underset{\theta \in \mathbb{R}}{\argmin} \frac{1}{2} \cdot \frac{1}{\sigma_{\epsilon^2 }} \cdot \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} + \frac{1}{2} \cdot \frac{1}{\sigma_{\theta}^2} \cdot (\theta - \bar \theta)^2
 	\end{flalign*}
 \end{tcolorbox}
 
@@ -27,7 +27,7 @@
 	
 	\item[-] Model described by a non-linear function M(\(\theta\))
 	
-	\item[-] Every unbiased estimator needs to satisfy the Cramer-Rau inequality, which gives a lower bound on the covariance matrix
+	\item[-] Every unbiased estimator needs to satisfy the Cramer-Rao inequality, which gives a lower bound on the covariance matrix
 \end{itemize}
 
 \begin{flalign*}
@@ -41,9 +41,9 @@
 \end{align*} 
 \textbf{Negative log-Likelihood:}
 \begin{flalign*}
-	& \hat \theta_{ML} = \underset{\theta \in \mathbb{R}^d}{arg\,max} \  p(y|\theta ) = \underset{\theta \in \mathbb{R}^d}{\text{arg\,min}} \sum_{i=1}^{N} \frac{(y_i - M_i (\theta))^2}{2 \sigma_{i}^{2}} & \\
-	& = \underset{\theta}{\text{arg\,min}} \frac{1}{2} \sum_{i=1}^{N} \left(\frac{y_i - M_i (\theta)}{\sigma_i }\right)^2 & \\
-	& = \underset{\theta \in \mathbb{R}^d}{\text{arg\,min}} \frac{1}{2} \lVert S^{-1} (y - M(\theta) )\rVert_{2}^{2} \qquad
+	& \hat \theta_{ML} = \underset{\theta \in \mathbb{R}^d}{arg\,max} \  p(y|\theta ) = \underset{\theta \in \mathbb{R}^d}{\argmin} \sum_{i=1}^{N} \frac{(y_i - M_i (\theta))^2}{2 \sigma_{i}^{2}} & \\
+	& = \underset{\theta}{\argmin} \frac{1}{2} \sum_{i=1}^{N} \left(\frac{y_i - M_i (\theta)}{\sigma_i }\right)^2 & \\
+	& = \underset{\theta \in \mathbb{R}^d}{\argmin} \frac{1}{2} \lVert S^{-1} (y - M(\theta) )\rVert_{2}^{2} \qquad
 	\text{mit: } S = \begin{bmatrix} \sigma_{ 1 } & & \\ & \ddots & \\	& & \sigma_{ N } \end{bmatrix}&
 \end{flalign*}
 
@@ -59,8 +59,8 @@
 
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Recursive Linear Least Squares}]
 \begin{flalign*}
-	\theta_{ML}(N) &= \underset{\theta \in \mathbb{R}}{\text{arg\,min}} \frac{1}{2} \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} \qquad \text{(forgetting factor: } \alpha )&\\
-	\hat \theta_{ML} (N+1) &= \underset{\theta \in \mathbb{R}^d}{\text{arg\,min}} \left(\alpha \cdot \frac{1}{2} \cdot \lVert \theta - \hat \theta_{ML}(N) \rVert Q_N^2 \right. & \\
+	\theta_{ML}(N) &= \underset{\theta \in \mathbb{R}}{\argmin} \frac{1}{2} \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} \qquad \text{(forgetting factor: } \alpha )&\\
+	\hat \theta_{ML} (N+1) &= \underset{\theta \in \mathbb{R}^d}{\argmin} \left(\alpha \cdot \frac{1}{2} \cdot \lVert \theta - \hat \theta_{ML}(N) \rVert Q_N^2 \right. & \\
 	&\quad \left. + \frac {1}{2} \cdot \lVert y(N+1) - \varphi (N+1)^T \cdot \theta \rVert_{2}^{2} \right) & \\
 	& Q_0 \quad \text{given, and} \quad \hat{ \theta } _{ML}(0) \quad \text{given} & \\
 	Q_{ N+1 } &= \alpha \cdot Q_N + \varphi (N+1) \cdot  \varphi (N+1)^{T} & \\
@@ -71,7 +71,7 @@
 
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Cramer-Rao-Inequality (Fisher information Matrix M)}]
 $
-\Sigma_{\hat{\theta}} \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi)^{-1} \quad
+\Sigma_{\hat{\theta}} \succeq M^{-1} = (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi_N)^{-1} \quad
 M = \int_{y_n}\nabla^2_{\theta} L(\theta_0, y_n) \cdot p(y_n \vert \theta_0) dy_n
 $
 \textbf{Assumptions:}
@@ -87,3 +87,7 @@ $
  &\Rightarrow W = \Sigma^{-1} \text{ is the optimal weighting Matrix for WLS.} &
 \end{flalign*}
 \end{tcolorbox}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../HelpSheet"
+%%% End:

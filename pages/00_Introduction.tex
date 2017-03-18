@@ -23,11 +23,11 @@ Jacobian: $\nabla f(x) = \frac{\partial f}{\partial x}(x) \text{ in } \mathbb{R}
 \end{flalign*}
 \begin{flalign*}
 	\textbf{Least Squares: } 
-	\quad \hat R_{LS}(N) &= \underset{R \in \mathbb{R}}{arg\,min} \sum_{k=1}^{N} (R \cdot i(k) - u(k))^2 & \\
+	\quad \hat R_{LS}(N) &= \underset{R \in \mathbb{R}}{\argmin} \sum_{k=1}^{N} (R \cdot i(k) - u(k))^2 & \\
 	& = \frac{ \frac{1}{N} \sum_{k=1}^{N} u(k) \cdot i(k) }{ \frac{1}{N} \sum_{k=1}^{N} i(k)^2 } &
 \end{flalign*}
 \begin{flalign*}
-	&\textbf{Matrix derivates: } \quad \frac{d(c^Tx)}{dx} = c \qquad \frac{d(x^TAx)}{dx} = (A^T + A)x&
+	&\textbf{Matrix derivates: } \quad \frac{\diff (c^Tx)}{\diff x} = c \qquad \frac{\diff(x^TAx)}{\diff x} = (A^T + A)x&
 \end{flalign*}
 \textbf{Linear and non-linear models:}
 \begin{itemize}
