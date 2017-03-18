@@ -18,7 +18,7 @@
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Useful frequency things}]
-  $\omega = 2\pi f = \frac{2\pi}{T}$ \quad $f_s > 2 f_{max}$ \quad $T = N \Delta{t} = \frac{N}{f_s} $\quad\\
+  $\omega = 2\pi f = \frac{2\pi}{T}$, \quad $f_s > 2 \ti{f}{max}$, \quad $T = N \Delta{t} = \frac{N}{f_s} = (\ti{f}{res})^{-1} $\quad\\
   $\sin(\varphi)=\frac{e^{j\varphi}-e^{-j\varphi}}{2},\ \cos(\varphi)=\frac{e^{j\varphi}+e^{-j\varphi}}{2}$
 \end{tcolorbox}
 
@@ -38,7 +38,7 @@
 
 \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{Crest Factor (ger. = Scheitelfaktor)}]
 \begin{flalign*}
-  \text{Crest Factor } =\frac{\ti{u}{max}}{\ti{u}{rms}} \quad \text{with}: \ti{u}{rms} &:= \sqrt{\frac{1}{T} \int_{0}^{T} u(t)^2 \, \diff t}% \underbrace{\left(= \sqrt{\frac{a^2+b^2}{2}}\right)}_{\mathrm{for\ square\ wave}}%
+  \text{Crest Factor } =\frac{\ti{u}{max}}{\ti{u}{rms}} \quad \text{with}: \ti{u}{rms} &:= \sqrt{\frac{1}{T} \int_{0}^{T} u(t)^2 \, \diff t} \underbrace{\left(= \sqrt{\frac{u_1^2+u_2^2}{2}}\right)}_{\mathrm{symm.\ square\ wave}}%
   &\\
 	\quad \text{and} \quad \ti{u}{max} &:=\max_{t \in [0,T]} |u(t)| &
 \end{flalign*}
@@ -89,7 +89,16 @@
 	Magnitude $\widehat{=}$ Amplitude $|G(j\omega)|$\\
 	Phase $\widehat{=}$ $\arg \, G(j\omega)$
 	\todo[inline]{Hier sollten wir glaub noch bisschen was rein machen.}
-\end{tcolorbox}
+  \end{tcolorbox}
+
+  \begin{tcolorbox}[colback=brown!5!white,colframe=brown!75!black,title=\textbf{When to use what in frequency response}]
+	\begin{itemize}
+	\item In general: Multisines are a good approach
+	\item Very fast system and transients $\Rightarrow$ Frequency sweep
+	\item \textbf{Very} slow system $\Rightarrow$ Step response
+	\item In the middle $\Rightarrow$ Multisines
+	\end{itemize}
+  \end{tcolorbox}
 
 
 % \begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Recursive Least Squares}]
@@ -111,7 +120,7 @@
 		\begin{flalign*}
 		& \hat x_{[k | k-1]} = A_{k-1} \cdot \hat x_{[k-1 | k-1]} & \\ 
 		& P_{[k | k-1]} = A_{k-1} \cdot P_{[k-1 | k-1]} \cdot A_{k-1}^{T} \cdot W_{k-1} & \\
-		& \text{If RLS, without: } W_{k-1} &
+		& \text{If RLS} \Rightarrow \mathrm{no\ } W_{k-1} &
 		\end{flalign*}
 		
 	\item[\small 2 Innovation update] 
@@ -122,6 +131,25 @@
 \end{description}
 \end{tcolorbox}
 
+\begin{tcolorbox}[colback=violet!5!white,colframe=violet!75!black,title=\textbf{Useful hints and practices}]
+  \begin{itemize}
+  \item Time invariant: $t$ is only an argument of $u(*)$ or $y(*)$ i.e. \textbf{not}:
+	\begin{equation*}
+	  \dot{y}(t)=u(t)+\cos(t),\ \dot{y}(t)=t\cdot u(t) + y(t)
+	\end{equation*}
+  \item Linear: highest exponent of $u$ and $y$ is 1, i.e. \textbf{not}:
+	\begin{equation*}
+	  \dot{y}(t)=u(t)^2
+	\end{equation*}
+  \item Affine: linear and has additive term \textbf{independent} from $u$ and $y$, i.e.:
+	\begin{equation*}
+	  \dot{y}(t)=y(t)+\cos(t),\ \dot{y}(t)=y(t)+C
+	\end{equation*}
+  \item Sample Mean: $\hat{\theta}_N(Y_N)=\frac{1}{N}\sum^N_{k=1}Y(k)$
+  \item Sample Variance: $S^2=\frac{1}{N-1}\sum^N_{k=1}(Y(k)-\mathbb{E}\{Y_N\})^2$
+
+  \end{itemize}
+\end{tcolorbox}
 
 %%% Local Variables:
 %%% mode: latex

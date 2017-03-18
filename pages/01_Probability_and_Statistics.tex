@@ -14,6 +14,7 @@
 	\textbf{Mean/Expectation value: }
 	\mathbb{E} \{\mu_X \} &:= \mu_X = \int_{-\infty}^{\infty}{x \cdot p_X (x) dx } & \\
 	\mathbb{E} \{a + bX \} &:= a + b \mathbb{E} \{ X \} & \\
+	\mathbb{E}\{XY\}=\mathbb{E}\{X\}\cdot\mathbb{E}\{Y\} &\Leftrightarrow X,Y\ \mathrm{independent}
 \end{flalign*}
 \begin{flalign*}
 	& \textbf{Variance: } \sigma_{X}^{2} := \mathbb{E} \{(X - \mu_X)^2 \} = \mathbb{E} \{ X^2 \} - \mu_{X}^{2} &\\
@@ -55,7 +56,7 @@ $x$ and $y$ are i.i.d. $\Rightarrow \Sigma$ is diagonal
 \\
 \textbf{Multidimensional Random Variables:}
 \begin{align*}
-	\mathbb{E}{f(X)} &= \int_{\mathbb{R}^n}{f(x)p_X(x) d^n x} \\
+	\mathbb{E}\{f(X)\} &= \int_{\mathbb{R}^n}{f(x)p_X(x) d^n x} \\
 	\cov(X) &= \mathbb{E} \{(X-\mu_X)(X-\mu_X)^T\} \\
 	\cov(X) &= \mathbb{E} \{XX^T\} - \mu_X \mu_X^T \\
 	\cov(Y) &= \Sigma_y = A \Sigma_x A^T \quad for \quad y = A \cdot x \\
@@ -63,7 +64,7 @@ $x$ and $y$ are i.i.d. $\Rightarrow \Sigma$ is diagonal
 \end{align*}
 \textbf{Rules for variance: }
 \begin{flalign*}
-	\var(aX) &= {a}^{2} \cdot var(X) &\\
+	\var(aX) &= {a}^{2} \cdot \var(X) &\\
 	\hspace{3em} \var(X+Y) &= \var(X)+\var(Y)+2 \cdot \cov(X,Y) &
 \end{flalign*}
 \begin{flalign*}
@@ -80,7 +81,7 @@ uncorrelated if $\rho(X,Y) = 0, \; \rho(X,Y) := \frac{\cov(X,Y)}{\sigma_x \sigma
 	\item[\small Asymptotic Unbiasedness]  An estimator $\hat \theta_N$ is called asymptotically unbiased $\Leftrightarrow \lim\limits_{n \to \infty} \mathbb{E}\{\hat \theta_N (y_N) \} = \theta_0$
 	
 	\item[\small Consistency] An estimator $\hat \theta_N (y_N)$ is called consistent if, for any $\epsilon > 0$, the probability $P(\hat \theta_N (y_N) \in [\theta_0 - \epsilon, \theta_0 + \epsilon])$ tends to 1 for $N \rightarrow \infty$.
-\end{description}
+	\end{description}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=\textbf{Unconstrainded Optimization}]

@@ -29,7 +29,7 @@
 	
 	\item Model described by a non-linear function $M(\theta)$
 	
-	\item Every unbiased estimator needs to satisfy the Cramer-Rao inequality, which gives a lower bound on the covariance matrix
+	\item Every unbiased estimator needs to satisfy the Cramer-Rao inequality, which gives a lower bound on the covariance matrix.
 \end{itemize}
 
 \begin{flalign*}
@@ -73,7 +73,7 @@
 
 \begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!white,coltitle=black,title=\textbf{Cramer-Rao-Inequality (Fisher information Matrix M)}]
 $
-\Sigma_{\hat{\theta}} \succeq M^{-1} \underbrace{= (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi_N)^{-1}}_{\mathrm{for\ lin.\ model\ w.\ }\varepsilon\sim\mathcal{N}(\mu,\sigma)}\\
+\cov(\hat{\theta}(y_N))=\Sigma_{\hat{\theta}} \succeq M^{-1} \underbrace{= (\Phi^T_N \cdot \Sigma^{-1} \cdot \Phi_N)^{-1}}_{\mathrm{for\ lin.\ model\ w.\ }\varepsilon\sim\mathcal{N}(\mu,\sigma)}\\
 M = \int_{y_n}\nabla^2_{\theta} L(\theta_0, y_n) \cdot p(y_n \vert \theta_0) \diff y_n
 $\\
 \textbf{Assumptions:}
