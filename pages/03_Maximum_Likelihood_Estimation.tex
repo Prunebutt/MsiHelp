@@ -10,13 +10,15 @@
 	\end{itemize}
 	\begin{flalign*} 
 	p(\theta |y_N) &= \frac{p(y_N,\theta)}{p(y_N)} = \frac{ p(y_N | \theta) \cdot p(\theta) }{ p(y_N) } &\\
-	\hat{\theta}_{MAP} &= \underset{\theta\in \mathbb{R}}{\argmin} \{ -\log (p (y_N| \theta) ) -\log (p(\theta))\}
+	\hat{\theta}_{MAP} &= \argmin_{\theta\in\mathbb{R}} \{
+	\underbrace{-\log (p (y_N| \theta))}_{\mathrm{Max.\ Likelihood}}
+	\underbrace{-\log (p(\theta))}_{\mathrm{prev.\ knowledge}}\}
 	\end{flalign*}
 	
 	\textbf{MAP Example:} Regularised Least Squares
 	\begin{flalign*}
 	\theta &= \bar \theta \pm \sigma_\theta \quad \text{with} \quad \bar \theta =  \theta_{\text{a-priori} } &\\
-	\hat \theta_{MAP} &= \underset{\theta \in \mathbb{R}}{\argmin} \frac{1}{2} \cdot \frac{1}{\sigma_{\epsilon^2 }} \cdot \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} + \frac{1}{2} \cdot \frac{1}{\sigma_{\theta}^2} \cdot (\theta - \bar \theta)^2
+	\hat \theta_{MAP} &= \underset{\theta \in \mathbb{R}}{\argmin} \frac{1}{2} \cdot \frac{1}{\sigma_{\varepsilon^2 }} \cdot \lVert y_N - \Phi_N \cdot \theta \rVert_{2}^{2} + \frac{1}{2} \cdot \frac{1}{\sigma_{\theta}^2} \cdot (\theta - \bar \theta)^2
 	\end{flalign*}
 \end{tcolorbox}
 
@@ -31,8 +33,8 @@
 \end{itemize}
 
 \begin{flalign*}
-	& \textbf{Model: } y = M(\theta) + \epsilon \qquad  &\\
-	& P(y|\theta ) = C \prod_{i=1}^{N} exp \left(\frac{-(y_i - M_i (\theta))^2}{2\cdot \sigma_{i}^{2}}\right) \quad 
+	& \textbf{Model: } y = M(\theta) + \varepsilon \qquad  &\\
+	& P(y|\theta ) = C \prod_{i=1}^{N} \exp \left(\frac{-(y_i - M_i (\theta))^2}{2\cdot \sigma_{i}^{2}}\right) \quad 
 	C = \prod_{i=1}^{N} \frac{1}{\sqrt{2\cdot \pi \sigma_{i}^2 } }&
 \end{flalign*}
 \textbf{Positive log-Likelihood: } \text{\small Logarithm makes a product to a sum!}
@@ -41,9 +43,9 @@
 \end{align*} 
 \textbf{Negative log-Likelihood:}
 \begin{flalign*}
-	& \hat \theta_{ML} = \underset{\theta \in \mathbb{R}^d}{arg\,max} \  p(y|\theta ) = \underset{\theta \in \mathbb{R}^d}{\argmin} \sum_{i=1}^{N} \frac{(y_i - M_i (\theta))^2}{2 \sigma_{i}^{2}} & \\
-	& = \underset{\theta}{\argmin} \frac{1}{2} \sum_{i=1}^{N} \left(\frac{y_i - M_i (\theta)}{\sigma_i }\right)^2 & \\
-	& = \underset{\theta \in \mathbb{R}^d}{\argmin} \frac{1}{2} \lVert S^{-1} (y - M(\theta) )\rVert_{2}^{2} \qquad
+	& \hat \theta_{ML} = \argmax_{\theta \in\mathbb{R}^d} \  p(y|\theta ) = \argmin_{\theta \in \mathbb{R}^d} \sum_{i=1}^{N} \frac{(y_i - M_i (\theta))^2}{2 \sigma_{i}^{2}} & \\
+	& = \argmin_{\theta \in \mathbb{R}^d} \frac{1}{2} \sum_{i=1}^{N} \left(\frac{y_i - M_i (\theta)}{\sigma_i }\right)^2 & \\
+	& = \argmin_{\theta \in \mathbb{R}^d} \frac{1}{2} \lVert S^{-1} (y - M(\theta) )\rVert_{2}^{2} \qquad
 	\text{mit: } S = \begin{bmatrix} \sigma_{ 1 } & & \\ & \ddots & \\	& & \sigma_{ N } \end{bmatrix}&
 \end{flalign*}
 
