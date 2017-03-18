@@ -26,30 +26,30 @@
 	
 	\textbf{Euler Integration Step}
 	\begin{align*}
-	\tilde{x}(t; x_{init}, u_{const}) &= x_{init} + t f(x_{init}, u_{const}), \quad t \in [0, \Delta t]\\
-	\tilde{x}_{j+1} &= \tilde{x}_j + h f (\tilde{x}_j, u_{const}), \quad j = 0, ..., M - 1
+	\tilde{x}(t; x_0, \ti{u}{const}) &= x_0 + t f(x_0, \ti{u}{const}), \quad t \in [0, \Delta t]\\
+	\tilde{x}_{j+1} &= \tilde{x}_j + h f (\tilde{x}_j, \ti{u}{const}), \quad j = 0, ..., M - 1
 	\end{align*}
 	\begin{itemize}
-		\item[-] Approximation becomes better by decreasing the step size h.
-		\item[-] Concistency Error: $h^2$
-		\item[-] Total Number of steps: $\Delta t / h$
-		\item[-] Error in the final step of order $h \Delta t$
-		\item[-] Linear in step size $\rightarrow$ order one
-		\item[-] Taking more steps is more accurate but needs more computional time
+		\item Approximation becomes better by decreasing the step size h.
+		\item Concistency Error: $h^2$
+		\item Total Number of steps: $\Delta t / h$
+		\item Error in the final step of order $h \Delta t$
+		\item Linear in step size $\rightarrow$ order one
+		\item Taking more steps is more accurate but needs more computation
 	\end{itemize}
 	
-	\textbf{Runge-Kutta Method of Order Four}
+	\textbf{Runge-Kutta Method of Order Four (RK4)}
 	\begin{align*}
-		k_1 &= f(\tilde{x}_j, u_{const})\\
-		k_2 &= f(\tilde{x}_j, \frac{h}{2} k_1, u_{const})\\
-		k_3 &= f(\tilde{x}_j, \frac{h}{2} k_2, u_{const})\\
-		k_4 &= f(\tilde{x}_j, h k_3, u_{const})\\
+		k_1 &= f(\tilde{x}_j, \ti{u}{const})\\
+		k_2 &= f(\tilde{x}_j, \frac{h}{2} k_1, \ti{u}{const})\\
+		k_3 &= f(\tilde{x}_j, \frac{h}{2} k_2, \ti{u}{const})\\
+		k_4 &= f(\tilde{x}_j, h k_3, \ti{u}{const})\\
 		\tilde{x}_{j+1} &= \tilde{x}_j + \frac{h}{6} (k_1 + 2k_2 + 2k_3 + k_4)
 	\end{align*}
 	
 	One Step of RK4 is thus as expensive as four steps of euler\\
 	accurency of final approximation is of order $h^4 \Delta$ t\\
-	$\rightarrow$ rk4 needs fewer functions to obtain the same accuracy level as euler
+	$\rightarrow$ RK4 needs fewer functions to obtain the same accuracy level as euler
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Discrete Time Systems}]
@@ -84,7 +84,7 @@
 	 x(t+1) &= f(x(k), u(k)) \\
 	y(k) &= g(x(k), u(k)) 
 \end{align*}
-Initial conditions: $x(1) = x_{init}$
+Initial conditions: $x(1) = x_0$
 
 \textbf{Input-Output Model}
 \begin{align*}
@@ -112,66 +112,67 @@ The next output depends on the previous output. Also called \textbf{IIR} (infini
 \begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Stochastic Model}]
 	Real systems are far from deterministic. 
 	\begin{itemize}
-		\item there is stochastic noise $\epsilon(k)$ 
+		\item there is stochastic noise $\varepsilon(k)$ 
 		\item there are constant and unknown parameters $p$
-		\item measured outputs depend $y(k)$ depend in both, $\epsilon(k)$ and $p$ 
+		\item measured outputs $y(k)$ depend in both, $\varepsilon(k)$ and $p$ 
 	\end{itemize}
 	
 	Assumptions:  noise is \textbf{i.i.d} and enters the model like a normal input, but as a random variable\\
 	
 	\textbf{State Space Model}
 	\begin{align*}
-	x(t+1) = f(x(k), u(k), \epsilon(k)) \\
-	y(k) = g(x(k), u(k), \epsilon(k))
+	x(t+1) = f(x(k), u(k), \varepsilon(k)) \\
+	y(k) = g(x(k), u(k), \varepsilon(k))
 \end{align*}
 
-\textbf{Input-Output Model}
+\textbf{Input-Output Model}\\
+Only interested in input and output, not the whole model state
 \begin{flalign*}
-	y(k) &= h(u(k), ..., u(k-n), y(k-1), ..., y(k-n), \epsilon(k), ..., \epsilon(k-n)) &\\
+	y(k) &= h(u(k), ..., u(k-n), y(k-1), ..., y(k-n), \varepsilon(k), ..., \varepsilon(k-n)) &\\
 	\quad \text{for} \quad k &= n + 1, n + 2, ... &
 \end{flalign*}	
 
 \textbf{Measurement Noise (Output Error Model)}
 \begin{align*}
-	y(k) = M(k; U, x_{init}, p) + \epsilon(k)
+	y(k) = M(k; U, x_0, p) + \varepsilon(k)
 \end{align*}
 \tcblower
 \textbf{Stochastic Disturbance (Equation Errors)}
 \begin{align*}
-	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \epsilon(k) \\
+	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \varepsilon(k) \\
 	&\text{for } k = n + 1, n + 2, \ldots
 \end{align*}
 
 \textbf{Linear In the Parameters models (LIP):}
 \begin{align*}
-	y(k) &= \sum_{ i = 1}^{d}\theta_i\phi_i(u(k), \dots ,y(k-1), \dots)+\epsilon(k)\\
-	y(k) &= \varphi(k)^T\theta + \epsilon(k) \quad \text{where} \, \varphi = (\phi_1(\cdot),... ,\phi_d(\cdot)) 
+	y(k) &= \sum_{ i = 1}^{d}\theta_i\phi_i(u(k), \dots ,y(k-1), \dots)+\varepsilon(k)\\
+	y(k) &= \varphi(k)^T\theta + \varepsilon(k) \quad \text{where} \, \varphi = (\phi_1(\cdot),... ,\phi_d(\cdot)) 
 \end{align*}
 
 \textbf{LIP-LTI Models with Equation Errors (ARX)} 
 
 \hspace{1em}- Combining best of two worlds (LTI and LIP)
 \begin{flalign*}
-	&\quad a_0y(k) + \ldots +a_{n_{a}}y(k-n_a) = b_0u(k) + \ldots + b_{n_{b}}u(k-n_b) + \epsilon(k) &
+	&\quad a_0y(k) + \ldots +a_{n_{a}}y(k-n_a) = b_0u(k) + \ldots + b_{n_{b}}u(k-n_b) + \varepsilon(k) &
 \end{flalign*}
 
-\textbf{Auto-regressive moving average with eXogeneous input (ARMAX):}
+\textbf{Auto-Regressive Moving Average with eXogeneous input \\(ARMAX):}
 \begin{flalign*}
-	 a_0y(k) + ... + a_{n_a}y(k-n_a) &= b_0u(k) + ... + b_{n_b} u(k - n_b) + \epsilon(k) + \\
-	& \qquad c_1 \epsilon(k-1) + ... + c_{n_x} \epsilon(k-n_c) &
+	 a_0y(k) + ... + a_{n_a}y(k-n_a) &= b_0u(k) + ... + b_{n_b} u(k - n_b) + \varepsilon(k) + \\
+	& \qquad c_1 \varepsilon(k-1) + ... + c_{n_x} \varepsilon(k-n_c) &
 \end{flalign*}
 
-\textbf{Auto-regressive moving average without inputs (ARMA):}
+\textbf{Auto-Regressive Moving Average without inputs (ARMA):}
 \begin{flalign*}
-	&\quad a_0y(k) + ... + a_{n_a}y(k-n_a) = \epsilon(k) + c_1 \epsilon(k-1) + ... + c_{n_x} \epsilon(k-n_c)&
+	&\quad a_0y(k) + ... + a_{n_a}y(k-n_a) = \varepsilon(k) + c_1 \varepsilon(k-1) + ... + c_{n_x} \varepsilon(k-n_c)&
 \end{flalign*}
-Where $c_i$ represent the noise coefficient, we have to use non-linear least squares with the unknown noise terms$ \epsilon(k-i)$
+Where $c_i$ represent the noise coefficient, we have to use non-linear least squares with the unknown noise terms $\varepsilon(k-i)$
 
-\textbf{Difference Deterministic and Stochastic Models}
+\textbf{Difference between Deterministic and Stochastic Models}
 \begin{itemize}
-	\item[-] stochastic noise $\epsilon(k)$
-	\item[-] unknown but constant parameter $p$
-	\item[-] measured output y(k) depend on both, $\epsilon(k)$ and $p$
+	\item stochastic noise $\varepsilon(k)$
+	\item unknown but constant parameter $p$
+	\item measured output $y(k)$ depend on both, $\varepsilon(k)$ and $p$
 \end{itemize}
 \end{tcolorbox}
 
@@ -211,21 +212,21 @@ Where $c_i$ represent the noise coefficient, we have to use non-linear least squ
 Assume: i.i.d. gaussian noise only affecting output\\
 using non-linear least squares
 \begin{align*}
-	\theta_{ML} =\underset{\theta}{\text{min}} \sum_{k=1}^{N} (y(k)-M(k;U, x_{init} p))^2
+	\theta_{ML} =\underset{\theta}{\text{min}} \sum_{k=1}^{N} (y(k)-M(k;U, x_0 p))^2
 \end{align*}
 
 \textbf{Output Error Minimization for FIR Models:}
 lead to convex problems, therefore global minimum can be found
 \begin{flalign*}
 	y(k) &= (u(k), u(k-1), ..., u(k-n_{n_b})) \cdot \theta +\varepsilon(k) &\\
-	&= \underset {\theta}{ \text{min} } \sum_{k=n_{b}+1}^{N} (y(k)-\underbrace{(u(k), u(k-1),... , u(k-n_{n_b}))}_{\text{det. part is also}\, M(k; U, x_{init}, p)} \cdot \theta)^2 &
+	&= \underset {\theta}{ \text{min} } \sum_{k=n_{b}+1}^{N} (y(k)-\underbrace{(u(k), u(k-1),... , u(k-n_{n_b}))}_{\text{det. part is also}\, M(k; U, x_0, p)} \cdot \theta)^2 &
 \end{flalign*}
 They often need a very high dimension $n_b$ to obtain a reasonable fit. As a consequence ARX models are usually used instead. \\
 
 \textbf{Equation Error Minimization:}
-Assume: i.i.d. $\epsilon(k)$ noise enters the input-output equation as additive disturbance
+Assume: i.i.d. $\varepsilon(k)$ noise enters the input-output equation as additive disturbance
 \begin{align*}
-	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \epsilon(k)\\
+	y(k) &= h(p, u(k), ..., u(k-n), y(k-1), ..., y(k-n)) + \varepsilon(k)\\
 	\text{for} \quad k &= n + 1, n + 2
 \end{align*}
 
@@ -240,7 +241,7 @@ Such a problem is convex if $p$ enters linearly in $f$, i.e. if the model is \te
 
 \textbf{PEM of LIP Models}
 \begin{align*}
-	y(k) &= \varphi(k)^T\theta + \epsilon(k)\\
+	y(k) &= \varphi(k)^T\theta + \varepsilon(k)\\
 	\quad \text{where} \, \varphi &= (\phi_1(\cdot),... ,\phi_d(\cdot))^T \text{are the regressor variables}
 \end{align*}
 
@@ -253,7 +254,7 @@ Which can be solved using LLS $\theta^* = \Phi^+_N y_N$ \\
 \textbf{Special Case: PEM of LIP-LTI Models with Equation Errors(ARX)}
 General ARX model equation
 \begin{align*}
-	a_0y(k)+...+a_{n_{a}}y(k-n_a) = b_0u(k)+...+b_{n_{b}}u(k-n_b)+\epsilon(k) 
+	a_0y(k)+...+a_{n_{a}}y(k-n_a) = b_0u(k)+...+b_{n_{b}}u(k-n_b)+\varepsilon(k) 
 \end{align*}
 
 In order to have a determined estimation problem, $a_0$ has to be fixed, otherwise the number of optimal solutions would be infinitive. Therefore we sually fix $a_0 = 1$ and use $\theta = (a_1, ..., a_{n_a}, b_0, ..., b_{n_b})^\text{T}$ as the parameter estimation vector. The regressor vector is given by:
@@ -262,21 +263,29 @@ In order to have a determined estimation problem, $a_0$ has to be fixed, otherwi
 \end{align*}
 leading to the optimal solution provided by LLS:
 \begin{align*}
-y(k) = \varphi(k)^\text{T} \theta + \epsilon(k)
+y(k) = \varphi(k)^\text{T} \theta + \varepsilon(k)
 \end{align*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black,title=\textbf{Pure Output Error (OE) Minimization}]
 \textbf{Models with Input and Output Errors:}
 \begin{align*}
-	y(k)=M(k;U + \varepsilon_{N}^{u}, x_{init}, p) + \epsilon^y(k)
+	y(k)=M(k;U + \varepsilon_{N}^{u}, x_0, p) + \varepsilon^y(k)
 \end{align*}
 
 \includegraphics[width=\textwidth]{model.pdf}
 
 Assume: i.i.d. gaussian noise on both input and output with variance $\sigma_u^2$ for the input and $\sigma_y^2$ for the output
 \begin{flalign*}
-	& \underset{\theta}{arg\,min} \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;U+ \epsilon_{N}^{u},x_{init},p))^2 + \frac{1}{\sigma_{u}^{2}} (\epsilon_u (k))^2 & \\
-	& \underset{\theta}{arg\,min} \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;\tilde U, x_{init}, p))^2 + \frac{1}{\sigma_{u}^{2}} (u(k)-\tilde u(k) )^2 &
-\end{flalign*}
+	& \argmin_\theta \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;U+ \varepsilon_{N}^{u},x_0,p))^2 + \frac{1}{\sigma_{u}^{2}} (\varepsilon_u (k))^2 & \\
+	& \argmin_{\theta} \sum_{k-1}^{N} \frac{1}{\sigma_{y}^{2}} (y(k)-M(k;\tilde U, x_0, p))^2 + \frac{1}{\sigma_{u}^{2}} (u(k)-\tilde u(k) )^2 &
+  \end{flalign*}
+	\\
+	\hspace{-2pt}
+	$\tilde{U}:=U+\varepsilon^u_N$
 \end{tcolorbox}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../HelpSheet"
+%%% End:
