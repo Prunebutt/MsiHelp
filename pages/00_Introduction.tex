@@ -30,8 +30,7 @@ Jacobian: $\nabla f(x) = \frac{\partial f}{\partial x}(x) \text{ in } \mathbb{R}
 
 \textbf{Table of Derivatives:}
 \begin{center}
-\begin{tabular}{|c|c|}
-	\hline 
+\begin{tabular}{c|c}
 	\textbf{$\mathbf{f(x)}$} & \textbf{$\mathbf{f'(x)}$} \\ 
 	\hline 
 	$ g(x) \cdot h(x)$& ${\color{red}g'(x)} \cdot h(x) + g(x) \cdot {\color{red}h'(x)}$ \\ 
@@ -51,10 +50,13 @@ Jacobian: $\nabla f(x) = \frac{\partial f}{\partial x}(x) \text{ in } \mathbb{R}
 	$\log_ax$& $\frac{1}{x\cdot\ln a}$ \\ 
 	\hline $Ax$ & $A$ \\
 	\hline
-	$x^T A$ & $A^T$ \\
+	$x\trans A$ & $A\trans$ \\
 	\hline
-	$x^T B x $ & $x^T(B^T + B)$\\
-	\hline
+  $x\trans B x $ & $x\trans(B\trans + B)$\\
+  \hline
+  $x\trans Ax$ & $x\trans (A+A\trans)$\\
+  \hline
+  $x\trans A\trans Ax$ & $2x\trans A\trans A$
 \end{tabular} 
 \end{center}
 \end{tcolorbox}
