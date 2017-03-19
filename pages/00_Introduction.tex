@@ -11,7 +11,7 @@
 	&\textbf{Weighting Eukl. Norm: }
 	{\lVert x \rVert}_{Q}^{2} = x^TQ \cdot x & \\
 	&\textbf{Frobenius Norm: }
-	{\lVert x\rVert}_{F}^{2} = trace(AA^T)=\sum _{i=1}^{n} \sum _{j=1}^{m} A_{ij} A_{ij} &
+	{\lVert x\rVert}_{F}^{2} = \mathrm{trace}(AA^T)=\sum _{i=1}^{n} \sum _{j=1}^{m} A_{ij} A_{ij} &
 \end{flalign*}
 Jacobian: $\nabla f(x) = \frac{\partial f}{\partial x}(x) \text{ in } \mathbb{R}^{n\times m}$ \hfil Hessian: $\nabla^2 f(x)$
 \tcblower
@@ -48,7 +48,7 @@ Jacobian: $\nabla f(x) = \frac{\partial f}{\partial x}(x) \text{ in } \mathbb{R}
 	\hline 
 	$\ln(x)$& $\frac{1}{x}$ \\ 
 	\hline 
-	$\log_ax$& $\frac{1}{\ln a}(x\ln x -x)$ \\ 
+	$\log_ax$& $\frac{1}{x\cdot\ln a}$ \\ 
 	\hline $Ax$ & $A$ \\
 	\hline
 	$x^T A$ & $A^T$ \\
