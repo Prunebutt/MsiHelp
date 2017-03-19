@@ -19,6 +19,11 @@
 	\dot x &= Ax+Bu \quad y = Cx+Du \\
 	G(s) &= C (sI-A)^{-1} B+D
 	\end{align*}
+	\textbf{Zero order hold}\\
+	Constant control $\ti{u}{const}$ for time steps of length $\Delta t$
+	\begin{align*}
+	  x(t;x_0\ti{u}{const})=e^{A\Delta t}\cdot x_0+\int^{\Delta t}_0e^{A(\Delta t-\tau)}B\ti{u}{const}\diff\tau
+	\end{align*}
 \end{tcolorbox}
 
 
@@ -67,9 +72,8 @@
 	
 	\textbf{LTI system as State-Space Model:}
 	\begin{align*}
-	x_{k+1} = A x_k + B u_k, \quad k = 0, 1,..., N - 1. 
+	  x_{k+1} &= A x_k + B u_k, \quad k = 0, 1,..., N - 1.
 	\end{align*}
-
 	\textbf{LTI system as Input-Output Model:}
 	\begin{flalign*}
 	G(s) &= \frac{ b_0 + b_1s+...+b_ns^n }{ a_0+a_1s+...+a_{n-1}s^{n-1}+s^n } \quad | \cdot s = z^{-1} &\\

@@ -85,7 +85,7 @@ $\\
 \begin{flalign*}
 	L(\theta ,y_N) &= - \log (p(y_N | \theta)) & \\
 	\mathrm{(if\ lin.\ model, etc.)}& = \frac{1}{2} \cdot (\Phi_N \cdot  \theta - y_N)^T \cdot \Sigma^{-1} \cdot (\Phi_N  \cdot \theta - y_N) & \\
-	M &= \mathbb{E} \{\nabla^2_\theta \, L( \theta ,y_N)\}  = \nabla^2_\theta  L(\theta ,y_N)( = \Phi_N^T \cdot \Sigma^{-1} \cdot \Phi_N )& \\
+	M &= \mathbb{E} \{\nabla^2_\theta \, L( \theta ,y_N)\}  = \nabla^2_\theta  L(\theta ,y_N) = (\Phi_N^T \cdot \Sigma^{-1} \cdot \Phi_N )& \\
  &\Rightarrow W = \Sigma^{-1} \text{ is the optimal weighting Matrix for WLS.} &
 \end{flalign*}
 \end{tcolorbox}
