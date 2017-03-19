@@ -92,7 +92,7 @@ R^2 &= 1 - \frac{ { \lVert y_N - \Phi_N \hat \theta \rVert}_{2}^{2} }{ {\lVert y
 Residual: $ \epsilon_N \uparrow \rightarrow \quad R^{2} \rightarrow 0 \,\,(\Rightarrow bad)$
 \end{tcolorbox}
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Covariance estimation with a single experiment}]
-  \textbf{Estimate $\hat{\sigma}_{\varepsilon}$}
+  \textbf{Estimate $\hat{\sigma}_{\varepsilon}$} (Assumption: $\varepsilon$ i.i.d.)
   \begin{align*}
 	\hat{\sigma}_\varepsilon^2&=\frac{1}{N-d}\norm{y-\Phi_N\hat{\theta}}^2_2,\quad \mathrm{with\ }\hat{\theta}\in\mathbb{R}^d\\
 	\hat{\Sigma}_{\hat{\theta}}&=\hat{\sigma}_{\varepsilon}(\Phi_N\trans\Phi_N)\inv=\frac{\norm{y-\Phi_N\hat{\theta}}^2_2}{N-d}(\Phi_N\trans\Phi_N)\inv
