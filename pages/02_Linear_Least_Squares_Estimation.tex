@@ -11,7 +11,7 @@
 	& \textbf{LS cost function: }
 	f(\theta )={ \lVert y_N - \Phi_N \theta \rVert }_{2}^{2} & \\
 	&\textbf{Unique minimizers: }
-	\hat{\theta}_{LS} = \underset{\theta \in \mathbb{R}}{arg\,min} \, f(\theta) \hfil \theta^* = \underbrace{(\Phi^T \Phi)^{-1} \Phi^T}_{:=\Phi^+} y & \\
+	\hat{\theta}_{LS} = \argmin_{\theta\in\mathbb{R}} \, f(\theta) \hfil \theta^* = \underbrace{(\Phi^T \Phi)^{-1} \Phi^T}_{:=\Phi^+} y & \\
 	& \textbf{Pseudo Inverse: } \Phi ^+ = (\Phi^T \Phi)^{-1} \Phi^T &
 \end{flalign*}
 \end{tcolorbox}
@@ -25,8 +25,10 @@
 \textbf{Solution for WLS: }
 \begin{flalign*}
 	\hat \theta_{WLS} &= \tilde \Phi^+ \tilde y \qquad 
-	\text{ mit } \tilde \Phi = W^{\frac{1}{2}} \Phi \text{ und } \tilde y = W^{\frac{1}{2}} y & \\
-	&= \underset{\theta \in \mathbb{R}}{\argmin} \, f_{WLS}(\theta) = { (\Phi^T W \Phi)}^{-1} \Phi^T Wy
+	\text{ with } \tilde \Phi = W^{\frac{1}{2}} \Phi \text{ and } \tilde y = W^{\frac{1}{2}} y & \\
+	&= \underset{\theta \in \mathbb{R}}{\argmin} \, \ti{f}{WLS}(\theta) = { (\Phi^T W \Phi)}^{-1} \Phi^T Wy\\
+	\cov(\hat{\theta})&=(\Phi\trans W\Phi)\inv \Phi\trans W\Sigma\inv_\varepsilon W\Phi(\Phi\trans W\Phi)\inv =
+	\underbrace{(\Phi\trans_N\Sigma_{\varepsilon}\Phi_N)\inv}_{\mathrm{for\ }W=\Sigma_\varepsilon}
 \end{flalign*}
 \end{tcolorbox}
 
