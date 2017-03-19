@@ -26,9 +26,7 @@
 \begin{flalign*}
 	\hat \theta_{WLS} &= \tilde \Phi^+ \tilde y \qquad 
 	\text{ with } \tilde \Phi = W^{\frac{1}{2}} \Phi \text{ and } \tilde y = W^{\frac{1}{2}} y & \\
-	&= \underset{\theta \in \mathbb{R}}{\argmin} \, \ti{f}{WLS}(\theta) = { (\Phi^T W \Phi)}^{-1} \Phi^T Wy\\
-	\cov(\hat{\theta})&=(\Phi\trans W\Phi)\inv \Phi\trans W\Sigma\inv_\varepsilon W\Phi(\Phi\trans W\Phi)\inv =
-	\underbrace{(\Phi\trans_N\Sigma_{\varepsilon}\Phi_N)\inv}_{\mathrm{for\ }W=\Sigma_\varepsilon}
+	&= \underset{\theta \in \mathbb{R}}{\argmin} \, \ti{f}{WLS}(\theta) = { (\Phi^T W \Phi)}^{-1} \Phi^T Wy
 \end{flalign*}
 \end{tcolorbox}
 
@@ -58,10 +56,13 @@
 	E \{\hat \theta_{WLS} \} = E \{ {(\Phi_{N}^{T} W \Phi_N)}^{-1} \Phi_{N}^{T} W y_N \} = \theta_0
 \end{align*}
 \textbf{Covariance of the least squares estimator: }
-\begin{align*}
-	\cov(\hat \theta_{WLS}) &= {(\Phi_{N}^{T} W \Phi_N)}^{-1} = {(\Phi_{N}^{T} \Sigma_{\in N }^{-1} \Phi_{N}) }^{-1} \\
-	\cov(\hat \theta_{WLS}) &\succeq {(\Phi_{N}^{T} W \Phi_{N})}^{-1}
-\end{align*}
+\begin{equation*}
+	\cov(\ti{\hat{\theta}}{WLS})=(\Phi\trans W\Phi)\inv \Phi\trans W\Sigma\inv_\varepsilon W\Phi(\Phi\trans W\Phi)\inv =
+	\underbrace{(\Phi\trans_N\Sigma\inv_{\varepsilon}\Phi_N)\inv}_{\mathrm{for\ }W=\Sigma_\varepsilon}\\
+  \end{equation*}
+  \begin{equation*}
+	\cov(\hat \theta_{WLS}) \succeq {(\Phi_{N}^{T} W \Phi_{N})}^{-1}
+\end{equation*}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Example LLS}]
@@ -89,12 +90,13 @@ R^2 &= 1 - \frac{ { \lVert y_N - \Phi_N \hat \theta \rVert}_{2}^{2} }{ {\lVert y
 &= \frac{ {\lVert y_N \rVert}_{2}^{2} - {\lVert \epsilon_N \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} } = \frac{ {\lVert \hat y_N \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} }
 \end{align*}
 Residual: $ \epsilon_N \uparrow \rightarrow \quad R^{2} \rightarrow 0 \,\,(\Rightarrow bad)$
-\tcblower
-\textbf{Estimating the Covariance with the Single Experiment: }
-\begin{flalign*}
-\hat \sigma_{\varepsilon}^{2} &:= \frac{1}{N-d} \sum_{k=1}^{N} (y(k)-\phi(k)^T \hat \theta_{LS})^2 = \frac{ {\lVert y_N - \phi_N \hat \theta_{LS} \rVert}_{2}^{2} }{ N-d } &\\
-\hat \Sigma_{\hat \theta} &:= \hat \sigma_{\varepsilon}^{2} (\phi^{T}_{N} \phi_{N})^{-1} = \sigma_{\epsilon}^2(\Phi_N^+ \Phi_N^{+^T})=\frac{ {\lVert y_N -\phi_N \hat \theta_{LS} \rVert}_{2}^{2} }{ N-d } \cdot (\phi^{T}_{N} \phi_{N})^{-1} &
-\end{flalign*}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Covariance estimation with a single experiment}]
+  \textbf{Estimate $\hat{\sigma}_{\varepsilon}$}
+  \begin{align*}
+	\hat{\sigma}_\varepsilon^2&=\frac{1}{N-d}\norm{y-\Phi_N\hat{\theta}}^2_2,\quad \mathrm{with\ }\hat{\theta}\in\mathbb{R}^d\\
+	\hat{\Sigma}_{\hat{\theta}}&=\hat{\sigma}_{\varepsilon}(\Phi_N\trans\Phi_N)\inv=\frac{\norm{y-\Phi_N\hat{\theta}}^2_2}{N-d}(\Phi_N\trans\Phi_N)\inv
+  \end{align*}
 \end{tcolorbox}
 
 %%% Local Variables:
