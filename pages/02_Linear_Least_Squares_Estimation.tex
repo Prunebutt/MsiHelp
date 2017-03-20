@@ -11,7 +11,7 @@
 	& \textbf{LS cost function: }
 	f(\theta )={ \lVert y_N - \Phi_N \theta \rVert }_{2}^{2} & \\
 	&\textbf{Unique minimizers: }
-	\hat{\theta}_{LS} = \argmin_{\theta\in\mathbb{R}} \, f(\theta) \hfil \theta^* = \underbrace{(\Phi^T \Phi)^{-1} \Phi^T}_{:=\Phi^+} y & \\
+	\ti{\hat{\theta}}{LS} = \argmin_{\theta\in\mathbb{R}} \, f(\theta) \hfil \theta^* = \underbrace{(\Phi^T \Phi)^{-1} \Phi^T}_{:=\Phi^+} y & \\
 	& \textbf{Pseudo Inverse: } \Phi ^+ = (\Phi^T \Phi)^{-1} \Phi^T &
 \end{flalign*}
 \end{tcolorbox}
@@ -19,12 +19,12 @@
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Weighted Least Squares (unitless)}]
 \textbf{For i.i.d noise:} Unweight Least Squares is optimal: $W = I$
 \begin{align*}
-  f_{WLS}(\theta) &= \sum _{ k=1 }^{ N }\frac {{{ (y(k)-{ \phi (k) }^{ T }\theta )}^{2  } }}{\sigma_{\epsilon}^{2}(k)} = { \lVert y_N - \Phi_N \theta \rVert }_{W}^{2} \\
+  \ti{f}{WLS}(\theta) &= \sum _{ k=1 }^{ N }\frac {{{ (y(k)-{ \phi (k) }^{ T }\theta )}^{2  } }}{\sigma_{\epsilon}^{2}(k)} = { \lVert y_N - \Phi_N \theta \rVert }_{W}^{2} \\
 				  &= \lVert \matrixroot{W}y - \matrixroot{W}\Phi_N\theta\rVert^2_2 = { (y_N - \Phi \cdot \theta ) }^{T} \cdot W \cdot (y_N - \Phi \cdot \theta )
 \end{align*}
 \textbf{Solution for WLS: }
 \begin{flalign*}
-	\hat \theta_{WLS} &= \tilde \Phi^+ \tilde y \qquad 
+	\ti{\hat{\theta}}{WLS} &= \tilde \Phi^+ \tilde y \qquad 
 	\text{ with } \tilde \Phi = W^{\frac{1}{2}} \Phi \text{ and } \tilde y = W^{\frac{1}{2}} y & \\
 	&= \underset{\theta \in \mathbb{R}}{\argmin} \, \ti{f}{WLS}(\theta) = { (\Phi^T W \Phi)}^{-1} \Phi^T Wy
 \end{flalign*}
@@ -89,7 +89,7 @@
 R^2 &= 1 - \frac{ { \lVert y_N - \Phi_N \hat \theta \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} } = 1 - \frac{ {\lVert \epsilon_N \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} } \\
 &= \frac{ {\lVert y_N \rVert}_{2}^{2} - {\lVert \epsilon_N \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} } = \frac{ {\lVert \hat y_N \rVert}_{2}^{2} }{ {\lVert y_N \rVert}_{2}^{2} }
 \end{align*}
-Residual: $ \epsilon_N \uparrow \rightarrow \quad R^{2} \rightarrow 0 \,\,(\Rightarrow bad)$
+Residual: $ \varepsilon_N \uparrow \rightarrow \quad R^{2} \rightarrow 0 \,\,(\Rightarrow \mathrm{bad})$
 \end{tcolorbox}
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=\textbf{Covariance estimation with a single experiment}]
   \textbf{Estimate $\hat{\sigma}_{\varepsilon}$} (Assumption: $\varepsilon$ i.i.d.)
